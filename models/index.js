@@ -1,5 +1,6 @@
 module.exports = {
   User: require('./User.js'),
-  Post: require('./Post.js'),
+  Category: require('./Category.js'),
+  Listing: require('./Listing.js'),
   // models
 }
