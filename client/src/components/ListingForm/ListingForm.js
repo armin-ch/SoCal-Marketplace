@@ -3,6 +3,8 @@ import FormControl from '@material-ui/core/FormControl'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +21,7 @@ const ListingForm = props => {
     <form className={classes.root} noValidate autoComplete='off'>
 
       <FormControl fullWidth variant='outloned'>
-        <InputLabel htmlFor='title'>Title</InputLabel>
+        <InputLabel htmlFor='title'>Post Title</InputLabel>
         <OutlinedInput
         id='title'
         labelWidth={50}
@@ -29,28 +31,32 @@ const ListingForm = props => {
       </FormControl>
 
       <br />
-
-      <Button 
+      <p>
+        <span style={{marginTop:"13px"}}>For Rent</span>
+      
+      <Checkbox
         id='rent'
         value={props.rent}
         name='rent'
-        onClick={props.rent === true} 
-        variant='outlined' 
-        color='primary'>
-            FOR RENT
-      </Button>
-
-      <Button
-        id='sell'
-        value={props.sell}
-        name='sell'
-        onClick={props.sell === true}
+        onClick={props.rent === true}
         variant='outlined'
-        color='primary'>
-          FOR SALE
-      </Button>
+        color='primary'
+        />
+      </p>
+      <p>
+        <span style={{ marginTop: "13px" }}>For Sale</span>
+
+        <Checkbox
+          id='rent'
+          value={props.rent}
+          name='rent'
+          onClick={props.rent === true}
+          variant='outlined'
+          color='primary'
+        />
+      </p>
       <FormControl fullWidth variant='outlined'>
-        <InputLabel htmlFor='body'>Body</InputLabel>
+        <InputLabel htmlFor='body'>Description</InputLabel>
         <OutlinedInput
           id='body'
           labelWidth={50}
@@ -65,7 +71,7 @@ const ListingForm = props => {
         <InputLabel htmlFor='price'>Price</InputLabel>
         <OutlinedInput
           id='price'
-          labelWidth={50}
+          labelWidth={10}
           name={props.price}
           onChange={props.handleInputChange}
         />
