@@ -20,6 +20,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems } from './listItems';
 import SearchInput from '../../components/searchInput';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
 
 
 function Copyright() {
@@ -147,6 +149,10 @@ export default function Dashboard() {
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
+        <ListItem button>
+      <ListItemText primary="Logout" />
+    <Divider />
+    </ListItem>
           </IconButton>
         </Toolbar>
       </AppBar>

@@ -43,7 +43,13 @@ export const mainListItems = (
       <ListItemIcon>
         <AccountCircleIcon />
       </ListItemIcon>
-      <ListItemText primary="My Listings" />
+      <ListItemText primary="My Profile" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <AccountCircleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
     </ListItem>
   </div>
 );
