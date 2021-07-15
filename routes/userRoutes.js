@@ -18,4 +18,34 @@ router.post('/users/login', (req, res) => {
   })
 })
 
+router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
+  res.json(req.user)
+})
+
+router.get('/users/:name', passport.authenticate('jwt'), (req, res) => {
+  User.findOne({ name: req.params.name })
+    .populate({
+      path: 'listings',
+      model: 'Listing',
+      populate: {
+        path: 'seller',
+        model: 'User',
+      }
+      populate: {
+        path: 'category',
+        model: 'Category',
+      }
+    })
+    .populate({
+      path: 'reviews',
+      model: 'Review',
+      populate: {
+        path: 'author',
+        model: 'User'
+      }
+    })
+    .then(user => res.json(user))
+    .catch(err => console.log(err))
+})
+
 module.exports = router
