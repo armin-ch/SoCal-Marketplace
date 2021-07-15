@@ -20,12 +20,12 @@ const ListingForm = props => {
   return(
     <form className={classes.root} noValidate autoComplete='off'>
 
-      <FormControl fullWidth variant='outloned'>
-        <InputLabel htmlFor='title'>Post Title</InputLabel>
+      <FormControl fullWidth variant='outlined'>
+        <InputLabel htmlFor='title'>Title</InputLabel>
         <OutlinedInput
-        id='title'
+        value={props.title}
         labelWidth={50}
-        name={props.title}
+        name='title'
         onChange={props.handleInputChange}
         />
       </FormControl>
@@ -40,14 +40,12 @@ const ListingForm = props => {
         name='rent'
         onClick={props.rent === true}
         variant='outlined'
-        color='primary'
-        />
+        color='primary'/>
       </p>
       <p>
         <span style={{ marginTop: "13px" }}>For Sale</span>
 
         <Checkbox
-          id='rent'
           value={props.rent}
           name='rent'
           onClick={props.rent === true}
@@ -67,15 +65,20 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
+      <br/>
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='price'>Price</InputLabel>
         <OutlinedInput
-          id='price'
           labelWidth={10}
-          name={props.price}
+          name='price'
+          value={props.price}
           onChange={props.handleInputChange}
         />
       </FormControl>
+      <br />
+      <Button onClick={props.handleCreatePost} variant='outlined' color='primary'>
+        Create Listing
+      </Button>
     </form>
   )
 }
