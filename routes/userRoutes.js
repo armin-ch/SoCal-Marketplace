@@ -31,10 +31,10 @@ router.get('/users/:name', passport.authenticate('jwt'), (req, res) => {
         path: 'seller',
         model: 'User',
       }
-      populate: {
-        path: 'category',
-        model: 'Category',
-      }
+      // populate: {
+      //   path: 'category',
+      //   model: 'Category',
+      // }
     })
     .populate({
       path: 'reviews',

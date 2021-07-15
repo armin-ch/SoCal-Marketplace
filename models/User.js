@@ -6,7 +6,7 @@ const User = new Schema({
   listings: [{
     type: Schema.Types.ObjectId,
     ref: 'Listing'
-  }]
+  }],
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review'
