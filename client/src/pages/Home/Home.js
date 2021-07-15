@@ -10,6 +10,8 @@ const Home = () => {
     title: '',
     body: '',
     price:'',
+    rent: false,
+    sell: false,
     listings: []
   })
 
