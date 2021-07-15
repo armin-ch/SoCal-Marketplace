@@ -3,12 +3,8 @@ import FormControl from '@material-ui/core/FormControl'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
-<<<<<<< HEAD
-import { Checkbox } from '@material-ui/core'
-=======
 import Checkbox from '@material-ui/core/Checkbox';
 
->>>>>>> e53a247e5bf73055b283c448f9fbb13e4f164115
 
 const useStyles = makeStyles((theme) => ({
   root: {
