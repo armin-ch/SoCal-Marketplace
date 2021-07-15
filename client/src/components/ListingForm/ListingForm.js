@@ -67,6 +67,7 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
+      <br/>
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='price'>Price</InputLabel>
         <OutlinedInput
@@ -76,6 +77,8 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
+      <br/>
+      <Button variant="outlined" size="medium" color="primary" onClick={props.handleCreatePost}>Submit Listing</Button>
     </form>
   )
 }
