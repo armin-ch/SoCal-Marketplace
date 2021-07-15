@@ -20,8 +20,8 @@ const ListingForm = props => {
   return(
     <form className={classes.root} noValidate autoComplete='off'>
 
-      <FormControl fullWidth variant='outloned'>
-        <InputLabel htmlFor='title'>Post Title</InputLabel>
+      <FormControl fullWidth variant='outlined'>
+        <InputLabel htmlFor='title'>Title</InputLabel>
         <OutlinedInput
         id='title'
         labelWidth={50}
@@ -40,8 +40,7 @@ const ListingForm = props => {
         name='rent'
         onClick={props.rent === true}
         variant='outlined'
-        color='primary'
-        />
+        color='primary'/>
       </p>
       <p>
         <span style={{ marginTop: "13px" }}>For Sale</span>
@@ -77,8 +76,10 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
-      <br/>
-      <Button variant="outlined" size="medium" color="primary" onClick={props.handleCreatePost}>Submit Listing</Button>
+      <br />
+      <Button onClick={props.handleCreatePost} variant='outlined' color='primary'>
+        Create Listing
+      </Button>
     </form>
   )
 }
