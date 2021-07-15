@@ -1,11 +1,8 @@
-import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import FormControl from '@material-ui/core/FormControl'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
-import User from '../../utils/UserAPI'
-import { useLocation, useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,36 +12,42 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const LoginForm = props => {
-  const [loginState, setLoginState] = useState({
-    username: '',
-    password: ''
-  })
-
-  const handleInputChange = ({ target }) => {
-    setLoginState({ ...loginState, [target.name]: target.value })
-  }
-
-  const handleLoginUser = event => {
-    event.preventDefault()
-    User.login(loginState)
-      .then(({ data: token }) => {
-        localStorage.setItem('token', token)
-        window.location = '/'
-      })
-  }
+const RegisterForm = props => {
   const classes = useStyles()
 
   return (
     <form className={classes.root} noValidate autoComplete='off'>
+      <FormControl fullWidth variant='outlined'>
+        <InputLabel htmlFor='name'>Name</InputLabel>
+        <OutlinedInput
+          id='name'
+          labelWidth={75}
+          name='name'
+          value={props.state.name}
+          onChange={props.onChange}
+        />
+      </FormControl>
+      <br />
+      <FormControl fullWidth variant='outlined'>
+        <InputLabel htmlFor='email'>Email</InputLabel>
+        <OutlinedInput
+          type='email'
+          id='email'
+          labelWidth={75}
+          name='email'
+          value={props.state.email}
+          onChange={props.onChange}
+        />
+      </FormControl>
+      <br />
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='username'>Username</InputLabel>
         <OutlinedInput
           id='username'
           labelWidth={75}
           name='username'
-          value={loginState.username}
-          onChange={handleInputChange}
+          value={props.state.username}
+          onChange={props.onChange}
         />
       </FormControl>
       <br />
@@ -55,16 +58,16 @@ const LoginForm = props => {
           id='password'
           labelWidth={75}
           name='password'
-          value={loginState.password}
-          onChange={handleInputChange}
+          value={props.state.password}
+          onChange={props.onChange}
         />
       </FormControl>
       <br />
-      <Button onClick={handleLoginUser} variant='outlined' color='primary'>
-        Login
+      <Button onClick={props.onClick} variant='outlined' color='primary'>
+        Register
       </Button>
     </form>
   )
 }
 
-export default LoginForm
+export default RegisterForm
