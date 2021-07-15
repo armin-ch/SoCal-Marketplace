@@ -3,6 +3,7 @@ import FormControl from '@material-ui/core/FormControl'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
+import { Checkbox } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const ListingForm = props => {
   return(
     <form className={classes.root} noValidate autoComplete='off'>
 
-      <FormControl fullWidth variant='outloned'>
+      <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>
         <OutlinedInput
         id='title'
@@ -30,21 +31,21 @@ const ListingForm = props => {
 
       <br />
 
-      <Button 
+      <Button
         id='rent'
         value={props.rent}
         name='rent'
-        onClick={props.rent === true} 
-        variant='outlined' 
+        onClick={props.rent === true}
+        variant='outlined'
         color='primary'>
-            FOR RENT
+        FOR RENT
       </Button>
 
       <Button
         id='sell'
         value={props.sell}
         name='sell'
-        onClick={props.sell === true}
+        onClick={props.sell && true}
         variant='outlined'
         color='primary'>
           FOR SALE
@@ -70,6 +71,10 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
+      <br />
+      <Button onClick={props.handleCreatePost} variant='outlined' color='primary'>
+        Create Listing
+      </Button>
     </form>
   )
 }

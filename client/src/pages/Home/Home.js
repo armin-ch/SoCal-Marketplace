@@ -31,7 +31,7 @@ const Home = () => {
       .then(({ data: listing }) => {
         const listings = [...listingState.listings]
         listings.push(listing)
-        setListingState({ ...listingState, listings, title: '', body: '', price:'' })
+        setListingState({ ...listingState, listings, title: '', rent: '',  sell: '',  body: '', price:'' })
       })
   }
   useEffect(() => {
