@@ -25,6 +25,7 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
   body: req.body.body,
   price: req.body.price,
   seller: req.user._id,
+  datePosted: req.body.datePosted,
   categoty: req.body.category
 })
   .then(listing => {
@@ -37,6 +38,7 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
           seller: req.user,
           rent: listing.rent,
           sell: listing.sell,
+          datePosted: listing.datePosted,
           price: listing.price,
           category: listing.category
         })
@@ -56,6 +58,7 @@ router.put('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.
           seller: req.user,
           rent: listing.rent,
           sell: listing.sell,
+          datePosted: listing.datePosted,
           price: listing.price,
           category: listing.category
         })
