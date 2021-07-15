@@ -23,9 +23,9 @@ const ListingForm = props => {
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>
         <OutlinedInput
-        id='title'
+        value={props.title}
         labelWidth={50}
-        name={props.title}
+        name='title'
         onChange={props.handleInputChange}
         />
       </FormControl>
@@ -46,7 +46,6 @@ const ListingForm = props => {
         <span style={{ marginTop: "13px" }}>For Sale</span>
 
         <Checkbox
-          id='rent'
           value={props.rent}
           name='rent'
           onClick={props.rent === true}
@@ -70,9 +69,9 @@ const ListingForm = props => {
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='price'>Price</InputLabel>
         <OutlinedInput
-          id='price'
           labelWidth={10}
-          name={props.price}
+          name='price'
+          value={props.price}
           onChange={props.handleInputChange}
         />
       </FormControl>
