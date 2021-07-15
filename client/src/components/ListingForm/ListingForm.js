@@ -3,7 +3,12 @@ import FormControl from '@material-ui/core/FormControl'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
+<<<<<<< HEAD
 import { Checkbox } from '@material-ui/core'
+=======
+import Checkbox from '@material-ui/core/Checkbox';
+
+>>>>>>> e53a247e5bf73055b283c448f9fbb13e4f164115
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,28 +35,31 @@ const ListingForm = props => {
       </FormControl>
 
       <br />
-
-      <Button
+      <p>
+        <span style={{marginTop:"13px"}}>For Rent</span>
+      
+      <Checkbox
         id='rent'
         value={props.rent}
         name='rent'
         onClick={props.rent === true}
         variant='outlined'
-        color='primary'>
-        FOR RENT
-      </Button>
+        color='primary'/>
+      </p>
+      <p>
+        <span style={{ marginTop: "13px" }}>For Sale</span>
 
-      <Button
-        id='sell'
-        value={props.sell}
-        name='sell'
-        onClick={props.sell && true}
-        variant='outlined'
-        color='primary'>
-          FOR SALE
-      </Button>
+        <Checkbox
+          id='rent'
+          value={props.rent}
+          name='rent'
+          onClick={props.rent === true}
+          variant='outlined'
+          color='primary'
+        />
+      </p>
       <FormControl fullWidth variant='outlined'>
-        <InputLabel htmlFor='body'>Body</InputLabel>
+        <InputLabel htmlFor='body'>Description</InputLabel>
         <OutlinedInput
           id='body'
           labelWidth={50}
@@ -66,7 +74,7 @@ const ListingForm = props => {
         <InputLabel htmlFor='price'>Price</InputLabel>
         <OutlinedInput
           id='price'
-          labelWidth={50}
+          labelWidth={10}
           name={props.price}
           onChange={props.handleInputChange}
         />
