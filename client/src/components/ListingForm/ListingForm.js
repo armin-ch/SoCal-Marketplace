@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
 import { useEffect, useState } from 'react'
+import Listing from '../../utils/ListingAPI'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,6 +18,26 @@ const useStyles = makeStyles((theme) => ({
 
 const ListingForm = props => {
   const classes = useStyles()
+
+
+  const handleCreatePost = event => {
+    event.preventDefault()
+    const date = new Date().setDate(new Date().getDate() - 10)
+    Listing.create({
+      title: props.title,
+      rent: rentState,
+      sell: saleState,
+      body: props.body,
+      price: props.price,
+      datePosted: date
+    })
+      .then(({ data: listing }) => {
+        console.log('done')
+      })
+  }
+
+
+
 
   const [rentState, setRentState] = useState(true)
   const handleCheckboxR = () => {
@@ -87,7 +108,7 @@ const ListingForm = props => {
         />
       </FormControl>
       <br />
-      <Button onClick={props.handleCreatePost} variant='outlined' color='primary'>
+      <Button onClick={handleCreatePost} variant='outlined' color='primary'>
         Create Listing
       </Button>
     </form>
