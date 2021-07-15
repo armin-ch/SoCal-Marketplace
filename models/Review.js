@@ -8,6 +8,10 @@ const Review = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
+  seller: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 module.exports = model('Review', Review)
