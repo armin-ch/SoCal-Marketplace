@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
 
@@ -54,7 +55,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path='/'>
-            <h1>Home page</h1>
+            <Home />
           </Route>
           <Route exact path='profile/:username'>
             <h1> Profile page</h1>
