@@ -5,6 +5,7 @@ import {
   Route
 } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Login from './pages/Login'
 import User from './utils/UserAPI'
 
 
@@ -34,6 +35,18 @@ const App = () => {
     getMe()
   }, [])
 
+  const updateMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        console.log(me)
+        setMeState({ me, isLoggedIn: true })
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
 
   return (
     <Router>
@@ -47,7 +60,7 @@ const App = () => {
             <h1> Profile page</h1>
           </Route>
           <Route exact path='/login'>
-            <h1>Login Page</h1>
+            <Login updateMe={updateMe} />
           </Route>
         </Switch>
       </div>
