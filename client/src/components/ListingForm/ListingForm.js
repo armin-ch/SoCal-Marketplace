@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
+import {storage} from '../../firebase/firebase'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +19,15 @@ const useStyles = makeStyles((theme) => ({
 
 const ListingForm = props => {
   const classes = useStyles()
+// firebase stuff
+  const allInputs = { imgUrl: '' }
+  const [imageAsFile, setImageAsFile] = useState('')
+  const [imageAsUrl, setImageAsUrl] = useState(allInputs)
+  console.log(imageAsFile)
+  const handleImageAsFile = (e) => {
+    const image = e.target.files[0]
+    setImageAsFile(imageFile => (image))
+  }
 
 
   const handleCreatePost = event => {
@@ -108,6 +118,15 @@ const ListingForm = props => {
         />
       </FormControl>
       <br />
+
+      <FormControl>
+        <input
+          type="file"
+          onChange={handleImageAsFile}
+        />
+
+      </FormControl>
+
       <Button onClick={handleCreatePost} variant='outlined' color='primary'>
         Create Listing
       </Button>
