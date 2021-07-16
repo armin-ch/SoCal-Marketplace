@@ -3,7 +3,10 @@ import FormControl from '@material-ui/core/FormControl'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
-import { Checkbox } from '@material-ui/core'
+import Checkbox from '@material-ui/core/Checkbox'
+import { useEffect, useState } from 'react'
+import Listing from '../../utils/ListingAPI'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +19,36 @@ const useStyles = makeStyles((theme) => ({
 const ListingForm = props => {
   const classes = useStyles()
 
+
+  const handleCreatePost = event => {
+    event.preventDefault()
+    const date = new Date().setDate(new Date().getDate() - 10)
+    Listing.create({
+      title: props.title,
+      rent: rentState,
+      sell: saleState,
+      body: props.body,
+      price: props.price,
+      datePosted: date
+    })
+      .then(({ data: listing }) => {
+        console.log('done')
+      })
+  }
+
+
+
+
+  const [rentState, setRentState] = useState(true)
+  const handleCheckboxR = () => {
+    setRentState(!rentState)
+    console.log('rent' + rentState)
+  }
+  const [saleState, setSaleState] = useState(true)
+  const handleCheckboxS = () => {
+    setSaleState(!saleState)
+    console.log('sell' + saleState)
+  }
   return(
     <form className={classes.root} noValidate autoComplete='off'>
 
@@ -37,7 +70,7 @@ const ListingForm = props => {
         id='rent'
         value={props.rent}
         name='rent'
-        onClick={props.rent === true}
+        onChange={handleCheckboxR}
         variant='outlined'
         color='primary'/>
       </p>
@@ -45,12 +78,12 @@ const ListingForm = props => {
         <span style={{ marginTop: "13px" }}>For Sale</span>
 
         <Checkbox
-          value={props.rent}
-          name='rent'
-          onClick={props.rent === true}
+          value={props.sell}
+          name='sell'
+          onChange={handleCheckboxS}
           variant='outlined'
           color='primary'
-        />
+          />
       </p>
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='body'>Description</InputLabel>
@@ -75,7 +108,7 @@ const ListingForm = props => {
         />
       </FormControl>
       <br />
-      <Button onClick={props.handleCreatePost} variant='outlined' color='primary'>
+      <Button onClick={handleCreatePost} variant='outlined' color='primary'>
         Create Listing
       </Button>
     </form>
