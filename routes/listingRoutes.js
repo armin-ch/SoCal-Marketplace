@@ -26,7 +26,8 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
   price: req.body.price,
   seller: req.user._id,
   datePosted: req.body.datePosted,
-  categoty: req.body.category
+  categoty: req.body.category,
+  imageURL: req.body.imageURL
 })
   .then(listing => {
     User.findByIdAndUpdate(req.user._id, { $push: { listings: listing._id } })

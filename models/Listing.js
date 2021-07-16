@@ -14,10 +14,8 @@ const Listing = new Schema({
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category'
-  }
-  // imageURLs: [{
-  //   type: String
-  // }]
+  },
+  imageURL: String
 })
 
 module.exports = model('Listing', Listing)
