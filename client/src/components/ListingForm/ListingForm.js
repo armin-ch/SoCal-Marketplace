@@ -69,15 +69,13 @@ const ListingForm = props => {
 
 
 
-  const [rentState, setRentState] = useState(true)
+  const [rentState, setRentState] = useState(false)
   const handleCheckboxR = () => {
     setRentState(!rentState)
-    console.log('rent' + rentState)
   }
-  const [saleState, setSaleState] = useState(true)
+  const [saleState, setSaleState] = useState(false)
   const handleCheckboxS = () => {
     setSaleState(!saleState)
-    console.log('sell' + saleState)
   }
   return (
     <form className={classes.root} noValidate autoComplete='off'>
