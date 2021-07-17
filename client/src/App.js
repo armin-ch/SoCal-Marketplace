@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
 import Market from './pages/market'
+import SellItem from './pages/SellItem'
 
 
 
@@ -66,6 +67,9 @@ const App = () => {
           </Route>
           <Route exact path='/market'>
             <Market />
+          </Route>
+          <Route exact path='/sellItem'>
+            <SellItem />
           </Route>
         </Switch>
       </div>
