@@ -86,6 +86,7 @@ const Home = () => {
               <Typography variant='h6'>
                 Created by {listing.seller.username}
               </Typography>
+              <img src={listing.imageURL} alt={listing.title}/>
             </Paper>
           ))
         }
