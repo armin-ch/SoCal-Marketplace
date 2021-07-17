@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
+import Market from './pages/market'
 
 
 
@@ -62,6 +63,9 @@ const App = () => {
           </Route>
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
+          </Route>
+          <Route exact path='/market'>
+            <Market />
           </Route>
         </Switch>
       </div>
