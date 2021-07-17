@@ -12,6 +12,8 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import { Link } from 'react-router-dom'
+import SellItem from '../SellItem'
 
 export const mainListItems = (
   <div>
@@ -27,12 +29,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Buy" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <MonetizationOnIcon />
-      </ListItemIcon>
-      <ListItemText primary="Sell" />
-    </ListItem>
+    <Link to='/SellItem' style={{ textDecoration: 'none' }}>
+      <ListItem button>
+        <ListItemIcon>
+          <MonetizationOnIcon />
+        </ListItemIcon>
+        <ListItemText primary="Sell" />
+      </ListItem>
+    </Link>
     <ListItem button>
       <ListItemIcon>
         <ChatIcon />
