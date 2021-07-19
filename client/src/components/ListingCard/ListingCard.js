@@ -18,10 +18,11 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
   const classes = useStyles();
+  let datePosted = JSON.stringify(props.date)
+  datePosted = datePosted.slice(1,11)
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
         <CardMedia
           className={classes.media}
           image={props.imageURL}
@@ -35,16 +36,15 @@ export default function MediaCard(props) {
             {props.body}
           </Typography>
           <Typography gutterBottom variant="body3" component="body3">
-            created by {props.seller} on {props.date}
+            created by {props.seller} on {datePosted}
           </Typography>
         </CardContent>
-      </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
           Contact Seller
         </Button>
         <Button size="small" color="primary">
-          Add to favorites
+          Show More
         </Button>
       </CardActions>
     </Card>

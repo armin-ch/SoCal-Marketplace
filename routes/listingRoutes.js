@@ -3,7 +3,7 @@ const { Listing, User } = require('../models')
 const passport = require('passport')
 
 // GET all listings
-router.get('/listings', passport.authenticate('jwt'), (req, res) => {
+router.get('/listings', (req, res) => {
   Listing.find({})
     .populate('seller')
     .populate('category')

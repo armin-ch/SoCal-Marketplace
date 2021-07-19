@@ -235,7 +235,7 @@ export default function Dashboard() {
                     body={listing.body}
                     seller={listing.seller.username}
                     date={listing.datePosted}
-            />
+                  />
                 </Paper>
               ))
             }
