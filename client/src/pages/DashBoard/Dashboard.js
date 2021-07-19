@@ -18,14 +18,13 @@ import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationsIcon from '@material-ui/icons/Notifications'
 import SearchInput from '../../components/searchInput';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import ListingForm from '../../components/ListingForm';
-import ListItems from '../../components/ListItems'
+import ListItem from '@material-ui/core/ListItem'
 import Listing from '../../utils/ListingAPI'
-
+import ListItems from '../../components/ListItems'
+import ListingCard from '../../components/ListingCard'
 
 function Copyright() {
   return (
@@ -121,44 +120,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SellItem = ( ) => {
+export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const [listingState, setListingState] = useState({
-    title: '',
-    body: '',
-    price: '',
-    rent: false,
-    sell: false,
-    listings: []
-  })
-  const handleInputChange = ({ target }) => {
-    setListingState({ ...listingState, [target.name]: target.value })
-  }
-
-  const handleCreatePost = event => {
-    event.preventDefault()
-    const date = new Date().setDate(new Date().getDate() - 10)
-    Listing.create({
-      title: listingState.title,
-      rent: listingState.rent,
-      sell: listingState.sell,
-      body: listingState.body,
-      price: listingState.price,
-      datePosted: date
-    })
-      .then(({ data: listing }) => {
-        const listings = [...listingState.listings]
-        listings.push(listing)
-        setListingState({ ...listingState, listings, title: '', rent: '', sell: '', body: '', price: '' })
-      })
-  }
+  title: '',
+  body: '',
+  price: '',
+  rent: false,
+  sell: false,
+  listings: []
+})
   useEffect(() => {
     Listing.getAll()
       .then(({ data: listings }) => {
@@ -166,6 +137,15 @@ const SellItem = ( ) => {
         setListingState({ ...listingState, listings })
       })
   }, [])
+
+  
+  const [open, setOpen] = React.useState(true);
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setOpen(false);
+  }
 
   return (
     <div className={classes.root}>
@@ -210,29 +190,59 @@ const SellItem = ( ) => {
         <SearchInput />
         <List>
           <ListItems />
-        </List>
+          </List>
         <Divider />
         <List></List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-    <Container maxWidth='xl'>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-            <ListingForm
-              title={listingState.title}
-              rent={listingState.rent}
-              sell={listingState.sell}
-              body={listingState.body}
-              price={listingState.price}
-              datePosted={listingState.datePosted}
-              handleInputChange={handleInputChange}
-              handleCreatePost={handleCreatePost}
-            />
-      </Paper>
-    </Container>
-     </main >
-    </div >
+        <Container maxWidth='xl'>
+          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+            
+            {
+              listingState.listings.map(listing => (
+                <Paper
+                  key={listing._id}
+                  elevation={3}
+                  style={{ padding: '20px', marginBottom: '20px' }}
+                >
+                  {/* <Typography variant='h4'>
+                    {listing.title}
+                  </Typography>
+                  <Typography variant='p'>
+                    {listing.rent}
+                  </Typography>
+                  <hr />
+                  <Typography variant='h6'>
+                    {listing.sell}
+                  </Typography>
+                  <Typography variant='h6'>
+                    {listing.body}
+                  </Typography>
+                  <Typography variant='h6'>
+                    $ {listing.price}
+                  </Typography>
+                  <Typography variant='h6'>
+                    {listing.datePosted}
+                  </Typography>
+                  <Typography variant='h6'>
+                    Created by @{listing.seller.username}
+                  </Typography>
+                  <img src={listing.imageURL} alt={listing.title} /> */}
+                  <ListingCard
+                    title={listing.title}
+                    imageURL={listing.imageURL}
+                    body={listing.body}
+                    seller={listing.seller.username}
+                    date={listing.datePosted}
+                  />
+                </Paper>
+              ))
+            }
+          </Paper>
+            
+        </Container>
+      </main>
+    </div>
   );
 }
-
-export default SellItem

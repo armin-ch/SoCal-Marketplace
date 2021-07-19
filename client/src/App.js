@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import User from './utils/UserAPI'
 import Market from './pages/market'
 import SellItem from './pages/SellItem'
+import DashBoard from './pages/DashBoard'
 
 
 
@@ -70,6 +71,9 @@ const App = () => {
           </Route>
           <Route exact path='/sellItem'>
             <SellItem />
+          </Route>
+          <Route exact path='/DashBoard'>
+            <DashBoard />
           </Route>
         </Switch>
       </div>

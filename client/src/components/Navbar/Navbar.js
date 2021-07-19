@@ -40,6 +40,9 @@ const Navbar = props => {
           <Link className={classes.link} to='/SellItem'>
             <Button color='inherit'>Sell Item</Button>
           </Link>
+          <Link className={classes.link} to='/DashBoard'>
+            <Button color='inherit'>DashBoard</Button>
+          </Link>
           <Link className={classes.link} to={`/profile/${props.username}`}>
             <Button color='inherit'>Profile</Button>
           </Link>
