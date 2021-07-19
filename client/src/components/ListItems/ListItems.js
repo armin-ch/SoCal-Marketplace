@@ -17,12 +17,12 @@ import { Link } from 'react-router-dom'
 export const ListItems = props => {
   return(
   <div>
-    <Link to='/DashBoard'>
+      <Link to='/DashBoard' style={{ textDecoration: 'none', color: 'black' }}>
       <ListItem button>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="dashboard" />
+        <ListItemText primary="Dashboard" />
       </ListItem>
     </Link>
     <ListItem button>
@@ -31,7 +31,7 @@ export const ListItems = props => {
       </ListItemIcon>
       <ListItemText primary="Buy" />
     </ListItem>
-    <Link to='/SellItem' style={{ textDecoration: 'none' }}>
+      <Link to='/SellItem' style={{ textDecoration: 'none', color: 'black' }}>
       <ListItem button>
         <ListItemIcon>
           <MonetizationOnIcon />

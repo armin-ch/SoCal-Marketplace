@@ -219,13 +219,13 @@ export default function Dashboard() {
                     {listing.body}
                   </Typography>
                   <Typography variant='h6'>
-                    {listing.price}
+                    $ {listing.price}
                   </Typography>
                   <Typography variant='h6'>
                     {listing.datePosted}
                   </Typography>
                   <Typography variant='h6'>
-                    Created by {listing.seller.username}
+                    Created by @{listing.seller.username}
                   </Typography>
                   <img src={listing.imageURL} alt={listing.title} />
                 </Paper>
