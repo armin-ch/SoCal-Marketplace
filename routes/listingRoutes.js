@@ -7,8 +7,8 @@ router.get('/listings', passport.authenticate('jwt'), (req, res) => {
   Listing.find({})
     .populate('seller')
     .populate('category')
-  .then(listings => res.json(listings))
-  .catch(err => console.log(err))
+    .then(listings => res.json(listings))
+    .catch(err => console.log(err))
 })
 
 // GET one listing
