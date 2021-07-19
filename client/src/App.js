@@ -79,6 +79,9 @@ const App = () => {
           <Route exact path='/DashBoard'>
             <DashBoard />
           </Route>
+          <Route exact path='/Profile'>
+            <Profile />
+          </Route>
         </Switch>
       </div>
     </Router>
