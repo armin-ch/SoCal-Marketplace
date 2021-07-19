@@ -23,7 +23,8 @@ import SearchInput from '../../components/searchInput';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem'
 import Listing from '../../utils/ListingAPI'
-import ListItems from '../../components/ListItems';
+import ListItems from '../../components/ListItems'
+import ListingCard from '../../components/ListingCard'
 
 function Copyright() {
   return (
@@ -205,7 +206,7 @@ export default function Dashboard() {
                   elevation={3}
                   style={{ padding: '20px', marginBottom: '20px' }}
                 >
-                  <Typography variant='h4'>
+                  {/* <Typography variant='h4'>
                     {listing.title}
                   </Typography>
                   <Typography variant='p'>
@@ -219,19 +220,27 @@ export default function Dashboard() {
                     {listing.body}
                   </Typography>
                   <Typography variant='h6'>
-                    {listing.price}
+                    $ {listing.price}
                   </Typography>
                   <Typography variant='h6'>
                     {listing.datePosted}
                   </Typography>
                   <Typography variant='h6'>
-                    Created by {listing.seller.username}
+                    Created by @{listing.seller.username}
                   </Typography>
-                  <img src={listing.imageURL} alt={listing.title} />
+                  <img src={listing.imageURL} alt={listing.title} /> */}
+                  <ListingCard
+                    title={listing.title}
+                    imageURL={listing.imageURL}
+                    body={listing.body}
+                    seller={listing.seller.username}
+                    date={listing.datePosted}
+                  />
                 </Paper>
               ))
             }
           </Paper>
+            
         </Container>
       </main>
     </div>
