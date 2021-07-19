@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +24,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListingForm from '../../components/ListingForm';
 import ListItems from '../../components/ListItems'
+import Listing from '../../utils/ListingAPI'
 
 
 function Copyright() {
@@ -119,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+const SellItem = ( ) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -128,7 +130,6 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -150,10 +151,10 @@ export default function Dashboard() {
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-        <ListItem button>
-      <ListItemText primary="Logout" />
-    <Divider />
-    </ListItem>
+            <ListItem button>
+              <ListItemText primary="Logout" />
+              <Divider />
+            </ListItem>
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -179,10 +180,14 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-            <ListingForm /> 
-        </Container>
-      </main>
-    </div>
+    <Container maxWidth='xl'>
+      <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+            <ListingForm />
+      </Paper>
+    </Container>
+     </main >
+    </div >
   );
 }
+
+export default SellItem
