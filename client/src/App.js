@@ -11,6 +11,7 @@ import User from './utils/UserAPI'
 import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import DashBoard from './pages/DashBoard'
+import Profile from './pages/Profile'
 
 
 
@@ -74,6 +75,9 @@ const App = () => {
           </Route>
           <Route exact path='/DashBoard'>
             <DashBoard />
+          </Route>
+          <Route exact path='/Profile'>
+            <Profile />
           </Route>
         </Switch>
       </div>

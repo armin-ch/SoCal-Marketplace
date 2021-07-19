@@ -45,12 +45,14 @@ export const ListItems = props => {
       </ListItemIcon>
       <ListItemText primary="Chat" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AccountCircleIcon />
-      </ListItemIcon>
-      <ListItemText primary="My Profile" />
-    </ListItem>
+      <Link to='/Profile' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <AccountCircleIcon />
+          </ListItemIcon>
+          <ListItemText primary="My Profile" />
+        </ListItem>
+      </Link>
     <ListItem button>
       <ListItemIcon>
         <AccountCircleIcon />

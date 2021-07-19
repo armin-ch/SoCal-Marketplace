@@ -43,6 +43,8 @@ const Profile = () => {
           elevation={3}
           style={{ padding: '20px', marginBottom: '20px' }}
         >
+          {userState.user ? (
+            <>
           <Typography variant='h4'>
             {userState.user.name}
           </Typography>
@@ -53,6 +55,8 @@ const Profile = () => {
           <Typography variant='h6'>
             {userState.user.username}
           </Typography>
+          </>
+          ): null}
         </Paper>
       </Paper>
     </Container>
