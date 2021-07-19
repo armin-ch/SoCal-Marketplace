@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
+import Listing from '../../utils/ListingAPI'
+import ListingForm from '../../components/LoginForm'
 // import Accordion from '@material-ui/core/Accordion'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 // import AccordionSummary from '@material-ui/core/AccordionSummary'
@@ -26,10 +28,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Profile = () => {
-  
-
-
-
+  const [listingState, setListingState] = useState({
+    listings: []
+  })
   const classes = useStyles()
   const [userState, setUserState] = useState({
     user: {}
@@ -42,16 +43,17 @@ const Profile = () => {
         const user = res.data
         setUserState({ ...userState, user })
       })
-    }, [])
+    Listing.getAll()
+      .then(({ data: listings }) => {
+        console.log(listings)
+        setListingState({ ...listingState, listings })
+      })
+  }, [])
 
   return (
     <Container maxWidth='xl'>
       <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-        <Paper
-          elevation={3}
-          style={{ padding: '20px', marginBottom: '20px' }}
-        >
-          {userState.user ? (
+        {userState.user ? (
             <>
           <Typography variant='h4'>
             {userState.user.name}
@@ -65,42 +67,23 @@ const Profile = () => {
           </Typography>
           </>
           ): null}
-           
-          {/* {
-            userState.user.listings.map(listing => (
-              <Paper
-                key={listing._id}
-                elevation={3}
-                style={{ padding: '20px', marginBottom: '20px' }}
-              >
-                <Typography variant='h4'>
-                  {listing.title}
-                </Typography>
-                <Typography variant='p'>
-                  {listing.rent}
-                </Typography>
-                <hr />
-                <Typography variant='h6'>
-                  {listing.sell}
-                </Typography>
-                <Typography variant='h6'>
-                  {listing.body}
-                </Typography>
-                <Typography variant='h6'>
-                  {listing.price}
-                </Typography>
-                <Typography variant='h6'>
-                  {listing.datePosted}
-                </Typography>
-                <Typography variant='h6'>
-                  Created by {listing.seller.username}
-                </Typography>
-                <img src={listing.imageURL} alt={listing.title} />
-              </Paper>
-            ))
-          } */}
-
-        </Paper>
+        {
+          listingState.listings.map(listing => (
+            <Paper
+              key={listing._id}
+              elevation={3}
+              style={{ padding: '20px', marginBottom: '20px' }}
+            >
+              <ListingCard
+                title={listing.title}
+                imageURL={listing.imageURL}
+                body={listing.body}
+                seller={listing.seller.username}
+                date={listing.datePosted}
+              />
+            </Paper>
+          ))
+        }
       </Paper>
     </Container>
   )
