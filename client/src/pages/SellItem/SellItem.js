@@ -18,11 +18,11 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems } from './listItems';
 import SearchInput from '../../components/searchInput';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListingForm from '../../components/ListingForm';
+import ListItems from '../../components/ListItems'
 
 
 function Copyright() {
@@ -171,7 +171,9 @@ export default function Dashboard() {
         </div>
         <Divider />
         <SearchInput />
-        <List>{mainListItems}</List>
+        <List>
+          <ListItems />
+        </List>
         <Divider />
         <List></List>
       </Drawer>
