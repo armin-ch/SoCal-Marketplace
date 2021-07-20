@@ -158,7 +158,7 @@ const Profile = () => {
                 title={listing.title}
                 imageURL={listing.imageURL}
                 body={listing.body}
-                seller={listing.seller.username}
+                seller={userState.user.username}
                 date={listing.datePosted}
               />
             </Paper>
