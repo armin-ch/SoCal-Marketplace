@@ -4,8 +4,8 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 
 router.post('/users/register', (req, res) => {
-  const { email, name , username } = req.body
-  User.register(new User({ email, name , username }), req.body.password, err => {
+  const { email, name, username } = req.body
+  User.register(new User({ email, name, username }), req.body.password, err => {
     if (err) { console.log(err) }
     res.sendStatus(200)
   })
@@ -19,11 +19,14 @@ router.post('/users/login', (req, res) => {
 })
 
 router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
-  res.json(req.user)
+  User.findOne({ username: req.user.username })
+    .populate('listings')
+    .then(() => res.json(req.user))
+    .catch(err => console.log(err))
 })
 
-router.get('/users/:name', passport.authenticate('jwt'), (req, res) => {
-  User.findOne({ name: req.params.name })
+router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
+  User.findOne({ username: req.params.username })
     .populate({
       path: 'listings',
       model: 'Listing',

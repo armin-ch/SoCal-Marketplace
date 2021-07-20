@@ -15,42 +15,44 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import { Link } from 'react-router-dom'
 
 export const ListItems = props => {
-  return(
-  <div>
+  return (
+    <div>
       <Link to='/DashBoard' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+      </Link>
       <ListItem button>
         <ListItemIcon>
-          <DashboardIcon />
+          <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Buy" />
       </ListItem>
-    </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Buy" />
-    </ListItem>
       <Link to='/SellItem' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <MonetizationOnIcon />
+          </ListItemIcon>
+          <ListItemText primary="Sell" />
+        </ListItem>
+      </Link>
       <ListItem button>
         <ListItemIcon>
-          <MonetizationOnIcon />
+          <ChatIcon />
         </ListItemIcon>
-        <ListItemText primary="Sell" />
+        <ListItemText primary="Chat" />
       </ListItem>
-    </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <ChatIcon />
-      </ListItemIcon>
-      <ListItemText primary="Chat" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AccountCircleIcon />
-      </ListItemIcon>
-      <ListItemText primary="My Profile" />
-    </ListItem>
+      <Link to='/Profile' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <AccountCircleIcon />
+          </ListItemIcon>
+          <ListItemText primary="My Profile" />
+        </ListItem>
+      </Link>
     <ListItem button>
       <ListItemIcon>
         <AccountCircleIcon />
