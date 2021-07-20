@@ -80,6 +80,7 @@ const App = () => {
           </Route>
           <Route exact path='/chat'>
             <Chat />
+          </Route>
           <Route exact path='/listing/:id'>
             <Listing />
           </Route>

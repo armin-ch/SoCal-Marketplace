@@ -8,28 +8,6 @@ const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt')
 // socket io server setup
 const http = require('http')
 const app = express()
-const server = http.createServer(app)
-const socket = require('socket.io')
-const io = socket(server)
-
-// Run when client connects
-io.on("connection", (socket) => {
-  console.log(socket.id);
-
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log("User Joined Room: " + data);
-  });
-
-  socket.on("send_message", (data) => {
-    console.log(data);
-    socket.to(data.room).emit("receive_message", data.content);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("USER DISCONNECTED");
-  });
-});
 
 const { User } = require('./models')
 
@@ -59,5 +37,5 @@ app.get('*', (req, res) => {
 })
 
 require('./db')
-  .then(() => server.listen(process.env.PORT || 3001))
+  .then(() => app.listen(process.env.PORT || 3001))
   .catch(err => console.log(err))
