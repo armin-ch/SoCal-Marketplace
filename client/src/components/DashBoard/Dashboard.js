@@ -17,8 +17,12 @@ import NotificationsIcon from '@material-ui/icons/Notifications'
 import SearchInput from '../searchInput';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem'
+import Auth from '../Auth';
+import { useState, useEffect } from 'react'
+import User from '../../utils/UserAPI';
 
 import ListItems from '../ListItems'
+import './styles.css'
 
 function Copyright() {
   return (
@@ -114,7 +118,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+const Dashboard = props => {
+  const [meState, setMeState] = useState({
+    me: {},
+    isLoggedIn: true
+  })
+
+  const getMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        if (me) {
+          setMeState({ me, isLoggedIn: true })
+        } else {
+          getMe()
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
+  }
+
+  useEffect(() => {
+    getMe()
+  }, [])
+
+  const updateMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        console.log(me)
+        setMeState({ me, isLoggedIn: true })
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
   const classes = useStyles();
 
   
@@ -146,10 +192,11 @@ export default function Dashboard() {
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-            <ListItem button>
-              <ListItemText primary="Logout" />
-              <Divider />
-            </ListItem>
+          <Auth 
+              me={meState.me}
+              isLoggedIn={meState.isLoggedIn}
+              handleLogOut={handleLogOut}
+          />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -176,3 +223,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default Dashboard

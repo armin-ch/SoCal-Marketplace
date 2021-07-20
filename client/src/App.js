@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -13,9 +14,8 @@ import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
 import UserProfile from './pages/UserProfile'
 
-
-
 const App = () => {
+  // const history = useHistory()
   const [meState, setMeState] = useState({
     me: {},
     isLoggedIn: true
@@ -36,6 +36,12 @@ const App = () => {
       })
   }
 
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
+  }
+
   useEffect(() => {
     getMe()
   }, [])
@@ -52,11 +58,33 @@ const App = () => {
       })
   }
 
+  const PrivateRoute = ({ children, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) => meState.isLoggedIn
+          ? (
+            children
+          )
+          : (
+            <Redirect to={{
+              pathname: '/login',
+              state: { from: location }
+            }}
+            />
+          )}
+      />
+    )
+  }
 
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar 
+          me={meState.me}
+          isLoggedIn={meState.isLoggedIn}
+          handleLogOut={handleLogOut}
+        />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -72,9 +100,6 @@ const App = () => {
           </Route>
           <Route exact path='/sellItem'>
             <SellItem />
-          </Route>
-          <Route exact path='/Profile'>
-            <Profile />
           </Route>
           <Route exact path='/Profile'>
             <Profile />

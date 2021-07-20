@@ -13,6 +13,9 @@ import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button'
+import Auth from '../Auth';
+
 
 export const ListItems = props => {
   return (
@@ -53,12 +56,7 @@ export const ListItems = props => {
           <ListItemText primary="My Profile" />
         </ListItem>
       </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <AccountCircleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Logout" />
-    </ListItem>
+
   </div>
 )
   }
