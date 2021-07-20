@@ -261,6 +261,7 @@ export default function Home() {
                     body={listing.body}
                     seller={listing.seller.username}
                     date={listing.datePosted}
+                    id={listing._id}
                   />
                 </Paper>
               ))

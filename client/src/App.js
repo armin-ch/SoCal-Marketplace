@@ -12,6 +12,7 @@ import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
 import UserProfile from './pages/UserProfile'
+import Listing from './pages/Listing'
 
 
 
@@ -78,6 +79,9 @@ const App = () => {
           </Route>
           <Route exact path='/Profile'>
             <Profile />
+          </Route>
+          <Route exact path='/listing/:id'>
+            <Listing />
           </Route>
         </Switch>
       </div>

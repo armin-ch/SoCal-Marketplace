@@ -43,7 +43,7 @@ export default function MediaCard(props) {
         <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
           Contact Seller
         </Button>
-        <Button size="small" color="primary">
+        <Button onClick={event => window.location.href = `/listing/${props.id}`} size="small" color="primary">
           Show More
         </Button>
       </CardActions>
