@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import io from 'socket.io-client'
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,15 +9,13 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
-
-
+import Chat from './pages/Chat'
 
 const App = () => {
   const [meState, setMeState] = useState({
     me: {},
     isLoggedIn: true
   })
-
   const getMe = () => {
     User.me()
       .then(({ data: me }) => {
@@ -62,6 +61,9 @@ const App = () => {
           </Route>
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
+          </Route>
+          <Route exact path='/chat'>
+            <Chat />
           </Route>
         </Switch>
       </div>
