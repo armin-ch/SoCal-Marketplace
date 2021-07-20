@@ -19,7 +19,10 @@ router.post('/users/login', (req, res) => {
 })
 
 router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
-  res.json(req.user)
+  User.findOne({ username: req.user.username })
+    .populate('listings')
+    .then(() => res.json(req.user))
+    .catch(err => console.log(err))
 })
 
 router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {

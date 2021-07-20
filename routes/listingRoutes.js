@@ -11,6 +11,15 @@ router.get('/listings', (req, res) => {
     .catch(err => console.log(err))
 })
 
+
+// GET all listings by username
+router.get('/listings/getall/:userid', (req, res) => {
+  Listing.find({ seller: req.params.userid })
+    .then(listings => res.json(listings))
+    .catch(err => console.log(err))
+})
+
+
 // GET one listing
 router.get('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.findById(req.params.id)
   .populate('seller')

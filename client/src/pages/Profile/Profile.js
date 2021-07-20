@@ -42,11 +42,11 @@ const Profile = () => {
         console.log(res.data)
         const user = res.data
         setUserState({ ...userState, user })
-      })
-    Listing.getAll()
-      .then(({ data: listings }) => {
-        console.log(listings)
-        setListingState({ ...listingState, listings })
+        axios.get(`/api/listings/getall/${user._id}`)
+          .then(({ data: listings }) => {
+            console.log(listings)
+            setListingState({ ...listingState, listings })
+          })
       })
   }, [])
 
