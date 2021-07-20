@@ -81,9 +81,9 @@ const Navbar = props => {
           <Link className={classes.link} to='/market'>
             <Button color='inherit'>Market</Button>
           </Link>
-          <Link className={classes.link} to='/SellItem'>
+          {/* <Link className={classes.link} to='/SellItem'>
             <Button color='inherit'>Sell Item</Button>
-          </Link>
+          </Link> */}
           <Link className={classes.link} to='/DashBoard'>
             <Button color='inherit'>DashBoard</Button>
           </Link>
