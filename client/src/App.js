@@ -13,6 +13,7 @@ import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import DashBoard from './pages/DashBoard'
 import Profile from './pages/Profile'
+import Chat from './pages/Chat'
 
 
 
@@ -81,6 +82,9 @@ const App = () => {
           </Route>
           <Route exact path='/Profile'>
             <Profile />
+          </Route>
+          <Route exact path='/chat'>
+            <Chat />
           </Route>
         </Switch>
       </div>
