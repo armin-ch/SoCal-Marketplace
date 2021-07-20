@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import User from '../../utils/UserAPI'
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -147,6 +148,31 @@ export default function Home() {
     setOpen(false);
   }
 
+
+  const [meState, setMeState] = useState({
+    me: {},
+    isLoggedIn: true
+  })
+  const getMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        if (me) {
+          setMeState({ me, isLoggedIn: true })
+        } else {
+          getMe()
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -168,7 +194,7 @@ export default function Home() {
               <NotificationsIcon />
             </Badge>
             <ListItem button>
-              <ListItemText primary="Logout" />
+              <ListItemText onClick={handleLogOut} primary="Logout" />
               <Divider />
             </ListItem>
           </IconButton>
