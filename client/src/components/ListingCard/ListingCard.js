@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -36,12 +37,12 @@ export default function MediaCard(props) {
             {props.body}
           </Typography>
           <Typography gutterBottom variant="body3" component="body3">
-            created by {props.seller} on {datePosted}
+          created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
           </Typography>
         </CardContent>
       <CardActions>
         <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
-          Contact Seller
+          View Seller Profile
         </Button>
         <Button onClick={event => window.location.href = `/listing/${props.id}`} size="small" color="primary">
           Show More
