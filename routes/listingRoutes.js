@@ -3,13 +3,22 @@ const { Listing, User } = require('../models')
 const passport = require('passport')
 
 // GET all listings
-router.get('/listings', passport.authenticate('jwt'), (req, res) => {
+router.get('/listings', (req, res) => {
   Listing.find({})
     .populate('seller')
     .populate('category')
-  .then(listings => res.json(listings))
-  .catch(err => console.log(err))
+    .then(listings => res.json(listings))
+    .catch(err => console.log(err))
 })
+
+
+// GET all listings by username
+router.get('/listings/getall/:userid', (req, res) => {
+  Listing.find({ seller: req.params.userid })
+    .then(listings => res.json(listings))
+    .catch(err => console.log(err))
+})
+
 
 // GET one listing
 router.get('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.findById(req.params.id)
@@ -26,7 +35,8 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
   price: req.body.price,
   seller: req.user._id,
   datePosted: req.body.datePosted,
-  categoty: req.body.category
+  categoty: req.body.category,
+  imageURL: req.body.imageURL
 })
   .then(listing => {
     User.findByIdAndUpdate(req.user._id, { $push: { listings: listing._id } })

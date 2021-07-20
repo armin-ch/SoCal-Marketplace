@@ -9,7 +9,12 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
-import Chat from './pages/Chat'
+import Market from './pages/market'
+import SellItem from './pages/SellItem'
+import DashBoard from './pages/DashBoard'
+import Profile from './pages/Profile'
+
+
 
 const App = () => {
   const [meState, setMeState] = useState({
@@ -62,8 +67,20 @@ const App = () => {
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
           </Route>
-          <Route exact path='/chat'>
-            <Chat />
+          <Route exact path='/market'>
+            <Market />
+          </Route>
+          <Route exact path='/sellItem'>
+            <SellItem />
+          </Route>
+          <Route exact path='/Profile'>
+            <Profile />
+          </Route>
+          <Route exact path='/DashBoard'>
+            <DashBoard />
+          </Route>
+          <Route exact path='/Profile'>
+            <Profile />
           </Route>
         </Switch>
       </div>
