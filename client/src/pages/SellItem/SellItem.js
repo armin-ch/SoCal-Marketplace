@@ -25,20 +25,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListingForm from '../../components/ListingForm';
 import ListItems from '../../components/ListItems'
 import Listing from '../../utils/ListingAPI'
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Created by Armin, Alex, Kyle, & Wells
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Dashboard from '../../components/DashBoard'
 
 const drawerWidth = 240;
 
@@ -121,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SellItem = ( ) => {
+const SellItem = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -169,51 +156,7 @@ const SellItem = ( ) => {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-            <ListItem button>
-              <ListItemText primary="Logout" />
-              <Divider />
-            </ListItem>
-          </IconButton>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <SearchInput />
-        <List>
-          <ListItems />
-        </List>
-        <Divider />
-        <List></List>
-      </Drawer>
+      <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
     <Container maxWidth='xl'>
