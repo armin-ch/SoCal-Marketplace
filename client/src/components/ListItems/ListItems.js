@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 export const ListItems = props => {
   return (
     <div>
-      <Link to='/DashBoard' style={{ textDecoration: 'none', color: 'black' }}>
+      <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />

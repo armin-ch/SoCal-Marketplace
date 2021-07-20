@@ -8,20 +8,7 @@ import Link from '@material-ui/core/Link';
 import ListingForm from '../../components/ListingForm';
 import ListItems from '../../components/ListItems'
 import Listing from '../../utils/ListingAPI'
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Created by Armin, Alex, Kyle, & Wells
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Dashboard from '../../components/DashBoard'
 
 const drawerWidth = 240;
 
@@ -104,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SellItem = ( ) => {
+const SellItem = () => {
   const classes = useStyles();
   const [listingState, setListingState] = useState({
     title: '',
@@ -145,7 +132,7 @@ const SellItem = ( ) => {
 
   return (
     <div className={classes.root}>
-<ListItems />
+      <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
     <Container maxWidth='xl'>
