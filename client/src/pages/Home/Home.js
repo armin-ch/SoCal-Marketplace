@@ -26,6 +26,9 @@ import ListItem from '@material-ui/core/ListItem'
 import Listing from '../../utils/ListingAPI'
 import ListItems from '../../components/ListItems'
 import ListingCard from '../../components/ListingCard'
+import Auth from '../../components/Auth';
+
+
 
 function Copyright() {
   return (
@@ -121,7 +124,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
+const Home = props => {
+  const [meState, setMeState] = useState({
+    me: {},
+    isLoggedIn: true
+  })
+
+  const getMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        if (me) {
+          setMeState({ me, isLoggedIn: true })
+        } else {
+          getMe()
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
+  }
+
+  useEffect(() => {
+    getMe()
+  }, [])
+
+  const updateMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        console.log(me)
+        setMeState({ me, isLoggedIn: true })
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
   const classes = useStyles();
   const [listingState, setListingState] = useState({
     title: '',
@@ -148,31 +192,6 @@ export default function Home() {
     setOpen(false);
   }
 
-
-  const [meState, setMeState] = useState({
-    me: {},
-    isLoggedIn: true
-  })
-  const getMe = () => {
-    User.me()
-      .then(({ data: me }) => {
-        if (me) {
-          setMeState({ me, isLoggedIn: true })
-        } else {
-          getMe()
-        }
-      })
-      .catch(err => {
-        console.error(err)
-        setMeState({ ...meState, isLoggedIn: false })
-      })
-  }
-  const handleLogOut = () => {
-    localStorage.removeItem('token')
-    setMeState({ me: {}, isLoggedIn: false })
-    window.location = '/login'
-  }
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -193,10 +212,11 @@ export default function Home() {
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-            <ListItem button>
-              <ListItemText onClick={handleLogOut} primary="Logout" />
-              <Divider />
-            </ListItem>
+            <Auth
+              me={meState.me}
+              isLoggedIn={meState.isLoggedIn}
+              handleLogOut={handleLogOut}
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -232,29 +252,6 @@ export default function Home() {
                   elevation={3}
                   style={{ padding: '20px', marginBottom: '20px' }}
                 >
-                  {/* <Typography variant='h4'>
-                    {listing.title}
-                  </Typography>
-                  <Typography variant='p'>
-                    {listing.rent}
-                  </Typography>
-                  <hr />
-                  <Typography variant='h6'>
-                    {listing.sell}
-                  </Typography>
-                  <Typography variant='h6'>
-                    {listing.body}
-                  </Typography>
-                  <Typography variant='h6'>
-                    $ {listing.price}
-                  </Typography>
-                  <Typography variant='h6'>
-                    {listing.datePosted}
-                  </Typography>
-                  <Typography variant='h6'>
-                    Created by @{listing.seller.username}
-                  </Typography>
-                  <img src={listing.imageURL} alt={listing.title} /> */}
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}
@@ -273,3 +270,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home
