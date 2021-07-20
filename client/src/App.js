@@ -11,9 +11,10 @@ import Login from './pages/Login'
 import User from './utils/UserAPI'
 import Market from './pages/market'
 import SellItem from './pages/SellItem'
-import DashBoard from './pages/DashBoard'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
+import UserProfile from './pages/UserProfile'
+import Listing from './pages/Listing'
 
 
 
@@ -62,8 +63,8 @@ const App = () => {
           <Route exact path='/'>
             <Home />
           </Route>
-          <Route exact path='profile/:username'>
-            <h1> Profile page</h1>
+          <Route exact path='/profile/:username'>
+            <UserProfile />
           </Route>
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
@@ -77,14 +78,10 @@ const App = () => {
           <Route exact path='/Profile'>
             <Profile />
           </Route>
-          <Route exact path='/DashBoard'>
-            <DashBoard />
-          </Route>
-          <Route exact path='/Profile'>
-            <Profile />
-          </Route>
           <Route exact path='/chat'>
             <Chat />
+          <Route exact path='/listing/:id'>
+            <Listing />
           </Route>
         </Switch>
       </div>
