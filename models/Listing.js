@@ -7,6 +7,10 @@ const Listing = new Schema({
   body: String,
   price: Number,
   datePosted: Date,
+  isSold: {
+    type:Boolean, 
+    default: false
+  },
   seller: {
     type: Schema.Types.ObjectId,
     ref: 'User'
