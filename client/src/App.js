@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import io from 'socket.io-client'
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,8 +13,10 @@ import User from './utils/UserAPI'
 import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
+import Chat from './pages/Chat'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
+
 
 const App = () => {
   // const history = useHistory()
@@ -21,7 +24,6 @@ const App = () => {
     me: {},
     isLoggedIn: true
   })
-
   const getMe = () => {
     User.me()
       .then(({ data: me }) => {
@@ -104,6 +106,12 @@ const App = () => {
           </Route>
           <Route exact path='/Profile'>
             <Profile />
+          </Route>
+          <Route exact path='/chat'>
+            <Chat />
+          </Route>
+          <Route exact path='/listing/:id'>
+            <Listing />
           </Route>
           <Route exact path='/listing/:id'>
             <Listing />

@@ -26,7 +26,6 @@ const UserProfile = props => {
   }, [])
 
   console.log("listingState", listingState)
-
   return (
     <div>
       <h1>Seller {username}</h1>
