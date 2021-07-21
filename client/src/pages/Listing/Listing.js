@@ -48,7 +48,7 @@ const Listing = props => {
       <h3>{listingState.body}</h3>
       <img src={listingState.imageURL} alt={listingState.title}/>
       <br/>
-      <button>message seller</button>
+      <button onClick={CreateDMChat}>message seller</button>
     </div>
   )
 }
