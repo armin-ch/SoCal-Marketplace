@@ -7,18 +7,18 @@ body, html {
   top: 50%;
   left: 50%;
   outline: none;
-  padding: 25px;
-  overflow: auto;
+  padding: 0px;
   position: fixed;
   border-radius: 10px;
   transform: translate(-50%, -50%);
-  background: rgb(236, 233, 233);
-  -webkit-border-radius: 10px;
+  background: rgb(255, 255, 255);
+  -webkit-border-radius: 40px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  height: 30%;
-  width: 20%;
+  height:53vh;
+  width: 50%;
+  overflow: hidden;
 }
 
 .custom_overlay {
@@ -28,4 +28,18 @@ body, html {
   bottom: 0;
   position: fixed;
   background-color: rgba(88, 88, 88, 0.78);
+}
+
+.close {
+  color: red;
+  background-color: chartreuse;
+}
+
+button#close {
+  background-color: rgb(187, 96, 96);
+  height: 30px;
+  width: 90px;
+  margin-left: 46%;
+  overflow: hidden;
+
 }
