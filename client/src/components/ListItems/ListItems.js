@@ -23,7 +23,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import { Link } from 'react-router-dom'
 
 export const ListItems = props => {
   return (
