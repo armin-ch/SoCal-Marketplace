@@ -16,6 +16,9 @@ import Profile from './pages/Profile'
 import Chat from './pages/Chat'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
+import './App.css'
+
+
 
 
 const App = () => {

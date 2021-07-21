@@ -27,6 +27,7 @@ import Listing from '../../utils/ListingAPI'
 import ListItems from '../../components/ListItems'
 import ListingCard from '../../components/ListingCard'
 import Auth from '../../components/Auth';
+import ModalComponent from '../../components/LoginModal/modal.componenet';
 
 
 
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 30, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: 'flex',
@@ -208,16 +209,18 @@ const Home = props => {
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
+          <IconButton 
+            style={{ padding: '20px' }}
+          classes={{ label: 'noti' }} edge='start' color="inherit">
+            <Badge classes={{ label: 'noti1' }}badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-            <Auth
+          </IconButton>
+            <ModalComponent
               me={meState.me}
               isLoggedIn={meState.isLoggedIn}
               handleLogOut={handleLogOut}
             />
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -264,8 +267,8 @@ const Home = props => {
               ))
             }
           </Paper>
-
         </Container>
+          <Copyright />
       </main>
     </div>
   );
