@@ -66,7 +66,8 @@ const Login = props => {
         handleChangeIndex({}, 0)
         axios.post('https://api.chatengine.io/users/', {
           username: registerState.username,
-          secret: 'pass1234'
+          secret: 'pass1234',
+          email: registerState.email
         }, {
           headers: {
             'PRIVATE-KEY': '7d89f76d-2d18-487c-b98c-301eb61c29db'
