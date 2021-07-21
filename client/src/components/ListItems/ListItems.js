@@ -49,12 +49,14 @@ export const ListItems = props => {
           <ListItemText primary="Sell" />
         </ListItem>
       </Link>
-      <ListItem button>
-        <ListItemIcon>
-          <ChatIcon />
-        </ListItemIcon>
-        <ListItemText primary="Chat" />
-      </ListItem>
+      <Link to='/chat' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <ChatIcon />
+          </ListItemIcon>
+          <ListItemText primary="Chat" />
+        </ListItem>
+      </Link>
       <Link to='/Profile' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItem button>
           <ListItemIcon>
@@ -64,9 +66,9 @@ export const ListItems = props => {
         </ListItem>
       </Link>
 
-  </div>
-)
-  }
+    </div>
+  )
+}
 
 export default ListItems
 
