@@ -20,6 +20,7 @@ import ListItem from '@material-ui/core/ListItem'
 import Auth from '../Auth';
 import { useState, useEffect } from 'react'
 import User from '../../utils/UserAPI';
+import ModalComponent from '../LoginModal/modal.componenet';
 
 import ListItems from '../ListItems'
 import './styles.css'
@@ -188,15 +189,17 @@ const Dashboard = props => {
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
           </Typography>
-          <IconButton color="inherit">
+          <IconButton
+          style={{ padding: '20px' }}
+          color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-          <Auth 
+            <ModalComponent 
               me={meState.me}
               isLoggedIn={meState.isLoggedIn}
               handleLogOut={handleLogOut}
-          />
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
