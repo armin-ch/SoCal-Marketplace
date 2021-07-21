@@ -43,7 +43,6 @@ const UserProfile = props => {
             date={listing.datePosted}
             id={listing._id} 
             showSellerInfo={"no"}/>
-
         })
 
       ) : (
