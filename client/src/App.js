@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import io from 'socket.io-client'
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Redirect
 } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
@@ -11,17 +13,17 @@ import User from './utils/UserAPI'
 import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
+import Chat from './pages/Chat'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
 
 
-
 const App = () => {
+  // const history = useHistory()
   const [meState, setMeState] = useState({
     me: {},
     isLoggedIn: true
   })
-
   const getMe = () => {
     User.me()
       .then(({ data: me }) => {
@@ -35,6 +37,12 @@ const App = () => {
         console.error(err)
         setMeState({ ...meState, isLoggedIn: false })
       })
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
   }
 
   useEffect(() => {
@@ -53,11 +61,33 @@ const App = () => {
       })
   }
 
+  const PrivateRoute = ({ children, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) => meState.isLoggedIn
+          ? (
+            children
+          )
+          : (
+            <Redirect to={{
+              pathname: '/login',
+              state: { from: location }
+            }}
+            />
+          )}
+      />
+    )
+  }
 
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar 
+          me={meState.me}
+          isLoggedIn={meState.isLoggedIn}
+          handleLogOut={handleLogOut}
+        />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -77,8 +107,11 @@ const App = () => {
           <Route exact path='/Profile'>
             <Profile />
           </Route>
-          <Route exact path='/Profile'>
-            <Profile />
+          <Route exact path='/chat'>
+            <Chat />
+          </Route>
+          <Route exact path='/listing/:id'>
+            <Listing />
           </Route>
           <Route exact path='/listing/:id'>
             <Listing />
