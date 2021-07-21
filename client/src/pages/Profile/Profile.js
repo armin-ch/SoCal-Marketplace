@@ -160,7 +160,7 @@ const Profile = () => {
                 body={listing.body}
                 seller={userState.user.username}
                 date={listing.datePosted}
-                //id={listing._id}
+                id={listing._id}
                 showSellerInfo={"no"}
               />
             </Paper>

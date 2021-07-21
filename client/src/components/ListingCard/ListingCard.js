@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +22,29 @@ export default function MediaCard(props) {
   const classes = useStyles();
   let datePosted = JSON.stringify(props.date)
   datePosted = datePosted.slice(1, 11)
+
+  const deleteListing = id =>{
+    axios.delete(`/api/listings/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(() =>{
+      console.log('listing removed')
+    })
+  }
+
+  const markSold = id => {
+    axios.put(`/api/listings/${id}`, { isSold: true }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    } )
+      .then(() => {
+        console.log('listing marked as sold')
+      })
+      .catch(err=>console.log(err))
+  }
 
   return (
     <Card className={classes.root}>
@@ -40,7 +64,16 @@ export default function MediaCard(props) {
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
       </CardContent>
-      {props.showSellerInfo ? (<> </>) : (
+      {props.showSellerInfo ? (
+        <CardActions>
+          <Button onClick={() => markSold(props.id)} size="small" color="primary">
+            Mark As sold
+        </Button>
+          <Button onClick={() => deleteListing(props.id)} size="small" color="secondary">
+            Delete Listing
+        </Button>
+        </CardActions>
+      ) : (
         <CardActions>
           <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
             Contact Seller
