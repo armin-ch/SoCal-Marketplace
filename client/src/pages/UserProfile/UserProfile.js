@@ -34,7 +34,6 @@ const UserProfile = props => {
       <h2>Seller Listings:</h2>
       {listingState.length ? (
         listingState.map((listing, index) => {
-          // console.log(listing, "for", index);
           return <ListingCard
             title={listing.title}
             imageURL={listing.imageURL}
