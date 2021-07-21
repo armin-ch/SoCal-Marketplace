@@ -14,6 +14,9 @@ import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
+import './App.css'
+
+
 
 const App = () => {
   // const history = useHistory()
