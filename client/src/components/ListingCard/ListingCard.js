@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles({
   root: {
@@ -31,6 +32,7 @@ export default function MediaCard(props) {
     })
     .then(() =>{
       console.log('listing removed')
+      alert('Listing removed')
     })
   }
 
@@ -42,6 +44,7 @@ export default function MediaCard(props) {
     } )
       .then(() => {
         console.log('listing marked as sold')
+        alert('Listing marked as sold')
       })
       .catch(err=>console.log(err))
   }
