@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
+import Map from '../Map'
 import axios from 'axios'
 import Alert from '@material-ui/lab/Alert';
 
@@ -66,6 +67,7 @@ export default function MediaCard(props) {
         <Typography gutterBottom variant="body3" component="body3">
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
+        <Map />
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
