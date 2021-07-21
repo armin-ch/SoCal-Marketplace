@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
 import Map from '../Map'
 import axios from 'axios'
-import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles({
   root: {
