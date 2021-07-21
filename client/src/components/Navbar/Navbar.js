@@ -93,7 +93,6 @@ const Navbar = props => {
           <Link className={classes.link} to='/login'>
             <Button color='inherit'>{props.isLoggedIn ? 'Logout' : 'Login'}</Button>
           </Link>
-          <Auth />
         </Toolbar>
       </AppBar>
     </div>

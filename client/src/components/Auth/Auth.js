@@ -48,16 +48,16 @@ const Auth = props => {
         <Toolbar>
           {
             !props.isLoggedIn
-              ? (
-                <Link className='btn' to='/login'>
+            ? (
+              <Link className='btn' to='/login'>
                   <StyledButton className='btn2'>Login</StyledButton>
                 </Link>
               )
               : (
                 <StyledButton onClick={props.handleLogOut}>Logout</StyledButton>
-              )
-          }
-
+                )
+              }
+              
         </Toolbar>
     </div>
   )
