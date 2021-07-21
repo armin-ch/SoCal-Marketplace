@@ -17,6 +17,7 @@ import Chat from './pages/Chat'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
 
+
 const App = () => {
   // const history = useHistory()
   const [meState, setMeState] = useState({
@@ -108,6 +109,9 @@ const App = () => {
           </Route>
           <Route exact path='/chat'>
             <Chat />
+          </Route>
+          <Route exact path='/listing/:id'>
+            <Listing />
           </Route>
           <Route exact path='/listing/:id'>
             <Listing />

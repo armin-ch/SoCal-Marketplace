@@ -20,34 +20,36 @@ const useStyles = makeStyles({
 export default function MediaCard(props) {
   const classes = useStyles();
   let datePosted = JSON.stringify(props.date)
-  datePosted = datePosted.slice(1,11)
+  datePosted = datePosted.slice(1, 11)
 
   return (
     <Card className={classes.root}>
-        <CardMedia
-          className={classes.media}
-          image={props.imageURL}
-          title={props.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.body}
-          </Typography>
-          <Typography gutterBottom variant="body3" component="body3">
+      <CardMedia
+        className={classes.media}
+        image={props.imageURL}
+        title={props.title}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {props.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {props.body}
+        </Typography>
+        <Typography gutterBottom variant="body3" component="body3">
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
-          </Typography>
-        </CardContent>
-      <CardActions>
-        <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
-          View Seller Profile
+        </Typography>
+      </CardContent>
+      {props.showSellerInfo ? (<> </>) : (
+        <CardActions>
+          <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
+            Contact Seller
         </Button>
-        <Button onClick={event => window.location.href = `/listing/${props.id}`} size="small" color="primary">
-          Show More
+          <Button onClick={event => window.location.href = `/listing/${props.id}`} size="small" color="primary">
+            Show More
         </Button>
-      </CardActions>
+        </CardActions>
+      )}
     </Card>
   );
 }

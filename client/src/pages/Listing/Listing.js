@@ -30,15 +30,15 @@ const Listing = props => {
 
 
   useEffect(() => {
-    axios.get(`/api/listings/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then(listing => {
-        console.log(listing.data)
-        setListingState(listing.data)
-      })
+  axios.get(`/api/listings/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  })
+  .then(listing=>{
+    console.log(listing.data)
+    setListingState(listing.data)
+  })
   }, [])
 
   return (
@@ -46,9 +46,9 @@ const Listing = props => {
       <h1>listing page</h1>
       <h1>{listingState.title} $ {listingState.price}</h1>
       <h3>{listingState.body}</h3>
-      <img src={listingState.imageURL} alt={listingState.title} />
-      <br />
-      <button onClick={CreateDMChat}>message seller</button>
+      <img src={listingState.imageURL} alt={listingState.title}/>
+      <br/>
+      <button>message seller</button>
     </div>
   )
 }
