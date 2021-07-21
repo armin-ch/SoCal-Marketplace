@@ -1,0 +1,39 @@
+/* .MuiSvgIcon-root {
+  margin-right: 50%;
+} */
+
+/* #noti {
+  height: 300px;
+  margin-right: 30px;
+}
+
+.MuiButtonBase-root {
+  size: 30px; */
+
+/* .noti {
+  height:300px;
+  width: 20%;
+  color: rgb(0, 0, 0);
+  margin-left: 200px;
+} */
+
+/* .MuiButtonBase-root {
+  padding: 19px;
+} */
+
+.MuiIconButton-root {
+  padding: 15px;
+}
+
+/* .MuiIconButton-root {
+  padding: 25px !important;
+} */
+
+.container {
+  display: flex;
+}
+
+.item {
+  height: 300px;
+  width: 300px;
+}
