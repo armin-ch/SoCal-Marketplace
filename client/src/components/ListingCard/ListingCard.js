@@ -7,6 +7,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
+import Map from '../Map'
+import axios from 'axios'
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles({
   root: {
@@ -21,6 +24,31 @@ export default function MediaCard(props) {
   const classes = useStyles();
   let datePosted = JSON.stringify(props.date)
   datePosted = datePosted.slice(1, 11)
+
+  const deleteListing = id =>{
+    axios.delete(`/api/listings/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(() =>{
+      console.log('listing removed')
+      alert('Listing removed')
+    })
+  }
+
+  const markSold = id => {
+    axios.put(`/api/listings/${id}`, { isSold: true }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    } )
+      .then(() => {
+        console.log('listing marked as sold')
+        alert('Listing marked as sold')
+      })
+      .catch(err=>console.log(err))
+  }
 
   return (
     <Card className={classes.root}>
@@ -39,8 +67,18 @@ export default function MediaCard(props) {
         <Typography gutterBottom variant="body3" component="body3">
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
+        <Map />
       </CardContent>
-      {props.showSellerInfo ? (<> </>) : (
+      {props.showSellerInfo ? (
+        <CardActions>
+          <Button onClick={() => markSold(props.id)} size="small" color="primary">
+            Mark As sold
+        </Button>
+          <Button onClick={() => deleteListing(props.id)} size="small" color="secondary">
+            Delete Listing
+        </Button>
+        </CardActions>
+      ) : (
         <CardActions>
           <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
             Contact Seller

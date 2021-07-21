@@ -40,10 +40,12 @@ const Listing = props => {
     setListingState(listing.data)
   })
   }, [])
+  console.log(listingState.isSold)
 
   return (
     <div>
       <h1>listing page</h1>
+      {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null }
       <h1>{listingState.title} $ {listingState.price}</h1>
       <h3>{listingState.body}</h3>
       <img src={listingState.imageURL} alt={listingState.title}/>

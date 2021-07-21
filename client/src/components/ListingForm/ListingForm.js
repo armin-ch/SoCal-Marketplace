@@ -7,6 +7,8 @@ import Checkbox from '@material-ui/core/Checkbox'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import { storage } from '../../firebase/firebase'
+import Map from '../../components/Map'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,6 +63,8 @@ const ListingForm = props => {
             })
               .then(({ data: listing }) => {
                 console.log('done')
+                console.log(listing)
+                window.location=`/listing/${listing.id}`
               })
           })
       })
@@ -136,7 +140,9 @@ const ListingForm = props => {
         />
       </FormControl>
       <br />
-
+        <FormControl>
+          <Map />
+        </FormControl>
       <FormControl>
         <input
           type="file"
