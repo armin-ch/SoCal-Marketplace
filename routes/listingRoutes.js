@@ -36,7 +36,8 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
   seller: req.user._id,
   datePosted: req.body.datePosted,
   categoty: req.body.category,
-  imageURL: req.body.imageURL
+  imageURL: req.body.imageURL,
+  address: req.body.address
 })
   .then(listing => {
     User.findByIdAndUpdate(req.user._id, { $push: { listings: listing._id } })
@@ -50,7 +51,8 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
           sell: listing.sell,
           datePosted: listing.datePosted,
           price: listing.price,
-          category: listing.category
+          category: listing.category,
+          address: listing.address
         })
       })
   })
@@ -70,7 +72,8 @@ router.put('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.
           sell: listing.sell,
           datePosted: listing.datePosted,
           price: listing.price,
-          category: listing.category
+          category: listing.category,
+          address: listing.address
         })
       })
   })
