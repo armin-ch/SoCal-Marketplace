@@ -61,6 +61,8 @@ const ListingForm = props => {
             })
               .then(({ data: listing }) => {
                 console.log('done')
+                console.log(listing)
+                window.location=`/listing/${listing.id}`
               })
           })
       })
