@@ -10,7 +10,10 @@ const User = new Schema({
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review'
-  }]
+  }],
+  // notifications: [{
+  //   messages: String
+  // }]
 })
 
 User.plugin(require('passport-local-mongoose'))
