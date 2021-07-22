@@ -1,9 +1,12 @@
 import User from '../../utils/UserAPI'
+import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
+import CheckIcon from '@material-ui/icons/Check'
+import ClearIcon from '@material-ui/icons/Clear'
 import {
   BrowserRouter as Router,
   Switch,
@@ -67,10 +70,22 @@ const Listing = props => {
 
   return (
     <div>
-      <h1>listing page</h1>
+      <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight:'6vh' }}>
+      {/* <h1>listing page</h1> */}
       {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null }
-      <h1>{listingState.title} $ {listingState.price}</h1>
+      <h1>{listingState.title} </h1>
+      <hr/>
+      <h1>Price: $ {listingState.price}</h1>
+      <hr/>
+      <h2>Listing Description:</h2>
       <h3>{listingState.body}</h3>
+      <hr/>
+      <h4>For Sale:  
+        {listingState.sell ? <CheckIcon/> : <ClearIcon/>}
+      </h4>
+      <h4>For rent:  
+        {listingState.rent ? <CheckIcon /> : <ClearIcon />}
+      </h4>
       <div style={{
         display: "flex",
         justifyContent: "center",
@@ -90,6 +105,7 @@ const Listing = props => {
         onLoad={onMapLoad}
       />
       <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
+      </Paper>
     </div>
   )
 }
