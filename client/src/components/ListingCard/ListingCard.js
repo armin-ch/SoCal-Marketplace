@@ -66,6 +66,9 @@ export default function MediaCard(props) {
         <Typography gutterBottom variant="body3" component="body3">
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
+        {props.isSold ? (<Typography variant="h2" color="textSecondary" component="p">
+          sold
+        </Typography>) : null}
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
