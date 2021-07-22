@@ -3,6 +3,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
+import FiberManualRecordOutlinedIcon from '@material-ui/icons/FiberManualRecordOutlined';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +12,8 @@ import {
 } from "react-router-dom";
 import {
   GoogleMap,
-  useLoadScript
+  useLoadScript,
+  Marker
 } from "@react-google-maps/api";
 
 const libraries = ["places"];
@@ -19,6 +21,8 @@ const mapContainerStyle = {
   height: "40vh",
   width: "100%",
 };
+
+const AnyReactComponent = ({ icon }) => <div>{icon}</div>;
 
 const Listing = props => {
   const { isLoaded, loadError } = useLoadScript({
@@ -64,6 +68,9 @@ const Listing = props => {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
+  const image = {
+    url: "https://img.icons8.com/ios/200/000000/circled.png",
+  }
   return (
     <div>
       <h1>listing page</h1>
@@ -75,13 +82,21 @@ const Listing = props => {
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={14}
+        zoom={12}
         center={{
           lat: listingState.lat,
           lng: listingState.lng
         }}
         onLoad={onMapLoad}
-      />
+
+      >
+        <Marker
+          key={`${listingState.lat}-${listingState.lng}`}
+          position={{ lat: listingState.lat, lng: listingState.lng }}
+          style = {{ background: 'transparent' }}
+          icon = {image}
+        />
+        </GoogleMap >
       <button onClick={CreateDMChat}>message seller</button>
     </div>
   )
