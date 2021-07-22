@@ -9,8 +9,22 @@ import {
   Route,
   useParams
 } from "react-router-dom";
+import {
+  GoogleMap,
+  useLoadScript
+} from "@react-google-maps/api";
+
+const libraries = ["places"];
+const mapContainerStyle = {
+  height: "40vh",
+  width: "100%",
+};
 
 const Listing = props => {
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyCzfVue49sMcwHHa1FXAYDiSrpE1CTJ6IE',
+    libraries,
+  });
   const [username, setUsername] = useState('')
   const chatAuth = {
     'projectID':'8dd8b8ef-62c5-4332-8643-dbc0c92cf501',
@@ -42,6 +56,14 @@ const Listing = props => {
   }, [])
   console.log(listingState.isSold)
 
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading...";
+
   return (
     <div>
       <h1>listing page</h1>
@@ -50,6 +72,16 @@ const Listing = props => {
       <h3>{listingState.body}</h3>
       <img src={listingState.imageURL} alt={listingState.title}/>
       <br/>
+      <GoogleMap
+        id="map"
+        mapContainerStyle={mapContainerStyle}
+        zoom={14}
+        center={{
+          lat: listingState.lat,
+          lng: listingState.lng
+        }}
+        onLoad={onMapLoad}
+      />
       <button onClick={CreateDMChat}>message seller</button>
     </div>
   )
