@@ -110,13 +110,14 @@ const Listing = props => {
             lng: listingState.lng
           }}
           onLoad={onMapLoad}
-        />
+        >
         <Marker
           key={`${listingState.lat}-${listingState.lng}`}
           position={{ lat: listingState.lat, lng: listingState.lng }}
           style={{ background: 'transparent' }}
           icon={image}
         />
+        </GoogleMap>
         <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
       </Paper>
     </div>
