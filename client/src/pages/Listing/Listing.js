@@ -1,4 +1,5 @@
 import User from '../../utils/UserAPI'
+import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
@@ -70,7 +71,13 @@ const Listing = props => {
       {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null }
       <h1>{listingState.title} $ {listingState.price}</h1>
       <h3>{listingState.body}</h3>
-      <img src={listingState.imageURL} alt={listingState.title}/>
+      <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+      <img src={listingState.imageURL} alt={listingState.title} style={{height: 250, width: 250}}/>
+      </div>
       <br/>
       <GoogleMap
         id="map"
@@ -82,7 +89,7 @@ const Listing = props => {
         }}
         onLoad={onMapLoad}
       />
-      <button onClick={CreateDMChat}>message seller</button>
+      <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
     </div>
   )
 }
