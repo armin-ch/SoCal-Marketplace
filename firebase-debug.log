@@ -1,0 +1,21 @@
+[debug] [2021-07-16T20:17:49.909Z] ----------------------------------------------------------------------
+[debug] [2021-07-16T20:17:49.911Z] Command:       /usr/local/bin/firebase /Users/arminchaychian/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init
+[debug] [2021-07-16T20:17:49.911Z] CLI Version:   9.16.0
+[debug] [2021-07-16T20:17:49.911Z] Platform:      darwin
+[debug] [2021-07-16T20:17:49.911Z] Node Version:  v12.18.1
+[debug] [2021-07-16T20:17:49.912Z] Time:          Fri Jul 16 2021 13:17:49 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-07-16T20:17:49.912Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-07-16T20:17:49.915Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-16T20:17:49.915Z] > authorizing via signed-in user (arminch1997@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/arminchaychian/Desktop/code/SoCal-Marketplace
+

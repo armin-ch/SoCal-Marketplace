@@ -1,12 +1,12 @@
 const { model, Schema } = require('mongoose')
 
 const User = new Schema({
-  userName: String,
+  name: String,
   email: String,
-  posts: [{
+  listings: [{
     type: Schema.Types.ObjectId,
-    ref: 'Post'
-  }]
+    ref: 'Listing'
+  }],
   reviews: [{
     type: Schema.Types.ObjectId,
     ref: 'Review'

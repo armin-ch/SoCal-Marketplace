@@ -1,0 +1,45 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.custom_modal {
+  top: 50%;
+  left: 50%;
+  outline: none;
+  padding: 0px;
+  position: fixed;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 255, 255);
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  height:53vh;
+  width: 50%;
+  overflow: hidden;
+}
+
+.custom_overlay {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background-color: rgba(88, 88, 88, 0.78);
+}
+
+.close {
+  color: red;
+  background-color: chartreuse;
+}
+
+button#close {
+  background-color: rgb(187, 96, 96);
+  height: 30px;
+  width: 90px;
+  margin-left: 46%;
+  overflow: hidden;
+
+}

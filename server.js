@@ -5,7 +5,10 @@ const passport = require('passport')
 const { Strategy: LocalStrategy } = require('passport-local')
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt')
 
+// socket io server setup
+const http = require('http')
 const app = express()
+
 const { User } = require('./models')
 
 app.use(express.static(join(__dirname, 'client', 'build')))

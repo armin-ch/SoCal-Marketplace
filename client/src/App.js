@@ -1,25 +1,128 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import io from 'socket.io-client'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import User from './utils/UserAPI'
+import Market from './pages/market'
+import SellItem from './pages/SellItem'
+import Profile from './pages/Profile'
+import Chat from './pages/Chat'
+import UserProfile from './pages/UserProfile'
+import Listing from './pages/Listing'
+import './App.css'
 
-function App() {
+
+
+
+const App = () => {
+  // const history = useHistory()
+  const [meState, setMeState] = useState({
+    me: {},
+    isLoggedIn: true
+  })
+  const getMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        if (me) {
+          setMeState({ me, isLoggedIn: true })
+        } else {
+          getMe()
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
+  }
+
+  useEffect(() => {
+    getMe()
+  }, [])
+
+  const updateMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        console.log(me)
+        setMeState({ me, isLoggedIn: true })
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
+  const PrivateRoute = ({ children, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={({ location }) => meState.isLoggedIn
+          ? (
+            children
+          )
+          : (
+            <Redirect to={{
+              pathname: '/login',
+              state: { from: location }
+            }}
+            />
+          )}
+      />
+    )
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div>
+        <Navbar 
+          me={meState.me}
+          isLoggedIn={meState.isLoggedIn}
+          handleLogOut={handleLogOut}
+        />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route exact path='/profile/:username'>
+            <UserProfile />
+          </Route>
+          <Route exact path='/login'>
+            <Login updateMe={updateMe} />
+          </Route>
+          <Route exact path='/market'>
+            <Market />
+          </Route>
+          <Route exact path='/sellItem'>
+            <SellItem />
+          </Route>
+          <Route exact path='/Profile'>
+            <Profile />
+          </Route>
+          <Route exact path='/chat'>
+            <Chat />
+          </Route>
+          <Route exact path='/listing/:id'>
+            <Listing />
+          </Route>
+          <Route exact path='/listing/:id'>
+            <Listing />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App
