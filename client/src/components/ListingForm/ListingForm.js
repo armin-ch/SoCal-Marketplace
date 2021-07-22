@@ -7,9 +7,22 @@ import Checkbox from '@material-ui/core/Checkbox'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import { storage } from '../../firebase/firebase'
-import Map from '../../components/Map'
+import React from 'react';
+import {
+  GoogleMap,
+  useLoadScript,
+} from "@react-google-maps/api";
+import "@reach/combobox/styles.css";
+import MyLocationIcon from '@material-ui/icons/MyLocation';
 
 
+const libraries = ["places"];
+const mapContainerStyle = {
+  height: "40vh",
+  width: "100%",
+};
+
+const center = { lat: 33.8919157, lng: -118.13325100000002 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +34,15 @@ const useStyles = makeStyles((theme) => ({
 
 const ListingForm = props => {
   const classes = useStyles()
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyCzfVue49sMcwHHa1FXAYDiSrpE1CTJ6IE',
+    libraries,
+  });
+
+
+
+
+
   // firebase stuff
   const allInputs = { imgUrl: '' }
   const [imageAsFile, setImageAsFile] = useState('')
@@ -58,6 +80,8 @@ const ListingForm = props => {
               sell: saleState,
               body: props.body,
               price: props.price,
+              lat: props.position.coords.latitude,
+              lng: props.position.coords.longitude,
               datePosted: date,
               imageURL: fireBaseUrl
             })
@@ -70,7 +94,20 @@ const ListingForm = props => {
       })
   }
 
+  const [ coordsState, setCoordsState ] = useState('')
+  const handleMap = ( ) => {
+    setCoordsState(coordsState)
+  }
 
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
+  const panTo = React.useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
 
 
   const [rentState, setRentState] = useState(false)
@@ -81,6 +118,9 @@ const ListingForm = props => {
   const handleCheckboxS = () => {
     setSaleState(!saleState)
   }
+
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading...";
   return (
     <form className={classes.root} noValidate autoComplete='off'>
 
@@ -141,7 +181,21 @@ const ListingForm = props => {
       </FormControl>
       <br />
         <FormControl>
-          <Map />
+
+        <Locate 
+          panTo={panTo} 
+          />
+
+          <GoogleMap
+            id="map"
+            mapContainerStyle={mapContainerStyle}
+            zoom={8}
+            center={center}
+            onLoad={onMapLoad}
+            onChange={handleMap}
+          >
+          </GoogleMap>
+        
         </FormControl>
       <FormControl>
         <input
@@ -156,6 +210,32 @@ const ListingForm = props => {
       </Button>
     </form>
   )
+}
+
+function Locate({ panTo }) {
+  return (
+    <div
+      id='Compass'
+      className="locate"
+      onClick={() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            panTo({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            console.log(position.coords.latitude)
+            console.log(position.coords.longitude)
+          },
+          () => null
+        );
+        
+      }}
+       >
+      <p>Enter your Location  </p>
+      <MyLocationIcon style={{ fontSize: 40 }} />
+    </div>
+  );
 }
 
 export default ListingForm
