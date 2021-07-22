@@ -60,6 +60,7 @@ const Listing = props => {
       .then(listing => {
         console.log(listing.data)
         setListingState(listing.data)
+        setUsername(listing.data.seller)
       })
   }, [])
   console.log(listingState.isSold)
@@ -122,6 +123,14 @@ const Listing = props => {
         />
         </GoogleMap>
         <hr/>
+        <h2>Seller Info</h2>
+        <h4>Username:
+           {username.username}
+           <br/>
+           Email: 
+           {username.email}
+           </h4>
+        
         <div style={{
           display: "flex",
           justifyContent: "center",
