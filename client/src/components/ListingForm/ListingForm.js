@@ -200,7 +200,7 @@ const ListingForm = props => {
         
         </FormControl>
       <FormControl>
-        <input
+        <OutlinedInput
           type="file"
           onChange={handleImageAsFile}
         />

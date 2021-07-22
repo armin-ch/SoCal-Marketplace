@@ -262,6 +262,7 @@ const Home = props => {
                     seller={listing.seller.username}
                     date={listing.datePosted}
                     id={listing._id}
+                    isSold={listing.isSold}
                   />
                 </Paper>
               ))

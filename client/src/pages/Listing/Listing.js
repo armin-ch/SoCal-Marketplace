@@ -1,8 +1,12 @@
 import User from '../../utils/UserAPI'
+import Paper from '@material-ui/core/Paper'
+import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
+import CheckIcon from '@material-ui/icons/Check'
+import ClearIcon from '@material-ui/icons/Clear'
 import FiberManualRecordOutlinedIcon from '@material-ui/icons/FiberManualRecordOutlined';
 import {
   BrowserRouter as Router,
@@ -31,12 +35,12 @@ const Listing = props => {
   });
   const [username, setUsername] = useState('')
   const chatAuth = {
-    'projectID':'8dd8b8ef-62c5-4332-8643-dbc0c92cf501',
-    'userName':localStorage.getItem('username'),
-    'userSecret':'pass1234'
+    'projectID': '8dd8b8ef-62c5-4332-8643-dbc0c92cf501',
+    'userName': localStorage.getItem('username'),
+    'userSecret': 'pass1234'
   }
   const CreateDMChat = () => {
-    let chat = { 'usernames': [listingState.seller.username ]}
+    let chat = { 'usernames': [listingState.seller.username] }
     const callback = (chat) => console.log(chat)
 
     getOrCreateChat(chatAuth, chat, callback)
@@ -48,15 +52,15 @@ const Listing = props => {
 
 
   useEffect(() => {
-  axios.get(`/api/listings/${id}`, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    }
-  })
-  .then(listing=>{
-    console.log(listing.data)
-    setListingState(listing.data)
-  })
+    axios.get(`/api/listings/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(listing => {
+        console.log(listing.data)
+        setListingState(listing.data)
+      })
   }, [])
   console.log(listingState.isSold)
 
@@ -73,31 +77,48 @@ const Listing = props => {
   }
   return (
     <div>
-      <h1>listing page</h1>
-      {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null }
-      <h1>{listingState.title} $ {listingState.price}</h1>
-      <h3>{listingState.body}</h3>
-      <img src={listingState.imageURL} alt={listingState.title}/>
-      <br/>
-      <GoogleMap
-        id="map"
-        mapContainerStyle={mapContainerStyle}
-        zoom={12}
-        center={{
-          lat: listingState.lat,
-          lng: listingState.lng
-        }}
-        onLoad={onMapLoad}
-
-      >
+      <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
+        {/* <h1>listing page</h1> */}
+        {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
+        <h1>{listingState.title} </h1>
+        <hr />
+        <h1>Price: $ {listingState.price}</h1>
+        <hr />
+        <h2>Listing Description:</h2>
+        <h3>{listingState.body}</h3>
+        <hr />
+        <h4>For Sale:
+        {listingState.sell ? <CheckIcon /> : <ClearIcon />}
+        </h4>
+        <h4>For rent:
+        {listingState.rent ? <CheckIcon /> : <ClearIcon />}
+        </h4>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+          <img src={listingState.imageURL} alt={listingState.title} style={{ height: 250, width: 250 }} />
+        </div>
+        <br />
+        <GoogleMap
+          id="map"
+          mapContainerStyle={mapContainerStyle}
+          zoom={12}
+          center={{
+            lat: listingState.lat,
+            lng: listingState.lng
+          }}
+          onLoad={onMapLoad}
+        />
         <Marker
           key={`${listingState.lat}-${listingState.lng}`}
           position={{ lat: listingState.lat, lng: listingState.lng }}
-          style = {{ background: 'transparent' }}
-          icon = {image}
+          style={{ background: 'transparent' }}
+          icon={image}
         />
-        </GoogleMap >
-      <button onClick={CreateDMChat}>message seller</button>
+        <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
+      </Paper>
     </div>
   )
 }
