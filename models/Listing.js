@@ -20,7 +20,8 @@ const Listing = new Schema({
     ref: 'Category'
   },
   imageURL: String,
-  address: String
+  lat: Number,
+  lng: Number
 })
 
 module.exports = model('Listing', Listing)

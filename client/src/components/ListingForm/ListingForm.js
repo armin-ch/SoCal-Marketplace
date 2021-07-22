@@ -16,6 +16,9 @@ import "@reach/combobox/styles.css";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
 
 
+let lat = 0, log = 0
+
+
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "40vh",
@@ -38,7 +41,6 @@ const ListingForm = props => {
     googleMapsApiKey: 'AIzaSyCzfVue49sMcwHHa1FXAYDiSrpE1CTJ6IE',
     libraries,
   });
-
 
 
 
@@ -80,8 +82,8 @@ const ListingForm = props => {
               sell: saleState,
               body: props.body,
               price: props.price,
-              lat: props.position.coords.latitude,
-              lng: props.position.coords.longitude,
+              lat: lat,
+              lng: log,
               datePosted: date,
               imageURL: fireBaseUrl
             })
@@ -224,6 +226,8 @@ function Locate({ panTo }) {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             });
+            lat = position.coords.latitude
+            log = position.coords.longitude
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
           },
