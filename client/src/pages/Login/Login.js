@@ -66,7 +66,8 @@ const Login = props => {
         handleChangeIndex({}, 0)
         axios.post('https://api.chatengine.io/users/', {
           username: registerState.username,
-          secret: 'pass1234'
+          secret: 'pass1234',
+          email: registerState.email
         }, {
           headers: {
             'PRIVATE-KEY': '7d89f76d-2d18-487c-b98c-301eb61c29db'
@@ -87,7 +88,7 @@ return (
   <>
     <CssBaseline />
     <Container maxWidth='md'>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '80vh', marginTop: '5vh' }}>
+      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '45vh', marginTop: '5vh' }}>
         <AppBar position='static'>
           <Tabs
             aria-label='simple tabs example'

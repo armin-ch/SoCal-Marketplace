@@ -9,6 +9,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import Modal from 'react-modal'
 import './modal.css'
 import { withStyles } from '@material-ui/core/styles';
+import Login from '../../pages/Login'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,6 +52,7 @@ const ModalComponent = props => {
     User.login(loginState)
     .then(({ data: token }) => {
       localStorage.setItem('token', token)
+      localStorage.setItem('username', loginState.username)
       window.location = '/'
     })
   }
@@ -85,36 +87,9 @@ const ModalComponent = props => {
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
             <div>
-          <form className={classes.root} noValidate autoComplete='off'>
-            <FormControl fullWidth variant='outlined'>
-              <InputLabel htmlFor='username'>Username</InputLabel>
-              <OutlinedInput
-                id='username'
-                labelWidth={75}
-                name='username'
-                value={loginState.username}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-            <br />
-            <FormControl fullWidth variant='outlined'>
-              <InputLabel htmlFor='password'>Password</InputLabel>
-              <OutlinedInput
-                type='password'
-                id='password'
-                labelWidth={75}
-                name='password'
-                value={loginState.password}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-            <br />
-            <Button onClick={handleLoginUser} variant='outlined' color='primary'>
-              Login
-            </Button>
-          </form>
+              <Login />
+<button id='close' onClick={openModal}>Close</button>
             </div>
-            <button onClick={openModal}>X </button>
           </Modal>
         </div>
       );
