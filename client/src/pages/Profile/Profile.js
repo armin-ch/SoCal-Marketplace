@@ -162,6 +162,7 @@ const Profile = () => {
                 date={listing.datePosted}
                 id={listing._id}
                 showSellerInfo={"no"}
+                isSold={listing.isSold}
               />
             </Paper>
           ))
