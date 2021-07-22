@@ -82,7 +82,7 @@ const Listing = props => {
         {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
         <h1>{listingState.title} </h1>
         <hr />
-        <h1>Price: $ {listingState.price}</h1>
+        <h2>Price: $ {listingState.price}</h2>
         <hr />
         <h2>Listing Description:</h2>
         <h3>{listingState.body}</h3>
@@ -93,6 +93,8 @@ const Listing = props => {
         <h4>For rent:
         {listingState.rent ? <CheckIcon /> : <ClearIcon />}
         </h4>
+        <hr/>
+        <h1>Listing Images</h1>
         <div style={{
           display: "flex",
           justifyContent: "center",
@@ -101,6 +103,7 @@ const Listing = props => {
           <img src={listingState.imageURL} alt={listingState.title} style={{ height: 250, width: 250 }} />
         </div>
         <br />
+        <hr/>
         <GoogleMap
           id="map"
           mapContainerStyle={mapContainerStyle}
@@ -110,14 +113,22 @@ const Listing = props => {
             lng: listingState.lng
           }}
           onLoad={onMapLoad}
-        />
+        >
         <Marker
           key={`${listingState.lat}-${listingState.lng}`}
           position={{ lat: listingState.lat, lng: listingState.lng }}
           style={{ background: 'transparent' }}
           icon={image}
         />
+        </GoogleMap>
+        <hr/>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
         <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
+        </div>
       </Paper>
     </div>
   )
