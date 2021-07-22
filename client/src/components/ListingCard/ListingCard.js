@@ -7,8 +7,19 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom'
-import Map from '../Map'
 import axios from 'axios'
+import React from "react";
+import {
+  GoogleMap,
+  useLoadScript
+} from "@react-google-maps/api";
+
+const libraries = ["places"];
+const mapContainerStyle = {
+  height: "40vh",
+  width: "100%",
+};
+
 
 const useStyles = makeStyles({
   root: {
@@ -20,10 +31,13 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyCzfVue49sMcwHHa1FXAYDiSrpE1CTJ6IE',
+    libraries,
+  });
   const classes = useStyles();
   let datePosted = JSON.stringify(props.date)
   datePosted = datePosted.slice(1, 11)
-
   const deleteListing = id =>{
     axios.delete(`/api/listings/${id}`, {
       headers: {
@@ -49,6 +63,11 @@ export default function MediaCard(props) {
       .catch(err=>console.log(err))
   }
 
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
+
   return (
     <Card className={classes.root}>
       <CardMedia
@@ -66,7 +85,16 @@ export default function MediaCard(props) {
         <Typography gutterBottom variant="body3" component="body3">
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
-        <Map />
+        <GoogleMap
+          id="map"
+          mapContainerStyle={mapContainerStyle}
+          zoom={8}
+          center={{
+            lat: props.lat, 
+            lng: props.lng
+          }}
+          onLoad={onMapLoad}
+        ></GoogleMap>
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
@@ -90,3 +118,14 @@ export default function MediaCard(props) {
     </Card>
   );
 }
+
+
+//      return null
+//  return new google.maps.Map(this.mapRef, this.props.options)
+ 
+//  | panTo = (latLng: google.maps.LatLng | google.maps.LatLngLiteral): void => {
+
+// return new google.maps.Map(_this.mapRef, _this.props.options);
+
+
+// _this.panTo = function (latLng) {
