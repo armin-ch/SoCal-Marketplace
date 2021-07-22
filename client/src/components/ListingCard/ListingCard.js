@@ -63,10 +63,10 @@ export default function MediaCard(props) {
       .catch(err=>console.log(err))
   }
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
-  }, []);
+  // const mapRef = React.useRef();
+  // const onMapLoad = React.useCallback((map) => {
+  //   mapRef.current = map;
+  // }, []);
 
   return (
     <Card className={classes.root}>
@@ -85,7 +85,7 @@ export default function MediaCard(props) {
         <Typography gutterBottom variant="body3" component="body3">
           created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
-        <GoogleMap
+        {/* <GoogleMap
           id="map"
           mapContainerStyle={mapContainerStyle}
           zoom={8}
@@ -94,7 +94,7 @@ export default function MediaCard(props) {
             lng: props.lng
           }}
           onLoad={onMapLoad}
-        ></GoogleMap>
+        ></GoogleMap> */}
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
@@ -118,14 +118,3 @@ export default function MediaCard(props) {
     </Card>
   );
 }
-
-
-//      return null
-//  return new google.maps.Map(this.mapRef, this.props.options)
- 
-//  | panTo = (latLng: google.maps.LatLng | google.maps.LatLngLiteral): void => {
-
-// return new google.maps.Map(_this.mapRef, _this.props.options);
-
-
-// _this.panTo = function (latLng) {
