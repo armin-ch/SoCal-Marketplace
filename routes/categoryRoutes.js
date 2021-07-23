@@ -15,4 +15,11 @@ router.get('/categories/:id', passport.authenticate('jwt'), (req, res) => Catego
   .then(listing => res.json(listing))
   .catch(err => console.log(err)))
 
+  router.post('/categories', (req, res) => Category.create({name: req.body.name})
+  .then(category=> res.json(category)))
+
+  // get all listings in a category
+  // router.get('/categories/:category', (req,res) => Category.find({name: req.params.category})
+  // )
+
 module.exports = router
