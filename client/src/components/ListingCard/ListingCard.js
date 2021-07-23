@@ -72,9 +72,8 @@ export default function MediaCard(props) {
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
-          <Button onClick={() => markSold(props.id)} size="small" color="primary" 
-          {props.isSold ? disabled : null}>
-            Mark As sold
+          <Button onClick={() => markSold(props.id)} size="small" color="primary">
+            {props.isSold ? '' : 'Mark AS Sold'}
         </Button>
           <Button onClick={() => deleteListing(props.id)} size="small" color="secondary">
             Delete Listing
