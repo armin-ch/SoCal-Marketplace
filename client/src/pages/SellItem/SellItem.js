@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react'
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import ListingForm from '../../components/ListingForm';
-import ListItems from '../../components/ListItems'
 import Listing from '../../utils/ListingAPI'
 import Dashboard from '../../components/DashBoard'
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import User from '../../utils/UserAPI'
 // import Badge from '@material-ui/core/Badge';
 // import NotificationsIcon from '@material-ui/icons/Notifications'

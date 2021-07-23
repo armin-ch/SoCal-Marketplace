@@ -1,19 +1,11 @@
-import User from '../../utils/UserAPI'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
+import { getOrCreateChat } from 'react-chat-engine'
 import CheckIcon from '@material-ui/icons/Check'
 import ClearIcon from '@material-ui/icons/Clear'
-import FiberManualRecordOutlinedIcon from '@material-ui/icons/FiberManualRecordOutlined';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
@@ -26,7 +18,6 @@ const mapContainerStyle = {
   width: "100%",
 };
 
-const AnyReactComponent = ({ icon }) => <div>{icon}</div>;
 
 const Listing = props => {
   const { isLoaded, loadError } = useLoadScript({
@@ -63,7 +54,6 @@ const Listing = props => {
         setUsername(listing.data.seller)
       })
   }, [])
-  console.log(listingState.isSold)
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {

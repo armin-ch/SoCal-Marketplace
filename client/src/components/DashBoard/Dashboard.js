@@ -15,9 +15,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import SearchInput from '../searchInput';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem'
-import Auth from '../Auth';
 import { useState, useEffect } from 'react'
 import User from '../../utils/UserAPI';
 import ModalComponent from '../LoginModal/modal.componenet';
