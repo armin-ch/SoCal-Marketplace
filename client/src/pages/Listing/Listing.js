@@ -117,7 +117,7 @@ const Listing = props => {
         >
         <Marker
           key={`${listingState.lat}-${listingState.lng}`}
-          position={{ lat: listingState.lat, lng: listingState.lng }}
+          position={{ lat: listingState.lat - 0.0123, lng: listingState.lng }}
           style={{ background: 'transparent' }}
           icon={image}
         />
