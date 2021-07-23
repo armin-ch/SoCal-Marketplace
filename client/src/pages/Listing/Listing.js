@@ -40,6 +40,7 @@ const Listing = props => {
 
   let { id } = useParams()
   const [listingState, setListingState] = useState('')
+  const [date, setDate] = useState('')
 
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const Listing = props => {
         console.log(listing.data)
         setListingState(listing.data)
         setUsername(listing.data.seller)
+        setDate(listing.data.datePosted)
       })
   }, [])
 
@@ -77,6 +79,7 @@ const Listing = props => {
         <hr />
         <h2>Listing Description:</h2>
         <h3>{listingState.body}</h3>
+        <h5><span>Posted on {date.slice(0,10)}</span></h5>
         <hr />
         <h4>For Sale:
         {listingState.sell ? <CheckIcon /> : <ClearIcon />}
