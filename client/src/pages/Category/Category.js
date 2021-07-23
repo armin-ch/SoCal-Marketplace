@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import {  useParams } from "react-router-dom"
 import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
+import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 
 
 const Category = props =>{
@@ -21,9 +23,12 @@ const Category = props =>{
   return(
     <>
     <h1>category page for {category}</h1>
+    <Grid container spacing={3}>
     {listingState ? (
         listingState.map((listing, index) => {
-          return <ListingCard
+          return(
+          <Grid item xs={3}>
+          <ListingCard
             title={listing.title}
             imageURL={listing.imageURL}
             body={listing.body}
@@ -31,8 +36,11 @@ const Category = props =>{
             date={listing.datePosted}
             id={listing._id}
             isSold={listing.isSold} />
+          </Grid>
+          )
         }
     )) : null }
+    </Grid>
     </>
   )
 }

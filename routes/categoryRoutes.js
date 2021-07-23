@@ -3,7 +3,7 @@ const { Category, Listing } = require('../models')
 const passport = require('passport')
 
 // GET by category
-router.get('/categories/:name', passport.authenticate('jwt'), (req, res) => Category.find({name: req.params.name})
+router.get('/categories/:name', passport.authenticate('jwt'), (req, res) => Category.find({ name: req.params.name }).sort({ datePosted: -1 })
   .populate({
     path: 'listings',
     model: 'Listing',
