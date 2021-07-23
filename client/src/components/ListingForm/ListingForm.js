@@ -16,7 +16,7 @@ import "@reach/combobox/styles.css";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
 
 
-let lat = 0, log = 0
+let lat = 0, lng = 0
 
 
 const libraries = ["places"];
@@ -83,7 +83,7 @@ const ListingForm = props => {
               body: props.body,
               price: props.price,
               lat: lat,
-              lng: log,
+              lng: lng,
               datePosted: date,
               imageURL: fireBaseUrl
             })
@@ -227,7 +227,7 @@ function Locate({ panTo }) {
               lng: position.coords.longitude,
             });
             lat = position.coords.latitude
-            log = position.coords.longitude
+            lng = position.coords.longitude
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
           },
