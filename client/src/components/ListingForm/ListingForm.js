@@ -15,9 +15,12 @@ import {
 import "@reach/combobox/styles.css";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
 import CategoryComponent from '../CategoryComponent'
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 
-let lat = 0, log = 0
+
+let lat = 0, lng = 0
 
 
 const libraries = ["places"];
@@ -43,8 +46,21 @@ const ListingForm = props => {
     libraries,
   });
 
+  // category
+  const [category, setCategory] = useState('')
+  const [open, setOpen] = React.useState(false);
 
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   // firebase stuff
   const allInputs = { imgUrl: '' }
@@ -84,14 +100,15 @@ const ListingForm = props => {
               body: props.body,
               price: props.price,
               lat: lat,
-              lng: log,
+              lng: lng,
               datePosted: date,
-              imageURL: fireBaseUrl
+              imageURL: fireBaseUrl,
+              category: category
             })
               .then(({ data: listing }) => {
                 console.log('done')
                 console.log(listing)
-                window.location=`/listing/${listing.id}`
+                window.location=`/listing/${listing._id}`
               })
           })
       })
@@ -136,7 +153,29 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
-    <CategoryComponent />
+      {/* category */}
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
+        <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={category}
+          onChange={handleChange}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={'60fafc9a89630657a00ac191'}>Pets</MenuItem>
+          <MenuItem value={'60fafccf89630657a00ac195'}>Electronics</MenuItem>
+          <MenuItem value={'60fafd2d89630657a00ac199'}>Home Goods</MenuItem>
+          <MenuItem value={'60fafcf589630657a00ac197'}>Vehicles</MenuItem>
+          <MenuItem value={'60fafcc989630657a00ac193'}>Clothes</MenuItem>
+
+        </Select>
+      </FormControl>
 
       <br />
       <p>
@@ -229,7 +268,7 @@ function Locate({ panTo }) {
               lng: position.coords.longitude,
             });
             lat = position.coords.latitude
-            log = position.coords.longitude
+            lng = position.coords.longitude
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
           },
