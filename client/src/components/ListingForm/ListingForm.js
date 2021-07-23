@@ -14,6 +14,7 @@ import {
 } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
+import CategoryComponent from '../CategoryComponent'
 
 
 let lat = 0, log = 0
@@ -135,6 +136,7 @@ const ListingForm = props => {
           onChange={props.handleInputChange}
         />
       </FormControl>
+    <CategoryComponent />
 
       <br />
       <p>
