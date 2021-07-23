@@ -17,6 +17,7 @@ import Chat from './pages/Chat'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
 import './App.css'
+import Category from './pages/Category'
 
 
 
@@ -116,8 +117,8 @@ const App = () => {
           <Route exact path='/listing/:id'>
             <Listing />
           </Route>
-          <Route exact path='/listing/:id'>
-            <Listing />
+          <Route exact path='/category/:category'>
+            <Category />
           </Route>
         </Switch>
       </div>
