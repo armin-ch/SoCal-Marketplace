@@ -51,4 +51,9 @@ router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
 })
 
+// router.put('/users/addnotification', passport.authenticate('jwt'), (req, res) => {
+//   const { messages } = req.body
+//   User.findOne({ messages: req.params.username })
+// })
+
 module.exports = router
