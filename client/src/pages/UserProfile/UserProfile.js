@@ -1,12 +1,6 @@
 import User from '../../utils/UserAPI'
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ListingCard from '../../components/ListingCard'
 
 const UserProfile = props => {
