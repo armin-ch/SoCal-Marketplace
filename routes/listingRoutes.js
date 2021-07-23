@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Listing, User } = require('../models')
+const { Listing, User, Category } = require('../models')
 const passport = require('passport')
 
 // GET all listings
@@ -35,7 +35,7 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
   price: req.body.price,
   seller: req.user._id,
   datePosted: req.body.datePosted,
-  categoty: req.body.category,
+  category: req.body.category,
   imageURL: req.body.imageURL,
   lat: req.body.lat,
   lng: req.body.lng
@@ -43,19 +43,8 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
   .then(listing => {
     User.findByIdAndUpdate(req.user._id, { $push: { listings: listing._id } })
       .then(() => {
-        res.json({
-          id: listing._id,
-          title: listing.title,
-          body: listing.body,
-          seller: req.user,
-          rent: listing.rent,
-          sell: listing.sell,
-          datePosted: listing.datePosted,
-          price: listing.price,
-          category: listing.category,
-          lat: listing.lat,
-          lng: listing.lng
-        })
+       Category.findByIdAndUpdate(listing.category, { $push: {listings: listing._id}})
+       .then(()=> res.json(listing))
       })
   })
   .catch(err => console.log(err)))
