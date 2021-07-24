@@ -116,11 +116,12 @@ const Category = props => {
                 category == 'home_goods' ? "HOME GOODS" : category.toUpperCase()
               }</h1>
             <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-              <Grid container spacing={3}>
+              <h1>category page for {category}</h1>
+              <Grid container xs={12} sm={12} md={12} lg={12}  spacing={2}>
                 {listingState ? (
                   listingState.map((listing, index) => {
                     return (
-                      <Grid item xs={3}>
+                      <Grid item xs={12} sm={12} md={4}>
                         <ListingCard
                           title={listing.title}
                           imageURL={listing.imageURL}
