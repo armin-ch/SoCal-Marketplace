@@ -6,7 +6,6 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
@@ -17,6 +16,7 @@ import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
 import './App.css'
 import Category from './pages/Category'
+import Pets from './pages/Pets'
 
 
 
@@ -86,11 +86,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Navbar 
-          me={meState.me}
-          isLoggedIn={meState.isLoggedIn}
-          handleLogOut={handleLogOut}
-        />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -114,6 +109,9 @@ const App = () => {
             <Listing />
           </Route>
           <Route exact path='/category/:category'>
+            <Category />
+          </Route>
+          <Route exact path='/category/pets'>
             <Category />
           </Route>
         </Switch>
