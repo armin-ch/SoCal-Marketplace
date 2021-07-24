@@ -1,60 +1,70 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MenuItem from '@material-ui/core/MenuItem'
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles((theme) => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
+  root: {
+    width: '100%',
   },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+  heading: {
+    fontSize: theme.typography.pxToRem(20),
+    fontWeight: theme.typography.fontWeightRegular,
   },
 }));
 
-export default function ControlledOpenSelect() {
+export default function CategoryComponent() {
   const classes = useStyles();
-  const [category, setCategory] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-
-  const handleChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   return (
-    <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
-          value={category}
-          onChange={handleChange}
+    <div className={classes.root}>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          <MenuItem value="">
-            <em>None</em>
+          <Typography className={classes.heading}>Categories</Typography>
+        </AccordionSummary>
+        <List component="idk" className={classes.root} aria-label="mailbox folders">
+          {/* <Divider /> */}
+          <MenuItem button>
+            <ListItemText primary="Electronics" />
           </MenuItem>
-          <MenuItem value={10}>Pets</MenuItem>
-          <MenuItem value={20}>Electronics</MenuItem>
-          <MenuItem value={30}>Home Goods</MenuItem>
-        </Select>
-      </FormControl>
+          {/* <Divider /> */}
+          <MenuItem button>
+            <ListItemText primary="Home Goods" />
+          </MenuItem>
+          <MenuItem button>
+            <ListItemText primary="Pets" />
+          </MenuItem>
+          {/* <Divider /> */}
+          <MenuItem button>
+            <ListItemText primary="Escorts" />
+          </MenuItem>
+          {/* <Divider /> */}
+        </List>
+        {/* <List>
+        <MenuItem value={10} button divider>Pets</MenuItem>
+        <MenuItem value={20} button divider>Electronics</MenuItem>
+        <MenuItem value={30} button divider>Home Goods</MenuItem>
+        </List> */}
+      </Accordion>
     </div>
   );
 }
+
+{/* <MenuItem value="">
+                 <em>None</em>
+               </MenuItem>
+               <MenuItem value={10}>Pets</MenuItem>
+               <MenuItem value={20}>Electronics</MenuItem>
+               <MenuItem value={30}>Home Goods</MenuItem> */}

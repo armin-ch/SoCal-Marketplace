@@ -28,7 +28,6 @@ import CategoryComponent from '../CategoryComponent';
 export const ListItems = props => {
   return (
     <div>
-      <CategoryComponent />
       <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItem button>
           <ListItemIcon>
@@ -37,11 +36,11 @@ export const ListItems = props => {
           <ListItemText primary="Dashboard" />
         </ListItem>
       </Link>
-      <ListItem button>
+      <ListItem>
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
-        <ListItemText primary="Buy" />
+      <CategoryComponent />
       </ListItem>
       <Link to='/SellItem' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItem button>
