@@ -189,9 +189,9 @@ const Dashboard = props => {
           <IconButton
           style={{ padding: '20px' }}
           color="inherit">
-            <Badge badgeContent={4} color="secondary">
+            {/* <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
-            </Badge>
+            </Badge> */}
             <ModalComponent 
               me={meState.me}
               isLoggedIn={meState.isLoggedIn}

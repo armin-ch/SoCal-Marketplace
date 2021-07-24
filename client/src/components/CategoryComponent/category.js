@@ -10,6 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,31 +27,41 @@ export default function CategoryComponent() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Categories</Typography>
+          <ListItemText primary='Categories' style={{ textDecoration: 'none', color: 'black' }}/>
         </AccordionSummary>
         <List component="idk" className={classes.root} aria-label="mailbox folders">
-          {/* <Divider /> */}
-          <MenuItem button>
-            <ListItemText primary="Electronics" />
-          </MenuItem>
-          {/* <Divider /> */}
-          <MenuItem button>
-            <ListItemText primary="Home Goods" />
-          </MenuItem>
-          <MenuItem button>
-            <ListItemText primary="Pets" />
-          </MenuItem>
-          {/* <Divider /> */}
-          <MenuItem button>
-            <ListItemText primary="Clothes" />
-          </MenuItem>
+          <Link to='/category/pets' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Pets" />
+            </ListItem>
+          </Link>
+          <Link to='/category/electronics' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Electronics" />
+            </ListItem>
+          </Link>
+          <Link to='/category/homegoods' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Home Goods" />
+            </ListItem>
+          </Link>
+          <Link to='/category/vehicles' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Vehicles" />
+            </ListItem>
+          </Link>
+          <Link to='/category/' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Clothes" />
+            </ListItem>
+          </Link>
           {/* <Divider /> */}
         </List>
         {/* <List>

@@ -4,11 +4,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import CategoryComponent from '../CategoryComponent';
+import ViewListIcon from '@material-ui/icons/ViewList';
 
 export const ListItems = props => {
   return (
@@ -23,8 +23,9 @@ export const ListItems = props => {
       </Link>
       <ListItem>
         <ListItemIcon>
-          <ShoppingCartIcon />
+          <ViewListIcon />
         </ListItemIcon>
+        {/* <ListItemText primary="Categories" /> */}
       <CategoryComponent />
       </ListItem>
       <Link to='/SellItem' style={{ textDecoration: 'none', color: 'black' }}>
