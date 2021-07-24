@@ -104,7 +104,7 @@ const Category = props => {
         console.log(listing.data[0].listings)
         setListingState(listing.data[0].listings)
       })
-  }, [])
+  }, [category])
   return (
     <>
       <div className={classes.root}>
