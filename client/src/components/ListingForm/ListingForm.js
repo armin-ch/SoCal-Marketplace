@@ -167,11 +167,11 @@ const ListingForm = props => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={'60fafc9a89630657a00ac191'}>Pets</MenuItem>
-          <MenuItem value={'60fafccf89630657a00ac195'}>Electronics</MenuItem>
-          <MenuItem value={'60fafd2d89630657a00ac199'}>Home Goods</MenuItem>
-          <MenuItem value={'60fafcf589630657a00ac197'}>Vehicles</MenuItem>
-          <MenuItem value={'60fafcc989630657a00ac193'}>Clothes</MenuItem>
+          <MenuItem value={process.env.PET_ID}>Pets</MenuItem>
+          <MenuItem value={process.env.ELECTRONICS_ID}>Electronics</MenuItem>
+          <MenuItem value={process.env.HOME_GOODS_ID}>Home Goods</MenuItem>
+          <MenuItem value={process.env.VEHICLES_ID}>Vehicles</MenuItem>
+          <MenuItem value={process.env.CLOTHES_ID}>Clothes</MenuItem>
 
         </Select>
       </FormControl>
