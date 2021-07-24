@@ -167,7 +167,6 @@ const ListingForm = props => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {console.log("this" + process.env.REACT_APP_PET_ID)}
           <MenuItem value={process.env.REACT_APP_PET_ID}>Pets</MenuItem>
           <MenuItem value={process.env.REACT_APP_EL_ID}>Electronics</MenuItem>
           <MenuItem value={process.env.REACT_APP_HG_ID}>Home Goods</MenuItem>

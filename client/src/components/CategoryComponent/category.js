@@ -46,7 +46,7 @@ export default function CategoryComponent() {
               <ListItemText primary="Electronics" />
             </ListItem>
           </Link>
-          <Link to='/category/homegoods' style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to='/category/home_goods' style={{ textDecoration: 'none', color: 'black' }}>
             <ListItem button>
               <ListItemText primary="Home Goods" />
             </ListItem>
@@ -56,7 +56,7 @@ export default function CategoryComponent() {
               <ListItemText primary="Vehicles" />
             </ListItem>
           </Link>
-          <Link to='/category/' style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to='/category/clothes' style={{ textDecoration: 'none', color: 'black' }}>
             <ListItem button>
               <ListItemText primary="Clothes" />
             </ListItem>
