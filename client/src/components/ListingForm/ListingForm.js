@@ -75,7 +75,7 @@ const ListingForm = props => {
             setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: fireBaseUrl }))
 
             console.log(fireBaseUrl)
-            const date = new Date().setDate(new Date().getDate() - 10)
+            const date = new Date().setDate(new Date().getDate())
             Listing.create({
               title: props.title,
               rent: rentState,

@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
 import Listing from '../../utils/ListingAPI'
-import ListingForm from '../../components/LoginForm'
 import Dashboard from '../../components/DashBoard'
 // import Accordion from '@material-ui/core/Accordion'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -161,8 +160,11 @@ const Profile = () => {
                 seller={userState.user.username}
                 date={listing.datePosted}
                 id={listing._id}
-                showSellerInfo={"no"}
+                buyer={listing.buyer}
+                showSellerInfo={true}
+                showRating={false}
                 isSold={listing.isSold}
+                datesold={listing.selldate}
               />
             </Paper>
           ))

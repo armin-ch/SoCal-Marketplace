@@ -73,6 +73,7 @@ router.put('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.
           rent: listing.rent,
           sell: listing.sell,
           datePosted: listing.datePosted,
+          buyer: listing.buyer,
           price: listing.price,
           category: listing.category,
           address: listing.address
@@ -80,6 +81,7 @@ router.put('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.
       })
   })
   .catch(err => console.log(err)))
+
 
 // DELETE one listing
 router.delete('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.findByIdAndDelete(req.params.id)

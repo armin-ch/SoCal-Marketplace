@@ -7,9 +7,16 @@ const User = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Listing'
   }],
-  reviews: [{
+  rating: {
+    type: Number,
+    default: 0
+  },
+  numratings: {
+    type: Number,
+    default: 0},
+  history: [{
     type: Schema.Types.ObjectId,
-    ref: 'Review'
+    ref: 'Listing'
   }]
 })
 

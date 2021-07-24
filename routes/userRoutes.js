@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../models')
+const { User, Listing } = require('../models')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 
@@ -19,11 +19,23 @@ router.post('/users/login', (req, res) => {
 })
 
 router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
-  User.findOne({ username: req.user.username })
+  User.findById(req.user.id)
     .populate('listings')
+    .populate({
+      path: 'history',
+      model: 'Listing',
+      populate: {
+        path: 'seller',
+        model: 'User',
+      },
+      populate: {
+        path: 'category',
+        model: 'Category',
+      }
+    })
     .then(() => res.json(req.user))
     .catch(err => console.log(err))
-})
+  })
 
 router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
   User.findOne({ username: req.params.username })
@@ -33,21 +45,30 @@ router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
       populate: {
         path: 'seller',
         model: 'User',
-      }
-      // populate: {
-      //   path: 'category',
-      //   model: 'Category',
-      // }
-    })
-    .populate({
-      path: 'reviews',
-      model: 'Review',
+      },
       populate: {
-        path: 'author',
-        model: 'User'
+        path: 'category',
+        model: 'Category',
       }
     })
     .then(user => res.json(user))
+    .catch(err => console.log(err))
+})
+
+router.put('/users/:username', passport.authenticate('jwt'), (req, res) => {
+  User.findOneAndUpdate({ username: req.params.username }, { $set: req.body })
+  .then(user => res.json(user))
+})
+
+// push a listing in
+router.put('/users/:username/listing', passport.authenticate('jwt'), (req, res) => {
+  User.findOneAndUpdate({ username: req.params.username }, { $push: req.body })
+  .then(user => res.json(user))
+})
+
+router.get('/users/history/:username', passport.authenticate('jwt'), (req, res) => {
+  Listing.find({ buyer: req.params.username })
+    .then(listings => res.json(listings))
     .catch(err => console.log(err))
 })
 
