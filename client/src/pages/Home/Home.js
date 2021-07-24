@@ -201,15 +201,15 @@ const Home = props => {
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
+            <Typography>
+              SoCal MarketPlace
+            </Typography>
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
           </Typography>
           <IconButton 
             style={{ padding: '20px' }}
           classes={{ label: 'noti' }} edge='start' color="inherit">
-            <Badge classes={{ label: 'noti1' }}badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
           </IconButton>
             <ModalComponent
               me={meState.me}

@@ -26,43 +26,40 @@ export default function CategoryComponent() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div>
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography className={classes.heading}>Categories</Typography>
+          <ListItemText primary='Categories' style={{ textDecoration: 'none', color: 'black' }}/>
         </AccordionSummary>
         <List component="idk" className={classes.root} aria-label="mailbox folders">
-          {/* <Divider /> */}
-          <Link to="/category/electronics" style={{ textDecoration: 'none', color: 'black' }}>
-            <MenuItem button>
+          <Link to='/category/pets' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Pets" />
+            </ListItem>
+          </Link>
+          <Link to='/category/electronics' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
               <ListItemText primary="Electronics" />
-            </MenuItem>
+            </ListItem>
           </Link>
-          {/* <Divider /> */}
-          <Link to="/category/home_goods" style={{ textDecoration: 'none', color: 'black' }}>
-          <MenuItem button>
-            <ListItemText primary="Home Goods" />
-          </MenuItem>
+          <Link to='/category/homegoods' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Home Goods" />
+            </ListItem>
           </Link>
-          <Link to="/category/pets" style={{ textDecoration: 'none', color: 'black' }}>
-          <MenuItem button>
-            <ListItemText primary="Pets" />
-          </MenuItem>
-          </Link>
-          {/* <Divider /> */}
-          <Link to="/category/clothes" style={{ textDecoration: 'none', color: 'black' }}>
-          <MenuItem button>
-            <ListItemText primary="Clothes" />
-          </MenuItem>
-          </Link>
-          <Link to="/category/vehicles" style={{ textDecoration: 'none', color: 'black' }}>
-            <MenuItem button>
+          <Link to='/category/vehicles' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
               <ListItemText primary="Vehicles" />
-            </MenuItem>
+            </ListItem>
+          </Link>
+          <Link to='/category/' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem button>
+              <ListItemText primary="Clothes" />
+            </ListItem>
           </Link>
           {/* <Divider /> */}
         </List>
