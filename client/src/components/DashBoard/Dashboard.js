@@ -18,9 +18,14 @@ import SearchInput from '../searchInput';
 import { useState, useEffect } from 'react'
 import User from '../../utils/UserAPI';
 import ModalComponent from '../LoginModal/modal.componenet';
-
 import ListItems from '../ListItems'
 import './styles.css'
+import Button from '@material-ui/core/Button';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 function Copyright() {
   return (
@@ -114,6 +119,12 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  }
 }));
 
 const Dashboard = props => {
@@ -121,7 +132,33 @@ const Dashboard = props => {
     me: {},
     isLoggedIn: true
   })
+  const [state, setState] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  })
 
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  }
+
+  const list = (anchor) => (
+    <div
+      className={clsx(classes.list, {
+        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+      })}
+      role="presentation"
+      onClick={toggleDrawer(anchor, true)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <ListItems />
+    </div>
+  )
   const getMe = () => {
     User.me()
       .then(({ data: me }) => {
@@ -173,17 +210,18 @@ const Dashboard = props => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar >
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
+          <div>
+            {['left'].map((anchor) => (
+              <React.Fragment key={anchor}>
+                <Button onClick={toggleDrawer(anchor, true)}><MenuIcon /></Button>
+                <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                  {list(anchor)}
+                </Drawer>
+              </React.Fragment>
+            ))}
+          </div>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
           </Typography>
           <IconButton
@@ -200,26 +238,7 @@ const Dashboard = props => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <SearchInput />
-        <List>
-          <ListItems />
-          </List>
-        <Divider />
-        <List></List>
-      </Drawer>
+
     </div>
   );
 }
