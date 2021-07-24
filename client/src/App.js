@@ -10,7 +10,6 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
-import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
@@ -101,9 +100,6 @@ const App = () => {
           </Route>
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
-          </Route>
-          <Route exact path='/market'>
-            <Market />
           </Route>
           <Route exact path='/sellItem'>
             <SellItem />
