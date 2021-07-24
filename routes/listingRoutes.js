@@ -4,7 +4,7 @@ const passport = require('passport')
 
 // GET all listings
 router.get('/listings', (req, res) => {
-  Listing.find({})
+  Listing.find({}).sort({ datePosted: -1 })
     .populate('seller')
     .populate('category')
     .then(listings => res.json(listings))
@@ -14,7 +14,7 @@ router.get('/listings', (req, res) => {
 
 // GET all listings by username
 router.get('/listings/getall/:userid', (req, res) => {
-  Listing.find({ seller: req.params.userid })
+  Listing.find({ seller: req.params.userid }).sort({ datePosted: -1 })
     .then(listings => res.json(listings))
     .catch(err => console.log(err))
 })

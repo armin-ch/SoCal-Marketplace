@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -73,7 +72,7 @@ export default function MediaCard(props) {
       {props.showSellerInfo ? (
         <CardActions>
           <Button onClick={() => markSold(props.id)} size="small" color="primary">
-            Mark As sold
+            {props.isSold ? '' : 'Mark AS Sold'}
         </Button>
           <Button onClick={() => deleteListing(props.id)} size="small" color="secondary">
             Delete Listing

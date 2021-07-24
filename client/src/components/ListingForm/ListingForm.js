@@ -4,7 +4,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import { storage } from '../../firebase/firebase'
 import React from 'react';
@@ -14,7 +14,6 @@ import {
 } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
-import CategoryComponent from '../CategoryComponent'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
@@ -92,7 +91,7 @@ const ListingForm = props => {
             setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: fireBaseUrl }))
 
             console.log(fireBaseUrl)
-            const date = new Date().setDate(new Date().getDate() - 10)
+            const date = new Date().setDate(new Date().getDate())
             Listing.create({
               title: props.title,
               rent: rentState,
@@ -108,7 +107,7 @@ const ListingForm = props => {
               .then(({ data: listing }) => {
                 console.log('done')
                 console.log(listing)
-                window.location=`/listing/${listing.id}`
+                window.location=`/listing/${listing._id}`
               })
           })
       })

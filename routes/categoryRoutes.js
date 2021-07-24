@@ -3,7 +3,7 @@ const { Category, Listing } = require('../models')
 const passport = require('passport')
 
 // GET by category
-router.get('/categories/:id', passport.authenticate('jwt'), (req, res) => Category.findById(req.params.id)
+router.get('/categories/:name', passport.authenticate('jwt'), (req, res) => Category.find({ name: req.params.name }).sort({ datePosted: -1 })
   .populate({
     path: 'listings',
     model: 'Listing',
@@ -17,9 +17,5 @@ router.get('/categories/:id', passport.authenticate('jwt'), (req, res) => Catego
 
   router.post('/categories', (req, res) => Category.create({name: req.body.name})
   .then(category=> res.json(category)))
-
-  // get all listings in a category
-  // router.get('/categories/:category', (req,res) => Category.find({name: req.params.category})
-  // )
 
 module.exports = router

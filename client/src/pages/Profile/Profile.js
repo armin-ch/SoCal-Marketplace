@@ -4,16 +4,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
-import Listing from '../../utils/ListingAPI'
-import ListingForm from '../../components/LoginForm'
 import Dashboard from '../../components/DashBoard'
-// import Accordion from '@material-ui/core/Accordion'
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-// import AccordionSummary from '@material-ui/core/AccordionSummary'
-// import AccordionDetails from '@material-ui/core/AccordionDetails'
 
 const drawerWidth = 240;
 
