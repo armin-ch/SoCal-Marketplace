@@ -14,6 +14,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.21.1",
     "date-fns": "^2.22.1",
+    "dotenv": "^10.0.0",
     "firebase": "^8.7.1",
     "google-map-react": "^2.1.10",
     "react": "^17.0.2",

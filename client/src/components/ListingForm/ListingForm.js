@@ -167,11 +167,12 @@ const ListingForm = props => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={process.env.PET_ID}>Pets</MenuItem>
-          <MenuItem value={process.env.EL_ID}>Electronics</MenuItem>
-          <MenuItem value={process.env.HG_ID}>Home Goods</MenuItem>
-          <MenuItem value={process.env.VEHICLES_ID}>Vehicles</MenuItem>
-          <MenuItem value={process.env.CLOTHES_ID}>Clothes</MenuItem>
+          {console.log("this" + process.env.REACT_APP_PET_ID)}
+          <MenuItem value={process.env.REACT_APP_PET_ID}>Pets</MenuItem>
+          <MenuItem value={process.env.REACT_APP_EL_ID}>Electronics</MenuItem>
+          <MenuItem value={process.env.REACT_APP_HG_ID}>Home Goods</MenuItem>
+          <MenuItem value={process.env.REACT_APP_VEHICLES_ID}>Vehicles</MenuItem>
+          <MenuItem value={process.env.REACT_APP_CLOTHES_ID}>Clothes</MenuItem>
 
         </Select>
       </FormControl>
