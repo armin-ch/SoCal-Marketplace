@@ -10,6 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,20 +37,33 @@ export default function CategoryComponent() {
         </AccordionSummary>
         <List component="idk" className={classes.root} aria-label="mailbox folders">
           {/* <Divider /> */}
-          <MenuItem button>
-            <ListItemText primary="Electronics" />
-          </MenuItem>
+          <Link to="/category/electronics" style={{ textDecoration: 'none', color: 'black' }}>
+            <MenuItem button>
+              <ListItemText primary="Electronics" />
+            </MenuItem>
+          </Link>
           {/* <Divider /> */}
+          <Link to="/category/home_goods" style={{ textDecoration: 'none', color: 'black' }}>
           <MenuItem button>
             <ListItemText primary="Home Goods" />
           </MenuItem>
+          </Link>
+          <Link to="/category/pets" style={{ textDecoration: 'none', color: 'black' }}>
           <MenuItem button>
             <ListItemText primary="Pets" />
           </MenuItem>
+          </Link>
           {/* <Divider /> */}
+          <Link to="/category/clothes" style={{ textDecoration: 'none', color: 'black' }}>
           <MenuItem button>
             <ListItemText primary="Clothes" />
           </MenuItem>
+          </Link>
+          <Link to="/category/vehicles" style={{ textDecoration: 'none', color: 'black' }}>
+            <MenuItem button>
+              <ListItemText primary="Vehicles" />
+            </MenuItem>
+          </Link>
           {/* <Divider /> */}
         </List>
         {/* <List>
