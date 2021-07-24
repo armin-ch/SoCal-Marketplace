@@ -210,9 +210,18 @@ const Dashboard = props => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      <AppBar >
         <Toolbar className={classes.toolbar}>
-            <MenuIcon />
+          <div>
+            {['left'].map((anchor) => (
+              <React.Fragment key={anchor}>
+                <Button onClick={toggleDrawer(anchor, true)}><MenuIcon /></Button>
+                <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+                  {list(anchor)}
+                </Drawer>
+              </React.Fragment>
+            ))}
+          </div>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
           </Typography>
           <IconButton
@@ -228,16 +237,6 @@ const Dashboard = props => {
             />
           </IconButton>
         </Toolbar>
-        <div>
-          {['left'].map((anchor) => (
-            <React.Fragment key={anchor}>
-              <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-              <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-                {list(anchor)}
-              </Drawer>
-            </React.Fragment>
-          ))}
-        </div>
       </AppBar>
 
     </div>
