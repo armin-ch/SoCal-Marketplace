@@ -112,8 +112,10 @@ const Category = props => {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth='xl'>
+              <h1> {
+                category == 'home_goods' ? "HOME GOODS" : category.toUpperCase()
+              }</h1>
             <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-              <h1>category page for {category}</h1>
               <Grid container spacing={3}>
                 {listingState ? (
                   listingState.map((listing, index) => {
