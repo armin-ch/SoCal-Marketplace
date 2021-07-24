@@ -48,7 +48,7 @@ export default function CategoryComponent() {
           </MenuItem>
           {/* <Divider /> */}
           <MenuItem button>
-            <ListItemText primary="Escorts" />
+            <ListItemText primary="Clothes" />
           </MenuItem>
           {/* <Divider /> */}
         </List>
