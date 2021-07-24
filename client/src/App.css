@@ -37,3 +37,61 @@
   height: 300px;
   width: 300px;
 }
+
+/* .makeStyles-formControl-43 {
+  margin: 30px;
+} */
+
+/* ul.MuiList-root.MuiMenu-list.MuiList-padding {
+  top: 30%;
+  left: 5%;
+} */
+
+/* .MuiFormControl-root.makeStyles-formControl-28 {
+  display: none;
+}
+
+.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+  top: 31% !important;
+  left: 6% !important;
+} */
+
+div#panel1a-header {
+  background: rgb(255, 255, 255);
+  border-width: 0px;
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+.MuiPaper-elevation1 {
+  box-shadow: 0px !important;
+  box-shadow: none !important;
+}
+
+.MuiPaper-root.MuiAccordion-root.MuiAccordion-rounded.MuiPaper-elevation1.MuiPaper-rounded {
+  box-shadow: none !important;
+  margin-right: 25%;
+}
+
+.MuiTypography-root.makeStyles-heading-28.MuiTypography-body1 {
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+.ASDF {
+  height: 20px;
+}
+
+/* .MuiButtonBase-root.MuiListItem-root.MuiListItem-gutters.MuiListItem-button {
+  padding-top: 20px;
+} */
+
+.MuiListItem-button:hover {
+  
+}
