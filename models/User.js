@@ -18,6 +18,11 @@ const User = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Listing'
   }]
+    ref: 'Review'
+  }],
+  // notifications: [{
+  //   messages: String
+  // }]
 })
 
 User.plugin(require('passport-local-mongoose'))

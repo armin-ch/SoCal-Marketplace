@@ -71,5 +71,9 @@ router.get('/users/history/:username', passport.authenticate('jwt'), (req, res) 
     .then(listings => res.json(listings))
     .catch(err => console.log(err))
 })
+// router.put('/users/addnotification', passport.authenticate('jwt'), (req, res) => {
+//   const { messages } = req.body
+//   User.findOne({ messages: req.params.username })
+// })
 
 module.exports = router

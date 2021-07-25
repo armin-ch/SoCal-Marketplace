@@ -1,11 +1,7 @@
 import { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import FormControl from '@material-ui/core/FormControl'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import User from '../../utils/UserAPI'
-import { useLocation, useHistory } from 'react-router-dom'
 import Modal from 'react-modal'
 import './modal.css'
 import { withStyles } from '@material-ui/core/styles';

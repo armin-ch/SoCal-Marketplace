@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import ListingForm from '../../components/ListingForm';
-import Listing from '../../utils/ListingAPI'
+import { useParams } from "react-router-dom"
+import axios from 'axios'
+import ListingCard from '../../components/ListingCard'
+import Grid from '@material-ui/core/Grid'
+import Container from '@material-ui/core/Container'
 import Dashboard from '../../components/DashBoard'
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+
 
 const drawerWidth = 240;
 
@@ -88,67 +90,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SellItem = () => {
+const Category = props => {
   const classes = useStyles();
-  const [listingState, setListingState] = useState({
-    title: '',
-    body: '',
-    price: '',
-    rent: false,
-    sell: false,
-    listings: []
-  })
-  const handleInputChange = ({ target }) => {
-    setListingState({ ...listingState, [target.name]: target.value })
-  }
-
-  const handleCreatePost = event => {
-    event.preventDefault()
-    const date = new Date().setDate(new Date().getDate() - 10)
-    Listing.create({
-      title: listingState.title,
-      rent: listingState.rent,
-      sell: listingState.sell,
-      body: listingState.body,
-      price: listingState.price,
-      datePosted: date
-    })
-      .then(({ data: listing }) => {
-        const listings = [...listingState.listings]
-        listings.push(listing)
-        setListingState({ ...listingState, listings, title: '', rent: '', sell: '', body: '', price: '' })
-      })
-  }
+  let { category } = useParams()
+  const [listingState, setListingState] = useState('')
   useEffect(() => {
-    Listing.getAll()
-      .then(({ data: listings }) => {
-        console.log(listings)
-        setListingState({ ...listingState, listings })
+    axios.get(`/api/categories/${category}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(listing => {
+        console.log(listing.data[0].listings)
+        setListingState(listing.data[0].listings)
       })
-  }, [])
-
+  }, [category])
   return (
-    <div className={classes.root}>
-      <Dashboard />
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-    <Container maxWidth='xl'>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-            <ListingForm
-              title={listingState.title}
-              rent={listingState.rent}
-              sell={listingState.sell}
-              body={listingState.body}
-              price={listingState.price}
-              datePosted={listingState.datePosted}
-              handleInputChange={handleInputChange}
-              handleCreatePost={handleCreatePost}
-            />
-      </Paper>
-    </Container>
-     </main >
-    </div >
-  );
+    <>
+      <div className={classes.root}>
+        <Dashboard />
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth='xl'>
+              <h1> {
+                category == 'home_goods' ? "HOME GOODS" : category.toUpperCase()
+              }</h1>
+            <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+              <Grid container xs={12} sm={12} md={12} lg={12}  spacing={2}>
+                {listingState ? (
+                  listingState.map((listing, index) => {
+                    return (
+                      <Grid item xs={12} sm={12} md={4}>
+                        <ListingCard
+                          title={listing.title}
+                          imageURL={listing.imageURL}
+                          body={listing.body}
+                          seller={listing.seller.username}
+                          date={listing.datePosted}
+                          id={listing._id}
+                          isSold={listing.isSold} />
+                      </Grid>
+                    )
+                  }
+                  )) : null}
+              </Grid>
+            </Paper>
+          </Container>
+        </main >
+      </div >
+    </>
+  )
 }
-
-export default SellItem
+export default Category

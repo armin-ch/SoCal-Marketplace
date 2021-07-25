@@ -6,11 +6,9 @@ import {
   Route,
   Redirect
 } from 'react-router-dom'
-import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import User from './utils/UserAPI'
-import Market from './pages/market'
 import SellItem from './pages/SellItem'
 import Profile from './pages/Profile'
 import Chat from './pages/Chat'
@@ -18,6 +16,8 @@ import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
 import History from './pages/History'
 import './App.css'
+import Category from './pages/Category'
+import Pets from './pages/Pets'
 
 
 
@@ -87,11 +87,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Navbar 
-          me={meState.me}
-          isLoggedIn={meState.isLoggedIn}
-          handleLogOut={handleLogOut}
-        />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -101,9 +96,6 @@ const App = () => {
           </Route>
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
-          </Route>
-          <Route exact path='/market'>
-            <Market />
           </Route>
           <Route exact path='/sellItem'>
             <SellItem />
@@ -119,6 +111,11 @@ const App = () => {
           </Route>
           <Route exact path='/History'>
             <History />
+          <Route exact path='/category/:category'>
+            <Category />
+          </Route>
+          <Route exact path='/category/pets'>
+            <Category />
           </Route>
         </Switch>
       </div>

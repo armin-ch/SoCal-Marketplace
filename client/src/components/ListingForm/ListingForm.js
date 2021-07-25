@@ -4,7 +4,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import { storage } from '../../firebase/firebase'
 import React from 'react';
@@ -14,9 +14,12 @@ import {
 } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 import MyLocationIcon from '@material-ui/icons/MyLocation';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 
-let lat = 0, log = 0
+
+let lat = 0, lng = 0
 
 
 const libraries = ["places"];
@@ -42,8 +45,21 @@ const ListingForm = props => {
     libraries,
   });
 
+  // category
+  const [category, setCategory] = useState('')
+  const [open, setOpen] = React.useState(false);
 
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   // firebase stuff
   const allInputs = { imgUrl: '' }
@@ -83,14 +99,15 @@ const ListingForm = props => {
               body: props.body,
               price: props.price,
               lat: lat,
-              lng: log,
+              lng: lng,
               datePosted: date,
-              imageURL: fireBaseUrl
+              imageURL: fireBaseUrl,
+              category: category
             })
               .then(({ data: listing }) => {
                 console.log('done')
                 console.log(listing)
-                window.location=`/listing/${listing.id}`
+                window.location=`/listing/${listing._id}`
               })
           })
       })
@@ -134,6 +151,29 @@ const ListingForm = props => {
           name='title'
           onChange={props.handleInputChange}
         />
+      </FormControl>
+      {/* category */}
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
+        <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={category}
+          onChange={handleChange}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={process.env.REACT_APP_PET_ID}>Pets</MenuItem>
+          <MenuItem value={process.env.REACT_APP_EL_ID}>Electronics</MenuItem>
+          <MenuItem value={process.env.REACT_APP_HG_ID}>Home Goods</MenuItem>
+          <MenuItem value={process.env.REACT_APP_VEHICLES_ID}>Vehicles</MenuItem>
+          <MenuItem value={process.env.REACT_APP_CLOTHES_ID}>Clothes</MenuItem>
+
+        </Select>
       </FormControl>
 
       <br />
@@ -227,7 +267,7 @@ function Locate({ panTo }) {
               lng: position.coords.longitude,
             });
             lat = position.coords.latitude
-            log = position.coords.longitude
+            lng = position.coords.longitude
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
           },

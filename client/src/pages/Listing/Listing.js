@@ -1,19 +1,11 @@
-import User from '../../utils/UserAPI'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
+import { getOrCreateChat } from 'react-chat-engine'
 import CheckIcon from '@material-ui/icons/Check'
 import ClearIcon from '@material-ui/icons/Clear'
-import FiberManualRecordOutlinedIcon from '@material-ui/icons/FiberManualRecordOutlined';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   GoogleMap,
   useLoadScript,
@@ -26,7 +18,6 @@ const mapContainerStyle = {
   width: "100%",
 };
 
-const AnyReactComponent = ({ icon }) => <div>{icon}</div>;
 
 const Listing = props => {
   const { isLoaded, loadError } = useLoadScript({
@@ -49,6 +40,7 @@ const Listing = props => {
 
   let { id } = useParams()
   const [listingState, setListingState] = useState('')
+  const [date, setDate] = useState('')
 
 
   useEffect(() => {
@@ -60,9 +52,10 @@ const Listing = props => {
       .then(listing => {
         console.log(listing.data)
         setListingState(listing.data)
+        setUsername(listing.data.seller)
+        setDate(listing.data.datePosted)
       })
   }, [])
-  console.log(listingState.isSold)
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -86,6 +79,7 @@ const Listing = props => {
         <hr />
         <h2>Listing Description:</h2>
         <h3>{listingState.body}</h3>
+        <h5><span>Posted on {date.slice(0,10)}</span></h5>
         <hr />
         <h4>For Sale:
         {listingState.sell ? <CheckIcon /> : <ClearIcon />}
@@ -116,12 +110,20 @@ const Listing = props => {
         >
         <Marker
           key={`${listingState.lat}-${listingState.lng}`}
-          position={{ lat: listingState.lat, lng: listingState.lng }}
+          position={{ lat: listingState.lat - 0.0123, lng: listingState.lng }}
           style={{ background: 'transparent' }}
           icon={image}
         />
         </GoogleMap>
         <hr/>
+        <h2>Seller Info</h2>
+        <h4>Username:
+           {username.username}
+           <br/>
+           Email: 
+           {username.email}
+           </h4>
+        
         <div style={{
           display: "flex",
           justifyContent: "center",

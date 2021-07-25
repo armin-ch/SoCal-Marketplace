@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import User from '../../utils/UserAPI'
+// import Badge from '@material-ui/core/Badge';
+// import NotificationsIcon from '@material-ui/icons/Notifications'
+// import Alert from '@material-ui/lab/Alert';
 
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine'
 
@@ -37,7 +40,8 @@ const DirectChatPage = () => {
         userSecret='pass1234'
         projectID='8dd8b8ef-62c5-4332-8643-dbc0c92cf501'
         renderNewChatForm={(creds) => renderChatForm(creds)}
-        // onNewMessage = {() => }
+        // onNewMessage={(chatId, message) => console.log(chatId, message, 'onNew'),alert('NEW MESSAGE BIOTCH!')}
+        // onGetMessages={(chatId, messages) => console.log(chatId, messages, 'onGet')}
       />
     </>
   )
