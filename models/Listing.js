@@ -7,6 +7,12 @@ const Listing = new Schema({
   body: String,
   price: Number,
   datePosted: Date,
+  buyer: String,
+  selldate: Date,
+  rating: {
+    type: Number,
+    default: -1
+  },
   isSold: {
     type:Boolean, 
     default: false

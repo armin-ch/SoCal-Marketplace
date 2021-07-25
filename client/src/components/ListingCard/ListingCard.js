@@ -5,9 +5,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+import BuyerInputModal from '../BuyerInputModal';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import React from "react";
+import { PromiseProvider } from 'mongoose';
 
 const useStyles = makeStyles({
   root: {
@@ -19,32 +23,56 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
+  const [value, setValue] = React.useState(props.rating);
   const classes = useStyles();
+  let hasUpdated = false
   let datePosted = JSON.stringify(props.date)
   datePosted = datePosted.slice(1, 11)
-  const deleteListing = id =>{
+  let selldate = JSON.stringify(props.datesold)
+  if (props.isSold) {
+    selldate = selldate.slice(1, 11)
+  }
+
+  const handleUpdateRating = (value, id) => {
+    if (props.rating >= 0) { hasUpdated = true }
+    axios.put(`/api/listings/${id}`, { rating: value }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(({ data: listing }) => {
+        console.log(listing)
+        axios.get(`/api/users/id/${listing.seller}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          .then(({ data: user }) => {
+            let newNumRatings = user.numratings
+            if (!hasUpdated && listing.rating < 0) { newNumRatings = (user.numratings + 1) }
+            const newRating = ((user.rating + value) / newNumRatings)
+            axios.put(`/api/users/${user.username}`, { rating: newRating, numratings: newNumRatings }, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              }
+            })
+              .then(rating => {
+                setValue(value)
+              })
+          })
+      })
+      .catch(err => console.log(err))
+  }
+  const deleteListing = id => {
     axios.delete(`/api/listings/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
-    .then(() =>{
-      console.log('listing removed')
-      alert('Listing removed')
-    })
-  }
-
-  const markSold = id => {
-    axios.put(`/api/listings/${id}`, { isSold: true }, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    } )
       .then(() => {
-        console.log('listing marked as sold')
-        alert('Listing marked as sold')
+        console.log('listing removed')
+        alert('Listing removed')
       })
-      .catch(err=>console.log(err))
   }
 
 
@@ -63,31 +91,63 @@ export default function MediaCard(props) {
           {props.body}
         </Typography>
         <Typography gutterBottom variant="body3" component="body3">
-          created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
+          Created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
         </Typography>
-        {props.isSold ? (<Typography variant="h2" color="textSecondary" component="p">
-          sold
-        </Typography>) : null}
+        {props.isSold ? (
+          <div>
+            <Typography gutterBottom variant="body3" component="body3">
+              Sold to <Link to={`/profile/${props.buyer}`}> {props.buyer}</Link> on {selldate}
+            </Typography>
+            <Typography variant="h2" color="textSecondary" component="p">
+              sold
+            </Typography>
+          </div>
+        ) : null}
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
-          <Button onClick={() => markSold(props.id)} size="small" color="primary">
-            {props.isSold ? '' : 'Mark AS Sold'}
-        </Button>
+          {props.isSold ? (null) : (
+            <BuyerInputModal
+              id={props.id}
+            />
+          )}
           <Button onClick={() => deleteListing(props.id)} size="small" color="secondary">
             Delete Listing
-        </Button>
+          </Button>
         </CardActions>
       ) : (
         <CardActions>
           <Button onClick={event => window.location.href = `/profile/${props.seller}`} size="small" color="primary">
             Contact Seller
-        </Button>
+          </Button>
           <Button onClick={event => window.location.href = `/listing/${props.id}`} size="small" color="primary">
             Show More
-        </Button>
+          </Button>
         </CardActions>
       )}
+      {props.showRating ? (
+        <Box component="fieldset" mb={3} borderColor="transparent">
+          <Typography component="legend">
+            {(props.rating >= 0) ? 'Your Rating' : 'This transaction has no rating yet'}
+          </Typography>
+          {props.updateRating ? (
+            <Rating
+              name="simple-controlled"
+              value={value}
+              precision={0.5}
+              onChange={(event, newValue) => handleUpdateRating(newValue, props.id)}
+            />
+          ) : (
+            <Rating
+              name="read-only"
+              value={value}
+              precision={0.5}
+              readOnly
+            />
+          )}
+        </Box>
+
+      ) : (null)}
     </Card>
   );
 }

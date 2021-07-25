@@ -7,6 +7,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ChatIcon from '@material-ui/icons/Chat';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import HistoryIcon from '@material-ui/icons/History';
 import CategoryComponent from '../CategoryComponent';
 import ViewListIcon from '@material-ui/icons/ViewList';
 
@@ -50,6 +51,14 @@ export const ListItems = props => {
             <AccountCircleIcon />
           </ListItemIcon>
           <ListItemText primary="My Profile" />
+        </ListItem>
+      </Link>
+      <Link to='/History' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <HistoryIcon />
+          </ListItemIcon>
+          <ListItemText primary="History" />
         </ListItem>
       </Link>
 

@@ -1,38 +1,24 @@
-import { useEffect, useState } from 'react'
 import User from '../../utils/UserAPI'
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import Listing from '../../utils/ListingAPI'
+import { useEffect, useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
+import Listing from '../../utils/ListingAPI'
 import Dashboard from '../../components/DashBoard'
 
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Created by Armin, Alex, Kyle, & Wells
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root1: {
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 30, // keep right padding when drawer closed
+    paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: 'flex',
@@ -104,77 +90,46 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-}));
-
-const Home = props => {
-  const [meState, setMeState] = useState({
-    me: {},
-    isLoggedIn: true
-  })
-
-  const getMe = () => {
-    User.me()
-      .then(({ data: me }) => {
-        if (me) {
-          setMeState({ me, isLoggedIn: true })
-        } else {
-          getMe()
-        }
-      })
-      .catch(err => {
-        console.error(err)
-        setMeState({ ...meState, isLoggedIn: false })
-      })
+  root: {
+    width: '100%'
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular
   }
+}))
 
-  const handleLogOut = () => {
-    localStorage.removeItem('token')
-    setMeState({ me: {}, isLoggedIn: false })
-    window.location = '/login'
-  }
-
-  useEffect(() => {
-    getMe()
-  }, [])
-
-  const updateMe = () => {
-    User.me()
-      .then(({ data: me }) => {
-        console.log(me)
-        setMeState({ me, isLoggedIn: true })
-      })
-      .catch(err => {
-        console.error(err)
-        setMeState({ ...meState, isLoggedIn: false })
-      })
-  }
+const History = () => {
   const classes = useStyles();
-  const [listingState, setListingState] = useState({
-    title: '',
-    body: '',
-    price: '',
-    rent: false,
-    sell: false,
-    listings: []
+  const [historyState, sethistoryState] = useState({
+    history: []
   })
+  const [userState, setUserState] = useState({
+    user: {}
+  })
+
   useEffect(() => {
-    Listing.getAll()
-      .then(({ data: listings }) => {
-        console.log(listings)
-        setListingState({ ...listingState, listings })
+    const username = localStorage.getItem('username')
+    axios.get(`/api/users/history/${username}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then(({data: history}) => {
+        console.log(history)
+        sethistoryState({ ...historyState, history })
       })
   }, [])
 
   return (
-    <div className={classes.root}>
-   <Dashboard />
+    <div className={classes.root1}>
+      <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-
             {
-              listingState.listings.map(listing => (
+              historyState.history.map(listing => (
                 <Paper
                   key={listing._id}
                   elevation={3}
@@ -187,20 +142,23 @@ const Home = props => {
                     seller={listing.seller.username}
                     date={listing.datePosted}
                     id={listing._id}
-                    isSold={listing.isSold}
                     buyer={listing.buyer}
                     showSellerInfo={false}
-                    showRating={false}
+                    showRating={true}
+                    updateRating={true}
+                    isSold={listing.isSold}
                     datesold={listing.selldate}
+                    rating={listing.rating}
                   />
                 </Paper>
               ))
             }
           </Paper>
         </Container>
-          <Copyright />
       </main>
     </div>
-  );
+
+  )
 }
-export default Home
+
+export default History
