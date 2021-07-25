@@ -5,6 +5,7 @@ import Dashboard from '../../components/DashBoard'
 import Container from '@material-ui/core/Container'
 import Rating from '@material-ui/lab/Rating'
 import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import { useEffect, useState } from 'react'
 import User from '../../utils/UserAPI'
@@ -153,13 +154,10 @@ const Profile = () => {
                 </Box>
               </>
             ) : null}
+            <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               listingState.listings.map(listing => (
-                <Paper
-                  key={listing._id}
-                  elevation={3}
-                  style={{ padding: '20px', marginBottom: '20px' }}
-                >
+                <Grid item xs={12} sm={12} md={4}>
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}
@@ -175,9 +173,10 @@ const Profile = () => {
                     isSold={listing.isSold}
                     datesold={listing.selldate}
                   />
-                </Paper>
+                </Grid>
               ))
             }
+            </Grid>
           </Paper>
         </Container>
       </main>

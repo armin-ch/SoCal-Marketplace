@@ -5,6 +5,7 @@ import Container from '@material-ui/core/Container'
 import Dashboard from '../../components/DashBoard'
 import Paper from '@material-ui/core/Paper'
 import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
@@ -172,14 +173,12 @@ const Home = props => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+            <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
 
             {
               listingState.listings.map(listing => (
-                <Paper
-                  key={listing._id}
-                  elevation={3}
-                  style={{ padding: '20px', marginBottom: '20px' }}
-                >
+                <Grid item xs={12} sm={12} md={4}>
+          
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}
@@ -193,9 +192,10 @@ const Home = props => {
                     showRating={false}
                     datesold={listing.selldate}
                   />
-                </Paper>
+                     </Grid>
               ))
             }
+            </Grid>
           </Paper>
         </Container>
           <Copyright />
