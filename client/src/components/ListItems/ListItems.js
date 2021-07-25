@@ -52,6 +52,14 @@ export const ListItems = props => {
           <ListItemText primary="My Profile" />
         </ListItem>
       </Link>
+      <Link to='/History' style={{ textDecoration: 'none', color: 'black' }}>
+        <ListItem button>
+          <ListItemIcon>
+            <HistoryIcon />
+          </ListItemIcon>
+          <ListItemText primary="History" />
+        </ListItem>
+      </Link>
 
     </div>
   )

@@ -14,6 +14,7 @@ import Profile from './pages/Profile'
 import Chat from './pages/Chat'
 import UserProfile from './pages/UserProfile'
 import Listing from './pages/Listing'
+import History from './pages/History'
 import './App.css'
 import Category from './pages/Category'
 import Pets from './pages/Pets'
@@ -107,6 +108,9 @@ const App = () => {
           </Route>
           <Route exact path='/listing/:id'>
             <Listing />
+          </Route>
+          <Route exact path='/History'>
+            <History />
           </Route>
           <Route exact path='/category/:category'>
             <Category />
