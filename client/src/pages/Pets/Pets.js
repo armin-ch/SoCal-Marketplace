@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
-import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
-import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
+import { useParams } from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 
 const Pets = props => {

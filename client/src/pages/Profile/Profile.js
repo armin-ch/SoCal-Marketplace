@@ -1,12 +1,12 @@
-import User from '../../utils/UserAPI'
-import { useEffect, useState } from 'react'
+import Typography from '@material-ui/core/Typography'
+import ListingCard from '../../components/ListingCard'
 import { makeStyles } from '@material-ui/core/styles'
+import Dashboard from '../../components/DashBoard'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
+import { useEffect, useState } from 'react'
+import User from '../../utils/UserAPI'
 import axios from 'axios'
-import ListingCard from '../../components/ListingCard'
-import Dashboard from '../../components/DashBoard'
 
 const drawerWidth = 240;
 

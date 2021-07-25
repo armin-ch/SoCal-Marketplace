@@ -1,14 +1,14 @@
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import React, { useState, useEffect } from "react";
-import { getOrCreateChat } from 'react-chat-engine'
+import { makeStyles } from '@material-ui/core/styles'
 import Dashboard from '../../components/DashBoard'
+import { getOrCreateChat } from 'react-chat-engine'
 import CheckIcon from '@material-ui/icons/Check'
 import ClearIcon from '@material-ui/icons/Clear'
-import { Container } from '@material-ui/core';
-import { useParams } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react'
+import Button from '@material-ui/core/Button'
+import { Container } from '@material-ui/core'
+import { useParams } from 'react-router-dom'
+import Paper from '@material-ui/core/Paper'
+import axios from 'axios'
 import {
   GoogleMap,
   useLoadScript,

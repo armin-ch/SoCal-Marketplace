@@ -1,37 +1,36 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ModalComponent from '../LoginModal/modal.componenet'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import NotificationsIcon from '@material-ui/icons/Notifications'
-import SearchInput from '../searchInput';
-import ListItemText from '@material-ui/core/ListItemText';
+import ListItemText from '@material-ui/core/ListItemText'
+import CategoryComponent from '../CategoryComponent'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import withWidth from '@material-ui/core/withWidth'
+import { makeStyles } from '@material-ui/core/styles'
+import MenuIcon from '@material-ui/icons/Menu'
 import ListItem from '@material-ui/core/ListItem'
-import Auth from '../Auth';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
+import Hidden from '@material-ui/core/Hidden'
+import Badge from '@material-ui/core/Badge'
+import Paper from '@material-ui/core/Paper'
+import Link from '@material-ui/core/Link'
 import { useState, useEffect } from 'react'
-import User from '../../utils/UserAPI';
-import ModalComponent from '../LoginModal/modal.componenet';
-import CategoryComponent from '../CategoryComponent';
-////
-import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
-import Hidden from '@material-ui/core/Hidden';
-import withWidth from '@material-ui/core/withWidth';
-
-
-
+import List from '@material-ui/core/List'
+import SearchInput from '../searchInput'
+import User from '../../utils/UserAPI'
+import PropTypes from 'prop-types'
 import ListItems from '../ListItems'
+import Auth from '../Auth'
+import React from 'react'
+import clsx from 'clsx'
 import './styles.css'
+
+
+
 
 function Copyright() {
   return (
