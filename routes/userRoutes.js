@@ -37,6 +37,11 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
   })
 
+router.get('/users/id/:id', passport.authenticate('jwt'), (req, res) => {
+  User.findById(req.params.id)
+  .then(user => res.json(user))
+})
+
 router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
   User.findOne({ username: req.params.username })
     .populate({

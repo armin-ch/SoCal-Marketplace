@@ -25,36 +25,41 @@ const useStyles = makeStyles({
 export default function MediaCard(props) {
   const [value, setValue] = React.useState(props.rating);
   const classes = useStyles();
+  let hasUpdated = false
   let datePosted = JSON.stringify(props.date)
   datePosted = datePosted.slice(1, 11)
   let selldate = JSON.stringify(props.datesold)
-  selldate = selldate.slice(1, 11)
+  if (props.isSold) {
+    selldate = selldate.slice(1, 11)
+  }
 
   const handleUpdateRating = (value, id) => {
+    if (props.rating >= 0) { hasUpdated = true }
     axios.put(`/api/listings/${id}`, { rating: value }, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
       .then(({ data: listing }) => {
-        if (props.rating < 0){
-          console.log(listing)
-          const newNumRatings = listing.seller.numratings + 1
-          const newRating = ((listing.seller.rating + value)/newNumRatings)
-          axios.put(`/api/users/${listing.seller.username}`, { rating: newRating, newNumRatings }, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
+        console.log(listing)
+        axios.get(`/api/users/id/${listing.seller}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          .then(({ data: user }) => {
+            let newNumRatings = user.numratings
+            if (!hasUpdated && listing.rating < 0) { newNumRatings = (user.numratings + 1) }
+            const newRating = ((user.rating + value) / newNumRatings)
+            axios.put(`/api/users/${user.username}`, { rating: newRating, numratings: newNumRatings }, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+              }
+            })
+              .then(rating => {
+                setValue(value)
+              })
           })
-          .then(rating => {
-            console.log(rating)
-            setValue(value)
-          })
-        }
-        else {
-          console.log(listing)
-          setValue(value)
-        }
       })
       .catch(err => console.log(err))
   }
@@ -101,12 +106,11 @@ export default function MediaCard(props) {
       </CardContent>
       {props.showSellerInfo ? (
         <CardActions>
-          <BuyerInputModal
-            id={props.id}
-          />
-          <Button onClick={() => markSold(props.id)} size="small" color="primary">
-            {props.isSold ? '' : 'Mark AS Sold'}
-        </Button>
+          {props.isSold ? (null) : (
+            <BuyerInputModal
+              id={props.id}
+            />
+          )}
           <Button onClick={() => deleteListing(props.id)} size="small" color="secondary">
             Delete Listing
           </Button>
@@ -123,20 +127,27 @@ export default function MediaCard(props) {
       )}
       {props.showRating ? (
         <Box component="fieldset" mb={3} borderColor="transparent">
-          {(props.rating >= 0) ? (
-            <Typography component="legend">Your Rating</Typography>
+          <Typography component="legend">
+            {(props.rating >= 0) ? 'Your Rating' : 'This transaction has no rating yet'}
+          </Typography>
+          {props.updateRating ? (
+            <Rating
+              name="simple-controlled"
+              value={value}
+              precision={0.5}
+              onChange={(event, newValue) => handleUpdateRating(newValue, props.id)}
+            />
           ) : (
-            <Typography component="legend">Please Rate this Transaction</Typography>
+            <Rating
+              name="read-only"
+              value={value}
+              precision={0.5}
+              readOnly
+            />
           )}
-          <Rating
-            name="simple-controlled"
-            value={value}
-            precision={0.5}
-            onChange={(event, newValue) => handleUpdateRating(newValue, props.id)}
-          />
         </Box>
 
-      ) : null}
+      ) : (null)}
     </Card>
   );
 }

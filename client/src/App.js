@@ -111,6 +111,7 @@ const App = () => {
           </Route>
           <Route exact path='/History'>
             <History />
+          </Route>
           <Route exact path='/category/:category'>
             <Category />
           </Route>

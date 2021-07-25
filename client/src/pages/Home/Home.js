@@ -188,6 +188,10 @@ const Home = props => {
                     date={listing.datePosted}
                     id={listing._id}
                     isSold={listing.isSold}
+                    buyer={listing.buyer}
+                    showSellerInfo={false}
+                    showRating={false}
+                    datesold={listing.selldate}
                   />
                 </Paper>
               ))

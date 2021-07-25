@@ -145,6 +145,7 @@ const History = () => {
                     buyer={listing.buyer}
                     showSellerInfo={false}
                     showRating={true}
+                    updateRating={true}
                     isSold={listing.isSold}
                     datesold={listing.selldate}
                     rating={listing.rating}

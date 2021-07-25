@@ -51,24 +51,7 @@ router.post('/listings', passport.authenticate('jwt'), (req, res) => Listing.cre
 
 // PUT one listing
 router.put('/listings/:id', passport.authenticate('jwt'), (req, res) => Listing.findByIdAndUpdate(req.params.id, { $set: req.body })
-  .then(listing => {
-    User.findByIdAndUpdate(req.user._id, { $push: { listings: listing._id } })
-      .then(() => {
-        res.json({
-          id: listing._id,
-          title: listing.title,
-          body: listing.body,
-          seller: req.user,
-          rent: listing.rent,
-          sell: listing.sell,
-          datePosted: listing.datePosted,
-          buyer: listing.buyer,
-          price: listing.price,
-          category: listing.category,
-          address: listing.address
-        })
-      })
-  })
+  .then(listing => res.json(listing))
   .catch(err => console.log(err)))
 
 

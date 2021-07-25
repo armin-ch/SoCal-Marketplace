@@ -18,8 +18,8 @@ const User = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Listing'
   }]
-    ref: 'Review'
-  }],
+  //   ref: 'Review'
+  // }],
   // notifications: [{
   //   messages: String
   // }]
