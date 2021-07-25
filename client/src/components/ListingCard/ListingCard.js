@@ -1,24 +1,20 @@
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
-import BuyerInputModal from '../BuyerInputModal';
+import CardContent from '@material-ui/core/CardContent'
+import CardActions from '@material-ui/core/CardActions'
+import Typography from '@material-ui/core/Typography'
+import CardMedia from '@material-ui/core/CardMedia'
+import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+import Card from '@material-ui/core/Card'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import React from "react";
-import { PromiseProvider } from 'mongoose';
+import React from "react"
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
   media: {
-    height: 140,
+    height: 300,
   },
 });
 

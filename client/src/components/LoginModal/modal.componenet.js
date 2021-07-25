@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { withStyles } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Login from '../../pages/Login'
 import User from '../../utils/UserAPI'
+import { useState } from 'react'
 import Modal from 'react-modal'
 import './modal.css'
-import { withStyles } from '@material-ui/core/styles';
-import Login from '../../pages/Login'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -82,10 +82,8 @@ const ModalComponent = props => {
             onRequestClose={openModal}
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
-            <div>
+<button id='close' onClick={openModal}>X</button>
               <Login />
-<button id='close' onClick={openModal}>Close</button>
-            </div>
           </Modal>
         </div>
       );

@@ -1,15 +1,14 @@
-import User from '../../utils/UserAPI'
-import { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import axios from 'axios'
 import ListingCard from '../../components/ListingCard'
-import Listing from '../../utils/ListingAPI'
+import { makeStyles } from '@material-ui/core/styles'
 import Dashboard from '../../components/DashBoard'
+import Container from '@material-ui/core/Container'
 import Rating from '@material-ui/lab/Rating'
+import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
+import { useEffect, useState } from 'react'
+import User from '../../utils/UserAPI'
+import axios from 'axios'
 
 const drawerWidth = 240;
 

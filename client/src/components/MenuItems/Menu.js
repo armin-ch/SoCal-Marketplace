@@ -1,8 +1,8 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
-import ListItem from '../ListItem';
+import withStyles from '../styles/withStyles'
+import PropTypes from 'prop-types'
+import ListItem from '../ListItem'
+import * as React from 'react'
+import clsx from 'clsx'
 
 export const styles = (theme) => ({
   /* Styles applied to the root element. */

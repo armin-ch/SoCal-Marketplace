@@ -1,11 +1,14 @@
-import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
-import axios from 'axios'
-import React, { useState, useEffect } from "react";
+import { makeStyles } from '@material-ui/core/styles'
+import Dashboard from '../../components/DashBoard'
 import { getOrCreateChat } from 'react-chat-engine'
 import CheckIcon from '@material-ui/icons/Check'
 import ClearIcon from '@material-ui/icons/Clear'
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import Button from '@material-ui/core/Button'
+import { Container } from '@material-ui/core'
+import { useParams } from 'react-router-dom'
+import Paper from '@material-ui/core/Paper'
+import axios from 'axios'
 import {
   GoogleMap,
   useLoadScript,
@@ -17,9 +20,90 @@ const mapContainerStyle = {
   height: "40vh",
   width: "100%",
 };
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  toolbar: {
+    paddingRight: 30, // keep right padding when drawer closed
+  },
+  toolbarIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  menuButtonHidden: {
+    display: 'none',
+  },
+  title: {
+    flexGrow: 1,
+  },
+  drawerPaper: {
+    position: 'relative',
+    whiteSpace: 'nowrap',
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerPaperClose: {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: theme.spacing(7),
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9),
+    },
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+  },
+  fixedHeight: {
+    height: 240,
+  },
+}));
 
 
 const Listing = props => {
+  const classes = useStyles();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyCzfVue49sMcwHHa1FXAYDiSrpE1CTJ6IE',
     libraries,
@@ -69,8 +153,12 @@ const Listing = props => {
     url: "https://img.icons8.com/ios/200/000000/circled.png",
   }
   return (
-    <div>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
+        <div className={classes.root}>
+   <Dashboard />
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth='xl'>
+ <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
         {/* <h1>listing page</h1> */}
         {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
         <h1>{listingState.title} </h1>
@@ -132,6 +220,8 @@ const Listing = props => {
         <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
         </div>
       </Paper>
+        </Container>
+      </main>
     </div>
   )
 }

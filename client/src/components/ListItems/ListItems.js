@@ -1,15 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ChatIcon from '@material-ui/icons/Chat';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
-import HistoryIcon from '@material-ui/icons/History';
-import CategoryComponent from '../CategoryComponent';
-import ViewListIcon from '@material-ui/icons/ViewList';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import CategoryComponent from '../CategoryComponent'
+import ViewListIcon from '@material-ui/icons/ViewList'
+import ListItem from '@material-ui/core/ListItem'
+import ChatIcon from '@material-ui/icons/Chat'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 export const ListItems = props => {
   return (

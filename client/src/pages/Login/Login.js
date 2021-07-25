@@ -1,16 +1,16 @@
-import { useState } from 'react'
-import PropTypes from 'prop-types'
+import RegisterForm from '../../components/RegisterForm'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
-import Container from '@material-ui/core/Container'
-import Paper from '@material-ui/core/Paper'
-import AppBar from '@material-ui/core/AppBar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Box from '@material-ui/core/Box'
 import LoginForm from '../../components/LoginForm'
-import RegisterForm from '../../components/RegisterForm'
+import Container from '@material-ui/core/Container'
+import AppBar from '@material-ui/core/AppBar'
+import Paper from '@material-ui/core/Paper'
+import Tabs from '@material-ui/core/Tabs'
+import Box from '@material-ui/core/Box'
+import Tab from '@material-ui/core/Tab'
 import User from '../../utils/UserAPI'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
 import axios from 'axios'
 
 function TabPanel(props) {
@@ -88,7 +88,7 @@ return (
   <>
     <CssBaseline />
     <Container maxWidth='md'>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '45vh', marginTop: '5vh' }}>
+      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '55vh', marginTop: '5vh' }}>
         <AppBar position='static'>
           <Tabs
             aria-label='simple tabs example'
