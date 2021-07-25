@@ -82,10 +82,8 @@ const ModalComponent = props => {
             onRequestClose={openModal}
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
-            <div>
+<button id='close' onClick={openModal}>X</button>
               <Login />
-<button id='close' onClick={openModal}>Close</button>
-            </div>
           </Modal>
         </div>
       );

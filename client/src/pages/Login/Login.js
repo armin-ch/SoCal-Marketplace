@@ -88,7 +88,7 @@ return (
   <>
     <CssBaseline />
     <Container maxWidth='md'>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '45vh', marginTop: '5vh' }}>
+      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '55vh', marginTop: '5vh' }}>
         <AppBar position='static'>
           <Tabs
             aria-label='simple tabs example'

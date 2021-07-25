@@ -177,7 +177,7 @@ const Dashboard = props => {
   const handleLogOut = () => {
     localStorage.removeItem('token')
     setMeState({ me: {}, isLoggedIn: false })
-    window.location = '/login'
+    window.location = '/'
   }
 
   useEffect(() => {
