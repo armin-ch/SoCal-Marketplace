@@ -1,14 +1,16 @@
-import User from '../../utils/UserAPI'
-import { useEffect, useState } from 'react'
+import Typography from '@material-ui/core/Typography'
+import ListingCard from '../../components/ListingCard'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import ListingCard from '../../components/ListingCard'
-import Listing from '../../utils/ListingAPI'
 import Dashboard from '../../components/DashBoard'
+import { useParams } from 'react-router-dom'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import { useEffect, useState } from 'react'
+import Listing from '../../utils/ListingAPI'
+import User from '../../utils/UserAPI'
+import axios from 'axios'
+
 
 
 const drawerWidth = 240;
@@ -128,13 +130,10 @@ const History = () => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+            <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               historyState.history.map(listing => (
-                <Paper
-                  key={listing._id}
-                  elevation={3}
-                  style={{ padding: '20px', marginBottom: '20px' }}
-                >
+                <Grid item xs={12} sm={12} md={4}>
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}
@@ -150,9 +149,10 @@ const History = () => {
                     datesold={listing.selldate}
                     rating={listing.rating}
                   />
-                </Paper>
+                </Grid>
               ))
             }
+            </Grid>
           </Paper>
         </Container>
       </main>
