@@ -87,7 +87,7 @@ const ListingForm = props => {
 
   const handleCreatePost = event => {
     event.preventDefault()
-    if(props.title.length>1 && props.price.length>0 && category && props.body.length>2)
+    if (event.target.title.length > 4 && event.target.price.length > 0 && category && event.target.body.length>2)
    { 
      // more firebase stuff
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
