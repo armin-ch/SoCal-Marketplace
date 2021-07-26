@@ -114,9 +114,6 @@ const App = () => {
           <Route exact path='/category/:category'>
             <Category />
           </Route>
-          <Route exact path='/category/pets'>
-            <Category />
-          </Route>
         </Switch>
       </div>
     </Router>
