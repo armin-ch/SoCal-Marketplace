@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Profile = () => {
-  const classes = useStyles();
+  const classes = useStyles()
   const [listingState, setListingState] = useState({
     listings: []
   })
@@ -151,7 +151,7 @@ const Profile = () => {
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               listingState.listings.map(listing => (
-                <Grid item xs={12} sm={12} md={6}>
+                <Grid item xs={12} sm={12} md={4}>
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}

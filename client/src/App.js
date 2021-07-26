@@ -1,3 +1,4 @@
+import SearchResults from './pages/SearchResults'
 import UserProfile from './pages/UserProfile'
 import { useState, useEffect } from 'react'
 import Category from './pages/Category'
@@ -10,7 +11,6 @@ import User from './utils/UserAPI'
 import Login from './pages/Login'
 import io from 'socket.io-client'
 import Chat from './pages/Chat'
-import SearchResults from './pages/SearchResults'
 import './App.css'
 import {
   BrowserRouter as Router,
