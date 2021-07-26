@@ -7,7 +7,6 @@ import './modal.css'
 import { withStyles } from '@material-ui/core/styles';
 import Login from '../../pages/Login'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -82,10 +81,13 @@ const ModalComponent = props => {
             onRequestClose={openModal}
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
-            <div>
+            
               <Login />
-<button id='close' onClick={openModal}>Close</button>
-            </div>
+              <div>
+
+<button id='close1' onClick={openModal}>X</button>
+              </div>
+            
           </Modal>
         </div>
       );

@@ -154,7 +154,7 @@ const Dashboard = props => {
   const handleLogOut = () => {
     localStorage.removeItem('token')
     setMeState({ me: {}, isLoggedIn: false })
-    window.location = '/login'
+    window.location = '/'
   }
 
   useEffect(() => {
@@ -201,9 +201,6 @@ const Dashboard = props => {
           <IconButton
             style={{ padding: '20px' }}
             color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
             <ModalComponent
               me={meState.me}
               isLoggedIn={meState.isLoggedIn}

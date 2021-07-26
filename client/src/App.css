@@ -119,3 +119,85 @@ h1#pagename {
   transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms, margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
   margin-left: 240px;
 }
+
+/* .MuiPaper-elevation4 {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+} */
+
+/* .MuiPaper-elevation1 {
+  border-radius: 20px !important;
+  -webkit-border-radius: 20px !important;
+  -moz-border-radius: 20px !important;
+  -ms-border-radius: 20px !important;
+  -o-border-radius: 20px !important;
+} */
+
+header.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrimary.MuiPaper-elevation4 {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+  /* outline-width: 2000px !important; */
+  /* outline-style:solid; */
+}
+
+.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.custom_modal {
+  top: 50%;
+  left: 50%;
+  height: 60vh !important;
+  /* outline: 200px !important; */
+  /* outline-style:solid !important; */
+  padding: inherit;
+  position: fixed;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  height: 53vh;
+  width: 50%;
+  overflow: hidden;
+}
+
+button#close1 {
+  margin-left: 530px;
+  margin-bottom: 200px;
+  display: flex;
+  /* margin-top: 20px !important; */
+  background: red;
+  z-index: 199;
+}
+
+/* .MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {} */
+
+div#Login2 {
+  height: 55vh !important;
+  /* margin-top: 70px !important; */
+}
+
+.MuiButton-outlinedPrimary {
+  display: flex;
+  margin-left: 45% !important;
+}
+
+/* .MuiBox-root.MuiBox-root-78 {
+  justify-content: center !important;
+  margin-top: 200px !important;
+} */
+
+div#full-width-tabpanel-0 {
+  margin-top: 20px;
+}
+
+button#close1 {
+  margin-right: 200px !important;
+}

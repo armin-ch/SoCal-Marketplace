@@ -12,6 +12,7 @@ import LoginForm from '../../components/LoginForm'
 import RegisterForm from '../../components/RegisterForm'
 import User from '../../utils/UserAPI'
 import axios from 'axios'
+import Grid from '@material-ui/core/Grid';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -87,8 +88,8 @@ const handleChangeIndex = (event, newIndex) => {
 return (
   <>
     <CssBaseline />
-    <Container maxWidth='md'>
-      <Paper component='div' style={{ backgroundColor: '#cfe8fc', height: '45vh', marginTop: '5vh' }}>
+    <Container id='Login1' maxWidth='md'>
+      <Paper component='div' id='Login2' style={{ backgroundColor: '#cfe8fc', height: '45vh', marginTop: '5vh' }}>
         <AppBar position='static'>
           <Tabs
             aria-label='simple tabs example'
