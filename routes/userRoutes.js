@@ -35,11 +35,11 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
     })
     .then(() => res.json(req.user))
     .catch(err => console.log(err))
-  })
+})
 
 router.get('/users/id/:id', passport.authenticate('jwt'), (req, res) => {
   User.findById(req.params.id)
-  .then(user => res.json(user))
+    .then(user => res.json(user))
 })
 
 router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
@@ -62,17 +62,18 @@ router.get('/users/:username', passport.authenticate('jwt'), (req, res) => {
 
 router.put('/users/:username', passport.authenticate('jwt'), (req, res) => {
   User.findOneAndUpdate({ username: req.params.username }, { $set: req.body })
-  .then(user => res.json(user))
+    .then(user => res.json(user))
 })
 
 // push a listing in
 router.put('/users/:username/listing', passport.authenticate('jwt'), (req, res) => {
   User.findOneAndUpdate({ username: req.params.username }, { $push: req.body })
-  .then(user => res.json(user))
+    .then(user => res.json(user))
 })
 
 router.get('/users/history/:username', passport.authenticate('jwt'), (req, res) => {
   Listing.find({ buyer: req.params.username })
+    .populate('seller')
     .then(listings => res.json(listings))
     .catch(err => console.log(err))
 })
