@@ -9,12 +9,12 @@ import Rating from '@material-ui/lab/Rating'
 import Card from '@material-ui/core/Card'
 import { Box } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import React from 'react'
 import axios from 'axios'
-import React from "react"
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 545,
   },
   media: {
     height: 300,
@@ -92,7 +92,7 @@ export default function MediaCard(props) {
         image={props.imageURL}
         title={props.title}
       />
-      <CardContent>
+      <CardContent style= {{ background: 'transparent'}}>
         <Typography gutterBottom variant="h5" component="h2">
           {props.title}
         </Typography>
