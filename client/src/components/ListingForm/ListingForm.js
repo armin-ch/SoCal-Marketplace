@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button'
 import { storage } from '../../firebase/firebase'
 import Select from '@material-ui/core/Select'
 import Listing from '../../utils/ListingAPI'
+import Alert from '@material-ui/lab/Alert'
 import Fab from '@material-ui/core/Fab'
 import "@reach/combobox/styles.css"
 import { useState } from 'react'
@@ -86,7 +87,9 @@ const ListingForm = props => {
 
   const handleCreatePost = event => {
     event.preventDefault()
-    // more firebase stuff
+    if(props.title.length>1 && props.price.length>0 && category && props.body.length>2)
+   { 
+     // more firebase stuff
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
     uploadTask.on('state_changed',
       (snapShot) => {
@@ -122,7 +125,13 @@ const ListingForm = props => {
                 window.location=`/listing/${listing._id}`
               })
           })
+          .catch(err=>console.error(err))
       })
+    }
+    else
+    {
+      alert('All input fields are required. Please check your input and try again.')
+    }
   }
 
   const [ coordsState, setCoordsState ] = useState('')
