@@ -12,8 +12,6 @@ import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
 import React from 'react'
-import './style.css'
-
 
 function Copyright() {
   return (

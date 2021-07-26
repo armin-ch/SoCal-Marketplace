@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './style.css'
+import Footer from '../../components/Footer'
 
 
 
@@ -138,6 +139,7 @@ const Category = props => {
                   }
                   )) : null}
               </Grid>
+          <Footer />
           </Container>
         </main >
       </div >

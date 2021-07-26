@@ -11,6 +11,7 @@ import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
 import React from 'react'
 import Chat from '../Chat'
+import Footer from '../../components/Footer'
 
 
 function Copyright() {
@@ -171,12 +172,14 @@ const Home = props => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
+        <Container maxWidth='xl' style={{ padding: '0px' }}>
+          <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '70vh', padding: '20px', marginTop: '5vh' }}>
           <Chat />
           </Paper>
         </Container>
-        <Copyright />
+        </Container>
+        <Footer />
       </main>
     </div>
   );

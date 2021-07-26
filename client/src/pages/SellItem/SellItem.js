@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import React from 'react'
-import './style.css'
+import Footer from '../../components/Footer'
 
 const drawerWidth = 240;
 
@@ -159,7 +159,8 @@ const SellItem = () => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl' >
+        <Container maxWidth='xl' style={{ padding: '0px' }}>
+          <Container maxWidth='xl' className='grid-bg ba-grid anim'>
       <h1>Post a Listing <AddAPhotoIcon color='primary'/></h1>
       <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <ListingForm
@@ -173,6 +174,8 @@ const SellItem = () => {
               handleCreatePost={handleCreatePost}
             />
       </Paper>
+    <Footer />
+    </Container>
     </Container>
      </main >
     </div >
