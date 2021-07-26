@@ -168,37 +168,42 @@ const Home = props => {
 
   return (
     <div className={classes.root}>
-   <Dashboard />
+      <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
 
-            {
-              listingState.listings.map(listing => (
-                <Grid item xs={12} sm={12} md={4}>
-          
-                  <ListingCard
-                    title={listing.title}
-                    imageURL={listing.imageURL}
-                    body={listing.body}
-                    seller={listing.seller.username}
-                    date={listing.datePosted}
-                    id={listing._id}
-                    isSold={listing.isSold}
-                    buyer={listing.buyer}
-                    showSellerInfo={false}
-                    showRating={false}
-                    datesold={listing.selldate}
-                  />
-                     </Grid>
-              ))
-            }
+              {
+                listingState.listings.map(listing => {
+                  if (!listing.isSold) {
+                    return (
+                      <Grid item xs={12} sm={12} md={4}>
+
+                        <ListingCard
+                          title={listing.title}
+                          imageURL={listing.imageURL}
+                          body={listing.body}
+                          seller={listing.seller.username}
+                          date={listing.datePosted}
+                          id={listing._id}
+                          isSold={listing.isSold}
+                          buyer={listing.buyer}
+                          showSellerInfo={false}
+                          showRating={false}
+                          datesold={listing.selldate}
+                        />
+                      </Grid>
+                    )
+
+                  }
+                })
+              }
             </Grid>
           </Paper>
         </Container>
-          <Copyright />
+        <Copyright />
       </main>
     </div>
   );

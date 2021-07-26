@@ -112,25 +112,28 @@ const Category = props => {
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
           <Container maxWidth='xl'>
-              <h1> {
-                category == 'home_goods' ? "HOME GOODS" : category.toUpperCase()
-              }</h1>
+            <h1> {
+              category == 'home_goods' ? "HOME GOODS" : category.toUpperCase()
+            }</h1>
             <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-              <Grid container xs={12} sm={12} md={12} lg={12}  spacing={2}>
+              <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
                 {listingState ? (
                   listingState.map((listing, index) => {
-                    return (
-                      <Grid item xs={12} sm={12} md={4}>
-                        <ListingCard
-                          title={listing.title}
-                          imageURL={listing.imageURL}
-                          body={listing.body}
-                          seller={listing.seller.username}
-                          date={listing.datePosted}
-                          id={listing._id}
-                          isSold={listing.isSold} />
-                      </Grid>
-                    )
+                    if (!listing.isSold) {
+                      return (
+                        <Grid item xs={12} sm={12} md={4}>
+                          <ListingCard
+                            title={listing.title}
+                            imageURL={listing.imageURL}
+                            body={listing.body}
+                            seller={listing.seller.username}
+                            date={listing.datePosted}
+                            id={listing._id}
+                            isSold={listing.isSold}
+                            showSellerInfo={true} />
+                        </Grid>
+                      )
+                    }
                   }
                   )) : null}
               </Grid>
