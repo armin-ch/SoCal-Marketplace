@@ -14,7 +14,7 @@ const Footer= props => {
         <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/norrii1">
           Alex,
         </Link>{' '}
-        <Link style={{ textDecoration: 'none', color: 'white' }}href="https://github.com/kyle004">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/kyle004">
           Kyle,
         </Link>{' '}
         <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/wellswu4621">
