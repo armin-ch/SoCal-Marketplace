@@ -3,20 +3,34 @@ import ListingCard from '../../components/ListingCard'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Dashboard from '../../components/DashBoard'
-import { useParams } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
+import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
-import axios from 'axios'
+import SearchInput from '../../components/searchInput'
+import React from 'react'
+import { useParams } from "react-router-dom"
 
 
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Created by Armin, Alex, Kyle, & Wells
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
-  root1: {
+  root: {
     display: 'flex',
   },
   toolbar: {
@@ -91,70 +105,70 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 240,
-  }
-}))
+  },
+}));
 
-const History = () => {
+const SearchResults = props => {
+  let { search } = useParams()
+
   const classes = useStyles();
-  const [historyState, sethistoryState] = useState({
-    history: []
+  const [listingState, setListingState] = useState({
+    title: '',
+    body: '',
+    price: '',
+    rent: false,
+    sell: false,
+    listings: []
   })
-  const [userState, setUserState] = useState({
-    user: {}
-  })
-
   useEffect(() => {
-    const username = localStorage.getItem('username')
-    axios.get(`/api/users/history/${username}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then(({data: history}) => {
-        console.log(history)
-        sethistoryState({ ...historyState, history })
+    Listing.getAll()
+      .then(({ data: listings }) => {
+        console.log(listings)
+        setListingState({ ...listingState, listings })
       })
   }, [])
 
   return (
-    <div className={classes.root1}>
+    <div className={classes.root}>
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
-            <Typography variant='h4'>
-              {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have no Recorded Purchases, Please Contact the the Seller if a pruchased item is not showing here'}
-            </Typography>
+            <SearchInput />
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
-            {
-              historyState.history.map(listing => (
-                <Grid item xs={12} sm={12} md={6}>
-                  <ListingCard
-                    title={listing.title}
-                    imageURL={listing.imageURL}
-                    body={listing.body}
-                    seller={listing.seller.username}
-                    date={listing.datePosted}
-                    id={listing._id}
-                    buyer={listing.buyer}
-                    showSellerInfo={false}
-                    showRating={true}
-                    updateRating={true}
-                    isSold={listing.isSold}
-                    datesold={listing.selldate}
-                    rating={listing.rating}
-                  />
-                </Grid>
-              ))
-            }
+              {
+                listingState.listings.filter((val) => {
+                  if (val.title.toLowerCase().includes(search.toLowerCase())) {
+                    return val
+                  }
+                }).map(listing => {
+                  return (
+                    <Grid item xs={12} sm={12} md={4}>
+
+                      <ListingCard
+                        title={listing.title}
+                        imageURL={listing.imageURL}
+                        body={listing.body}
+                        seller={listing.seller.username}
+                        date={listing.datePosted}
+                        id={listing._id}
+                        isSold={listing.isSold}
+                        buyer={listing.buyer}
+                        showSellerInfo={false}
+                        showRating={false}
+                        datesold={listing.selldate}
+                      />
+                    </Grid>
+                  )
+                })
+              }
             </Grid>
           </Paper>
         </Container>
+        <Copyright />
       </main>
     </div>
-
-  )
+  );
 }
-
-export default History
+export default SearchResults

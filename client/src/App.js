@@ -10,6 +10,7 @@ import User from './utils/UserAPI'
 import Login from './pages/Login'
 import io from 'socket.io-client'
 import Chat from './pages/Chat'
+import SearchResults from './pages/SearchResults'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -116,6 +117,9 @@ const App = () => {
           </Route>
           <Route exact path='/category/pets'>
             <Category />
+          </Route>
+          <Route exact path='/search/:search'>
+            <SearchResults />
           </Route>
         </Switch>
       </div>
