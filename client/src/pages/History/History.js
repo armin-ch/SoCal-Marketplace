@@ -10,6 +10,8 @@ import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
 import axios from 'axios'
+import './style.css'
+
 
 
 
@@ -121,16 +123,15 @@ const History = () => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
+        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <h1>Purchase History</h1>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <Typography variant='h4'>
               {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have No Recorded Purchases, Please Contact The Seller If A Purchased Item Is Not Showing Here'}
             </Typography>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               historyState.history.map(listing => (
-                <Grid item xs={12} sm={12} md={6}>
+                <Grid className='inner' item xs={12} sm={12} md={6}>
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}
@@ -150,7 +151,6 @@ const History = () => {
               ))
             }
             </Grid>
-          </Paper>
         </Container>
       </main>
     </div>

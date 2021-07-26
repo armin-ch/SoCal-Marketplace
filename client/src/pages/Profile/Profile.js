@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box'
 import { useEffect, useState } from 'react'
 import User from '../../utils/UserAPI'
 import axios from 'axios'
+import './style.css'
 
 const drawerWidth = 240;
 
@@ -121,9 +122,8 @@ const Profile = () => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
+        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <h1>Your Profile</h1>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             {userState.user ? (
               <>
                 <Typography variant='h4'>
@@ -172,7 +172,6 @@ const Profile = () => {
               ))
             }
             </Grid>
-          </Paper>
         </Container>
       </main>
     </div>

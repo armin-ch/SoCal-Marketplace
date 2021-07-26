@@ -9,6 +9,7 @@ import { Container } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import axios from 'axios'
+import './style.css'
 import {
   GoogleMap,
   useLoadScript,
@@ -157,7 +158,7 @@ const Listing = props => {
    <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
+        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
  <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
         {/* <h1>listing page</h1> */}
         {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}

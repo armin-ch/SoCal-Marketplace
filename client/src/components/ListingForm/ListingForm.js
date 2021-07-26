@@ -208,9 +208,8 @@ const ListingForm = props => {
     );
   }
 
-
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <form className={classes.root}  autoComplete='off'>
 
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>

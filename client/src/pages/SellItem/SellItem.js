@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import React from 'react'
+import './style.css'
 
 const drawerWidth = 240;
 
@@ -92,18 +93,33 @@ const useStyles = makeStyles((theme) => ({
 const SellItem = () => {
   const classes = useStyles();
   const [listingState, setListingState] = useState({
-    title: '',
+    title: null,
     body: '',
     price: '',
     rent: false,
     sell: false,
-    listings: []
+    listings: [],
+    errors: {
+      title: ''
+    }
   })
   const handleInputChange = ({ target }) => {
     setListingState({ ...listingState, [target.name]: target.value })
   }
 
   const handleCreatePost = event => {
+    const { name, value } = event.target
+    let errors = listingState.errors
+    switch (name) {
+      case 'title':
+        errors.title =
+          value.length < 5
+            ? 'Must enter a Title'
+            : '';
+        break;
+      default:
+        break;
+    }
     event.preventDefault()
     const date = new Date().setDate(new Date().getDate() - 10)
     Listing.create({
@@ -112,12 +128,15 @@ const SellItem = () => {
       sell: listingState.sell,
       body: listingState.body,
       price: listingState.price,
-      datePosted: date
+      datePosted: date,
+      errors: {
+        title: ''
+      }
     })
       .then(({ data: listing }) => {
         const listings = [...listingState.listings]
         listings.push(listing)
-        setListingState({ ...listingState, listings, title: '', rent: '', sell: '', body: '', price: '' })
+        setListingState({ errors, [name]: value })
       })
   }
   useEffect(() => {
@@ -128,12 +147,19 @@ const SellItem = () => {
       })
   }, [])
 
+  const validateForm = errors => {
+    let valid = true;
+    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+    return valid;
+  }
+
+  const { errors } = listingState
   return (
     <div className={classes.root}>
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-    <Container maxWidth='xl'>
+        <Container maxWidth='xl' >
       <h1>Post a Listing <AddAPhotoIcon color='primary'/></h1>
       <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <ListingForm
