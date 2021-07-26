@@ -1,6 +1,7 @@
 import LinearProgress from '@material-ui/core/LinearProgress'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import FormControl from '@material-ui/core/FormControl'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import MenuItem from '@material-ui/core/MenuItem'
 import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -310,7 +311,11 @@ const ListingForm = props => {
         
         </FormControl>
       <FormControl>
+        <AddAPhotoIcon
+        color='primary'
+        />
         <OutlinedInput
+          required='true'
           type="file"
           onChange={handleImageAsFile}
         />
