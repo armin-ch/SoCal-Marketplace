@@ -8,16 +8,16 @@ const Footer= props => {
     <Container id='footer1'>
       <Typography variant="body2" color="light" align="center" style={{ textDecoration: 'none' }}>
         {'Copyright © '} Created By:
-        <Link color="white" href="https://github.com/armin-ch">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/armin-ch">
           Armin,
         </Link>{' '}
-        <Link color="white" href="https://github.com/norrii1">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/norrii1">
           Alex,
         </Link>{' '}
-        <Link color="white" href="https://github.com/kyle004">
+        <Link style={{ textDecoration: 'none', color: 'white' }}href="https://github.com/kyle004">
           Kyle,
         </Link>{' '}
-        <Link color="light" href="https://github.com/wellswu4621">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/wellswu4621">
           Wells,
         </Link>{' '}
         {new Date().getFullYear()}
