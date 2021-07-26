@@ -16,7 +16,7 @@ body, html {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  height:70vh;
+  height: 53vh;
   width: 50%;
   overflow: hidden;
 }
@@ -38,9 +38,7 @@ body, html {
 button#close {
   background-color: rgb(187, 96, 96);
   height: 30px;
-  width: 40px;
-  margin-left: 80%;
-  margin-bottom: 0;
+  width: 90px;
+  margin-left: 46%;
   overflow: hidden;
-
 }

@@ -32,16 +32,6 @@ const DirectChatPage = () => {
     )
   }
 
-  let UserName = ''
-
-  const handleUsername = () => {
-    User.me()
-      .then(({ data: user }) => {
-        console.log(user)
-        UserName = user.username
-      })
-  }
-
   return (
     <>
       <ChatEngine

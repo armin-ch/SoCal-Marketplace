@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react'
-import User from '../../utils/UserAPI'
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
-import Listing from '../../utils/ListingAPI'
+import Typography from '@material-ui/core/Typography'
 import ListingCard from '../../components/ListingCard'
+import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 import Dashboard from '../../components/DashBoard'
+import Paper from '@material-ui/core/Paper'
+import Link from '@material-ui/core/Link'
+import Grid from '@material-ui/core/Grid'
+import { useEffect, useState } from 'react'
+import Listing from '../../utils/ListingAPI'
+import User from '../../utils/UserAPI'
+import React from 'react'
 
 
 
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 30, // keep right padding when drawer closed
+    paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: 'flex',
@@ -167,34 +168,42 @@ const Home = props => {
 
   return (
     <div className={classes.root}>
-   <Dashboard />
+      <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+            <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
 
-            {
-              listingState.listings.map(listing => (
-                <Paper
-                  key={listing._id}
-                  elevation={3}
-                  style={{ padding: '20px', marginBottom: '20px' }}
-                >
-                  <ListingCard
-                    title={listing.title}
-                    imageURL={listing.imageURL}
-                    body={listing.body}
-                    seller={listing.seller.username}
-                    date={listing.datePosted}
-                    id={listing._id}
-                    isSold={listing.isSold}
-                  />
-                </Paper>
-              ))
-            }
+              {
+                listingState.listings.map(listing => {
+                  if (!listing.isSold) {
+                    return (
+                      <Grid item xs={12} sm={12} md={4}>
+
+                        <ListingCard
+                          title={listing.title}
+                          imageURL={listing.imageURL}
+                          body={listing.body}
+                          seller={listing.seller.username}
+                          date={listing.datePosted}
+                          id={listing._id}
+                          isSold={listing.isSold}
+                          buyer={listing.buyer}
+                          showSellerInfo={false}
+                          showRating={false}
+                          datesold={listing.selldate}
+                        />
+                      </Grid>
+                    )
+
+                  }
+                })
+              }
+            </Grid>
           </Paper>
         </Container>
-          <Copyright />
+        <Copyright />
       </main>
     </div>
   );

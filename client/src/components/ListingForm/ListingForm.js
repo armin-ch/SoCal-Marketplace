@@ -1,26 +1,26 @@
-import { makeStyles } from '@material-ui/core/styles'
-import FormControl from '@material-ui/core/FormControl'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
+import FormControl from '@material-ui/core/FormControl'
+import MenuItem from '@material-ui/core/MenuItem'
+import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
-import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
-import { useState } from 'react'
-import Listing from '../../utils/ListingAPI'
+import Tooltip from '@material-ui/core/Tooltip'
+import AddIcon from '@material-ui/icons/Add'
+import Button from '@material-ui/core/Button'
 import { storage } from '../../firebase/firebase'
-import React from 'react';
+import Select from '@material-ui/core/Select'
+import Listing from '../../utils/ListingAPI'
+import Fab from '@material-ui/core/Fab'
+import "@reach/combobox/styles.css"
+import { useState } from 'react'
+import React from 'react'
 import {
-  GoogleMap,
-  useLoadScript,
-} from "@react-google-maps/api";
-import "@reach/combobox/styles.css";
-import MyLocationIcon from '@material-ui/icons/MyLocation';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
-
-
+GoogleMap,
+useLoadScript,
+} from "@react-google-maps/api"
 
 let lat = 0, lng = 0
-
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -35,6 +35,17 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       display: 'flex'
     }
+  },
+  fab: {
+    margin: theme.spacing(2),
+  },
+  absolute: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
+  bar: {
+    width: '100%',
   }
 }))
 
@@ -120,13 +131,29 @@ const ListingForm = props => {
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
+    mapRef.current = map
+    if (mapRef.current.zoom < 14) {
+        setProgress(0)
+    }
   }, []);
+
+  const [progress, setProgress] = React.useState()
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(14)
+    console.log(mapRef.current)
+    if (mapRef.current.zoom === 14 ) {
+      
+      const timer = setInterval(() => {
+        setProgress(100)
+      }, 500)
+      return () => {
+        clearInterval(timer);
+      };
+    }
   }, []);
+
 
 
   const [rentState, setRentState] = useState(false)
@@ -140,6 +167,47 @@ const ListingForm = props => {
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
+
+  function Locate({ panTo }) {
+    return (
+      <div
+        id='Compass'
+        className="locate"
+        onClick={() => { 
+          const timer = setInterval(() => {
+            setProgress((oldProgress) => {
+              const diff = Math.random() * 15;
+              return Math.min(oldProgress + diff, 100);
+            });
+          }, 700)
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              panTo({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              });
+              lat = position.coords.latitude
+              lng = position.coords.longitude
+              console.log(position.coords.latitude)
+              console.log(position.coords.longitude)
+            },
+            () => null
+          );
+
+        }
+      }
+      >
+        <Tooltip title="Add Location" aria-label="add">
+          <Fab color="primary" className={classes.fab}>
+            <AddIcon />
+          </Fab>
+        </Tooltip>
+        <p>Add Location  </p>
+      </div>
+    );
+  }
+
+
   return (
     <form className={classes.root} noValidate autoComplete='off'>
 
@@ -225,9 +293,11 @@ const ListingForm = props => {
         <FormControl>
 
         <Locate 
-          panTo={panTo} 
+          panTo={panTo}
           />
-
+        <div className={classes.root}>
+          <LinearProgress variant="determinate" value={progress}/>
+        </div>
           <GoogleMap
             id="map"
             mapContainerStyle={mapContainerStyle}
@@ -254,32 +324,5 @@ const ListingForm = props => {
   )
 }
 
-function Locate({ panTo }) {
-  return (
-    <div
-      id='Compass'
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-            lat = position.coords.latitude
-            lng = position.coords.longitude
-            console.log(position.coords.latitude)
-            console.log(position.coords.longitude)
-          },
-          () => null
-        );
-        
-      }}
-       >
-      <p>Enter your Location  </p>
-      <MyLocationIcon style={{ fontSize: 40 }} />
-    </div>
-  );
-}
 
 export default ListingForm

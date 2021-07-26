@@ -1,7 +1,7 @@
-import User from '../../utils/UserAPI'
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import ListingCard from '../../components/ListingCard'
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import User from '../../utils/UserAPI'
 
 const UserProfile = props => {
   let { username } = useParams()

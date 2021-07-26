@@ -201,3 +201,7 @@ div#full-width-tabpanel-0 {
 button#close1 {
   margin-right: 200px !important;
 }
+
+body {
+  overflow: hidden;
+}

@@ -1,15 +1,11 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MenuItem from '@material-ui/core/MenuItem'
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import AccordionSummary from '@material-ui/core/AccordionSummary'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import ListItemText from '@material-ui/core/ListItemText'
+import Accordion from '@material-ui/core/Accordion'
+import { makeStyles } from '@material-ui/core/styles'
+import ListItem from '@material-ui/core/ListItem'
+import List from '@material-ui/core/List'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
