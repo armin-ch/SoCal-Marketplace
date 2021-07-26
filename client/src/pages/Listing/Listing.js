@@ -25,6 +25,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    height: "150%"
   },
   toolbar: {
     paddingRight: 30, // keep right padding when drawer closed
@@ -96,9 +97,9 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
-  fixedHeight: {
-    height: 240,
-  },
+  // fixedHeight: {
+  //   height: '100vh',
+  // },
 }));
 
 
@@ -153,73 +154,73 @@ const Listing = props => {
     url: "https://img.icons8.com/ios/200/000000/circled.png",
   }
   return (
-        <div className={classes.root}>
-   <Dashboard />
+    <div className={classes.root}>
+      <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl' className='grid-bg ba-grid anim'>
- <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
-        {/* <h1>listing page</h1> */}
-        {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
-        <h1>{listingState.title} </h1>
-        <hr />
-        <h2>Price: $ {listingState.price}</h2>
-        <hr />
-        <h2>Listing Description:</h2>
-        <h3>{listingState.body}</h3>
-        <h5><span>Posted on {date.slice(0,10)}</span></h5>
-        <hr />
-        <h4>For Sale:
+          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh'}}>
+            {/* <h1>listing page</h1> */}
+            {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
+            <h1>{listingState.title} </h1>
+            <hr />
+            <h2>Price: $ {listingState.price}</h2>
+            <hr />
+            <h2>Listing Description:</h2>
+            <h3>{listingState.body}</h3>
+            <h5><span>Posted on {date.slice(0, 10)}</span></h5>
+            <hr />
+            <h4>For Sale:
         {listingState.sell ? <CheckIcon /> : <ClearIcon />}
-        </h4>
-        <h4>For rent:
+            </h4>
+            <h4>For rent:
         {listingState.rent ? <CheckIcon /> : <ClearIcon />}
-        </h4>
-        <hr/>
-        <h1>Listing Images</h1>
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          <img src={listingState.imageURL} alt={listingState.title} style={{ height: 250, width: 250 }} />
-        </div>
-        <br />
-        <hr/>
-        <GoogleMap
-          id="map"
-          mapContainerStyle={mapContainerStyle}
-          zoom={12}
-          center={{
-            lat: listingState.lat,
-            lng: listingState.lng
-          }}
-          onLoad={onMapLoad}
-        >
-        <Marker
-          key={`${listingState.lat}-${listingState.lng}`}
-          position={{ lat: listingState.lat - 0.0123, lng: listingState.lng }}
-          style={{ background: 'transparent' }}
-          icon={image}
-        />
-        </GoogleMap>
-        <hr/>
-        <h2>Seller Info</h2>
-        <h4>Username:
+            </h4>
+            <hr />
+            <h1>Listing Images</h1>
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <img src={listingState.imageURL} alt={listingState.title} style={{ height: 250, width: 250 }} />
+            </div>
+            <br />
+            <hr />
+            <GoogleMap
+              id="map"
+              mapContainerStyle={mapContainerStyle}
+              zoom={12}
+              center={{
+                lat: listingState.lat,
+                lng: listingState.lng
+              }}
+              onLoad={onMapLoad}
+            >
+              <Marker
+                key={`${listingState.lat}-${listingState.lng}`}
+                position={{ lat: listingState.lat - 0.0123, lng: listingState.lng }}
+                style={{ background: 'transparent' }}
+                icon={image}
+              />
+            </GoogleMap>
+            <hr />
+            <h2>Seller Info</h2>
+            <h4>Username:
            {username.username}
-           <br/>
-           Email: 
+              <br />
+           Email:
            {username.email}
-           </h4>
-        
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-        <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
-        </div>
-      </Paper>
+            </h4>
+
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}>
+              <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
+            </div>
+          </Paper>
         </Container>
       </main>
     </div>
