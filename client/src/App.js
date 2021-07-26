@@ -11,6 +11,7 @@ import User from './utils/UserAPI'
 import Login from './pages/Login'
 import io from 'socket.io-client'
 import Chat from './pages/Chat'
+import Chat2 from './pages/chat2'
 import './App.css'
 import {
   BrowserRouter as Router,
@@ -104,7 +105,7 @@ const App = () => {
             <Profile />
           </Route>
           <Route exact path='/chat'>
-            <Chat />
+            <Chat2 />
           </Route>
           <Route exact path='/listing/:id'>
             <Listing />
@@ -121,6 +122,7 @@ const App = () => {
           <Route exact path='/search/:search'>
             <SearchResults />
           </Route>
+
         </Switch>
       </div>
     </Router>

@@ -1,24 +1,16 @@
-import TemporaryDrawer from '../TemporaryDrawer/TemporaryDrawer'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import Typography from '@material-ui/core/Typography'
+import ListingCard from '../../components/ListingCard'
 import { makeStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Drawer from '@material-ui/core/Drawer'
-import Divider from '@material-ui/core/Divider'
-import Hidden from '@material-ui/core/Hidden'
+import Container from '@material-ui/core/Container'
+import Dashboard from '../../components/DashBoard'
+import Paper from '@material-ui/core/Paper'
 import Link from '@material-ui/core/Link'
-import { useState, useEffect } from 'react'
-import List from '@material-ui/core/List'
-import SearchInput from '../searchInput'
+import Grid from '@material-ui/core/Grid'
+import { useEffect, useState } from 'react'
+import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
-import ListItems from '../ListItems'
 import React from 'react'
-import clsx from 'clsx'
-import './styles.css'
-import LoginModal from '../LoginModal'
-
-
+import Chat from '../Chat'
 
 
 function Copyright() {
@@ -113,9 +105,9 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-}))
+}));
 
-const Dashboard = props => {
+const Home = props => {
   const [meState, setMeState] = useState({
     me: {},
     isLoggedIn: true
@@ -139,7 +131,7 @@ const Dashboard = props => {
   const handleLogOut = () => {
     localStorage.removeItem('token')
     setMeState({ me: {}, isLoggedIn: false })
-    window.location = '/'
+    window.location = '/login'
   }
 
   useEffect(() => {
@@ -157,57 +149,36 @@ const Dashboard = props => {
         setMeState({ ...meState, isLoggedIn: false })
       })
   }
-
   const classes = useStyles();
-  const { width } = props;
-
-
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  }
+  const [listingState, setListingState] = useState({
+    title: '',
+    body: '',
+    price: '',
+    rent: false,
+    sell: false,
+    listings: []
+  })
+  useEffect(() => {
+    Listing.getAll()
+      .then(({ data: listings }) => {
+        console.log(listings)
+        setListingState({ ...listingState, listings })
+      })
+  }, [])
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <h1 id='pagename'>SoCal MarketPlace</h1>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-          </Typography>
-          <div className={classes.container}>
-            <Hidden mdUp>
-              <TemporaryDrawer className='hidden1'/>
-            </Hidden>
-            </div>
-        </Toolbar>
-      </AppBar>
-      <Hidden smDown>
-      
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div id='spacer1'/>
-      
-        <Divider />
-        <SearchInput />
-        <List>
-          <ListItems />
-        </List>
-        <Divider />
-        <List></List>
-      </Drawer>
-      </Hidden>
-
+      <Dashboard />
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth='xl'>
+          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '70vh', padding: '20px', marginTop: '5vh' }}>
+          <Chat />
+          </Paper>
+        </Container>
+        <Copyright />
+      </main>
     </div>
   );
 }
-
-export default Dashboard
+export default Home

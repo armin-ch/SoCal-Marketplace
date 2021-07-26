@@ -184,10 +184,10 @@ div#Login2 {
   /* margin-top: 70px !important; */
 }
 
-.MuiButton-outlinedPrimary {
+/* .MuiButton-outlinedPrimary {
   display: flex;
   margin-left: 45% !important;
-}
+} */
 
 /* .MuiBox-root.MuiBox-root-78 {
   justify-content: center !important;
@@ -205,3 +205,4 @@ button#close1 {
 body {
   overflow: hidden;
 }
+
