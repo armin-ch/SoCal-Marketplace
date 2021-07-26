@@ -219,6 +219,7 @@ const ListingForm = props => {
           labelWidth={50}
           name='title'
           onChange={props.handleInputChange}
+          required='true'
         />
       </FormControl>
       {/* category */}
@@ -288,6 +289,7 @@ const ListingForm = props => {
           name='price'
           value={props.price}
           onChange={props.handleInputChange}
+          required='true'
         />
       </FormControl>
       <br />
