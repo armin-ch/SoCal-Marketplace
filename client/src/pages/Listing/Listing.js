@@ -9,7 +9,6 @@ import { Container } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import axios from 'axios'
-import './style.css'
 import {
   GoogleMap,
   useLoadScript,
