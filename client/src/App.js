@@ -1,3 +1,4 @@
+import SearchResults from './pages/SearchResults'
 import UserProfile from './pages/UserProfile'
 import { useState, useEffect } from 'react'
 import Category from './pages/Category'
@@ -116,6 +117,9 @@ const App = () => {
           </Route>
           <Route exact path='/category/pets'>
             <Category />
+          </Route>
+          <Route exact path='/search/:search'>
+            <SearchResults />
           </Route>
         </Switch>
       </div>

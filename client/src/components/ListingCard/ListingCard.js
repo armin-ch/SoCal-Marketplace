@@ -47,15 +47,25 @@ export default function MediaCard(props) {
           }
         })
           .then(({ data: user }) => {
+            console.log(user)
             let newNumRatings = user.numratings
-            if (!hasUpdated && listing.rating < 0) { newNumRatings = (user.numratings + 1) }
-            const newRating = ((user.rating + value) / newNumRatings)
+            let newRating = user.rating
+            if (!hasUpdated && listing.rating < 0) {
+              console.log('number incremented')
+              newNumRatings = (newNumRatings + 1)
+              newRating = (((newRating) * user.numratings) + value) / newNumRatings
+            }
+            else {
+              newRating = ((((newRating)*newNumRatings)-listing.rating)+value)/newNumRatings
+            }
             axios.put(`/api/users/${user.username}`, { rating: newRating, numratings: newNumRatings }, {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
               }
             })
               .then(rating => {
+                console.log(newRating)
+                console.log(rating)
                 setValue(value)
               })
           })
