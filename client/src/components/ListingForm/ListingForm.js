@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Tooltip from '@material-ui/core/Tooltip'
-import AddIcon from '@material-ui/icons/Add'
+import AddLocationIcon from '@material-ui/icons/AddLocation'
 import Button from '@material-ui/core/Button'
 import { storage } from '../../firebase/firebase'
 import Select from '@material-ui/core/Select'
@@ -200,7 +200,7 @@ const ListingForm = props => {
       >
         <Tooltip title="Add Location" aria-label="add">
           <Fab color="primary" className={classes.fab}>
-            <AddIcon />
+            <AddLocationIcon/>
           </Fab>
         </Tooltip>
         <p>Add Location  </p>
