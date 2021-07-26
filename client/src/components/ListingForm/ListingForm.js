@@ -1,7 +1,7 @@
 import LinearProgress from '@material-ui/core/LinearProgress'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import FormControl from '@material-ui/core/FormControl'
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import MenuItem from '@material-ui/core/MenuItem'
 import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -217,9 +217,8 @@ const ListingForm = props => {
     );
   }
 
-
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <form className={classes.root}  autoComplete='off'>
 
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>

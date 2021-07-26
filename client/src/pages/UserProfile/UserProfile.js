@@ -11,6 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import User from '../../utils/UserAPI'
 import axios from 'axios'
+import Footer from '../../components/Footer'
 
 const drawerWidth = 240;
 
@@ -141,8 +142,9 @@ const UserProfile = props => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+        <Container maxWidth='xl' style={{ padding: '0px' }}>
+          <Container maxWidth='xl' className='grid-bg ba-grid anim'>
+          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '89vh', padding: '20px', marginTop: '5vh' }}>
             <h1>{username}</h1>
             <Typography component="legend">Seller Rating</Typography>
             <Rating
@@ -177,6 +179,8 @@ const UserProfile = props => {
             )}
             </Grid>
           </Paper>
+        <Footer />
+        </Container>
         </Container>
       </main>
       </div>

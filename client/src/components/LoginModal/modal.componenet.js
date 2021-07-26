@@ -7,7 +7,6 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import './modal.css'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {

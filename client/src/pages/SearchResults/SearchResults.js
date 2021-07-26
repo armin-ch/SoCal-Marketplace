@@ -1,18 +1,17 @@
 import Typography from '@material-ui/core/Typography'
 import ListingCard from '../../components/ListingCard'
+import SearchInput from '../../components/searchInput'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Dashboard from '../../components/DashBoard'
+import { useParams } from "react-router-dom"
 import Paper from '@material-ui/core/Paper'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
-import SearchInput from '../../components/searchInput'
 import React from 'react'
-import { useParams } from "react-router-dom"
-
 
 function Copyright() {
   return (
@@ -133,8 +132,7 @@ const SearchResults = props => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
+        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
             <SearchInput />
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
               {
@@ -164,7 +162,6 @@ const SearchResults = props => {
                 })
               }
             </Grid>
-          </Paper>
         </Container>
         <Copyright />
       </main>
