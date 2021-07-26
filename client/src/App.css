@@ -153,8 +153,10 @@ header.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrim
   left: 50%;
   height: 60vh !important;
   /*outline: 200px !important;
-  *//*outline-style:solid !important;
-  */padding: inherit;
+  */
+  /*outline-style:solid !important;
+  */
+  padding: inherit;
   position: fixed;
   border-radius: 20px;
   transform: translate(-50%, -50%);
@@ -166,7 +168,7 @@ header.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrim
   height: 53vh;
   width: 35%;
   overflow: hidden;
-  z-index: 100 !important;
+  z-index: 200 !important;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -178,10 +180,11 @@ header.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrim
   margin-bottom: 200px;
   display: flex;
   /* margin-top: 20px !important; */
-  /* background: red;
-  z-index: 199; */
- */
 
+/* background: red;
+  z-index: 199; */
+
+*/
 /* .MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {} */
 
 div#Login2 {
@@ -235,7 +238,7 @@ html, body {
 
 .ba-grid {
   position: relative;
-  z-index: -100;
+  z-index: -10;
   background-image: /*     radial-gradient(ellipse at center, #2883b6 0%, #084688 100%), */
   radial-gradient(ellipse at bottom left, rgba(104, 128, 138, 0.4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25), rgba(42, 60, 87, 0.4)), linear-gradient(135deg, #670d10, #092756);
 }
@@ -243,7 +246,7 @@ html, body {
 .ba-grid:before, .ba-grid:after, .inner:before, .inner:after {
   content: '';
   position: absolute;
-  z-index: -100;
+  z-index: -20;
   top: 0;
   bottom: 0;
   left: 0;
@@ -307,6 +310,10 @@ h1 {
   color: grey;
 }
 
-.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
+/* .MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
   z-index: 10;
+} */
+
+.MuiContainer-root.grid-bg.ba-grid.anim.MuiContainer-maxWidthXl {
+  z-index: 0;
 }
