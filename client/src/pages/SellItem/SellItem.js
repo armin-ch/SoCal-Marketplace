@@ -1,3 +1,4 @@
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import ListingForm from '../../components/ListingForm'
 import { makeStyles } from '@material-ui/core/styles'
 import Dashboard from '../../components/DashBoard'
@@ -133,6 +134,7 @@ const SellItem = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
     <Container maxWidth='xl'>
+      <h1>Post a Listing <AddAPhotoIcon color='primary'/></h1>
       <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <ListingForm
               title={listingState.title}

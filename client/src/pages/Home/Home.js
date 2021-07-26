@@ -172,6 +172,7 @@ const Home = props => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
+          <h1>Listings Posted Recently</h1>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
 

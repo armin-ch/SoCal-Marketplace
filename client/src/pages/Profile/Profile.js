@@ -122,6 +122,7 @@ const Profile = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
+          <h1>Your Profile</h1>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             {userState.user ? (
               <>
