@@ -159,7 +159,7 @@ export const ListItems = props => {
       </Link>
 
       <IconButton
-        style={{ padding: '20px', marginTop: '40vh'}}
+        style={{ padding: '20px', marginTop: '38vh'}}
         color="inherit">
         <ModalComponent
           me={meState.me}
