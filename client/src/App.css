@@ -152,30 +152,35 @@ header.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorPrim
   top: 50%;
   left: 50%;
   height: 60vh !important;
-  /* outline: 200px !important; */
-  /* outline-style:solid !important; */
-  padding: inherit;
+  /*outline: 200px !important;
+  *//*outline-style:solid !important;
+  */padding: inherit;
   position: fixed;
-  border-radius: 10px;
+  border-radius: 20px;
   transform: translate(-50%, -50%);
   background: transparent;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
   height: 53vh;
-  width: 50%;
+  width: 35%;
   overflow: hidden;
+  z-index: 100 !important;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
-button#close1 {
+/* button#close1 {
   margin-left: 530px;
   margin-bottom: 200px;
   display: flex;
   /* margin-top: 20px !important; */
-  background: red;
-  z-index: 199;
-}
+  /* background: red;
+  z-index: 199; */
+ */
 
 /* .MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {} */
 
@@ -230,7 +235,7 @@ html, body {
 
 .ba-grid {
   position: relative;
-  z-index: 1;
+  z-index: -100;
   background-image: /*     radial-gradient(ellipse at center, #2883b6 0%, #084688 100%), */
   radial-gradient(ellipse at bottom left, rgba(104, 128, 138, 0.4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25), rgba(42, 60, 87, 0.4)), linear-gradient(135deg, #670d10, #092756);
 }
@@ -300,4 +305,8 @@ html, body {
 
 h1 {
   color: grey;
+}
+
+.MuiPaper-root.MuiPaper-elevation1.MuiPaper-rounded {
+  z-index: 10;
 }
