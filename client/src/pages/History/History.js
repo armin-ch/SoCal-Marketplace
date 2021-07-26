@@ -122,6 +122,7 @@ const History = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl'>
+          <h1>Purchase History</h1>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <Typography variant='h4'>
               {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have no Recorded Purchases, Please Contact the the Seller if a pruchased item is not showing here'}
