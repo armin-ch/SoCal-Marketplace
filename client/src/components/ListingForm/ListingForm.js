@@ -243,8 +243,8 @@ const ListingForm = props => {
           value={category}
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value={null}>
+            <em>Select a Category</em>
           </MenuItem>
           <MenuItem value={process.env.REACT_APP_PET_ID}>Pets</MenuItem>
           <MenuItem value={process.env.REACT_APP_EL_ID}>Electronics</MenuItem>
