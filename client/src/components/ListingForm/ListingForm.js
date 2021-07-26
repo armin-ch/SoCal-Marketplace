@@ -1,3 +1,4 @@
+import AddLocationIcon from '@material-ui/icons/AddLocation'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
@@ -7,11 +8,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Tooltip from '@material-ui/core/Tooltip'
-import AddIcon from '@material-ui/icons/Add'
 import Button from '@material-ui/core/Button'
 import { storage } from '../../firebase/firebase'
 import Select from '@material-ui/core/Select'
 import Listing from '../../utils/ListingAPI'
+import Alert from '@material-ui/lab/Alert'
 import Fab from '@material-ui/core/Fab'
 import "@reach/combobox/styles.css"
 import { useState } from 'react'
@@ -86,7 +87,9 @@ const ListingForm = props => {
 
   const handleCreatePost = event => {
     event.preventDefault()
-    // more firebase stuff
+    if(props.title.length>1 && props.price.length>0 && category && props.body.length>2)
+   { 
+     // more firebase stuff
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
     uploadTask.on('state_changed',
       (snapShot) => {
@@ -122,7 +125,13 @@ const ListingForm = props => {
                 window.location=`/listing/${listing._id}`
               })
           })
+          .catch(err=>console.error(err))
       })
+    }
+    else
+    {
+      alert('All input fields are required. Please check your input and try again.')
+    }
   }
 
   const [ coordsState, setCoordsState ] = useState('')
@@ -200,7 +209,7 @@ const ListingForm = props => {
       >
         <Tooltip title="Add Location" aria-label="add">
           <Fab color="primary" className={classes.fab}>
-            <AddIcon />
+            <AddLocationIcon/>
           </Fab>
         </Tooltip>
         <p>Add Location  </p>
@@ -218,6 +227,7 @@ const ListingForm = props => {
           labelWidth={50}
           name='title'
           onChange={props.handleInputChange}
+          required='true'
         />
       </FormControl>
       {/* category */}
@@ -232,8 +242,8 @@ const ListingForm = props => {
           value={category}
           onChange={handleChange}
         >
-          <MenuItem value="">
-            <em>None</em>
+          <MenuItem value={null}>
+            <em>Select a Category</em>
           </MenuItem>
           <MenuItem value={process.env.REACT_APP_PET_ID}>Pets</MenuItem>
           <MenuItem value={process.env.REACT_APP_EL_ID}>Electronics</MenuItem>
@@ -287,6 +297,7 @@ const ListingForm = props => {
           name='price'
           value={props.price}
           onChange={props.handleInputChange}
+          required='true'
         />
       </FormControl>
       <br />
