@@ -6,13 +6,13 @@ import Container from '@material-ui/core/Container'
 import AppBar from '@material-ui/core/AppBar'
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Tab from '@material-ui/core/Tab'
 import User from '../../utils/UserAPI'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import axios from 'axios'
-import Grid from '@material-ui/core/Grid';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props

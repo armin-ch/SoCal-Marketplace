@@ -1,4 +1,5 @@
 import LinearProgress from '@material-ui/core/LinearProgress'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import FormControl from '@material-ui/core/FormControl'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -207,9 +208,8 @@ const ListingForm = props => {
     );
   }
 
-
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <form className={classes.root}  autoComplete='off'>
 
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>
@@ -310,7 +310,11 @@ const ListingForm = props => {
         
         </FormControl>
       <FormControl>
+        <AddAPhotoIcon
+        color='primary'
+        />
         <OutlinedInput
+          required='true'
           type="file"
           onChange={handleImageAsFile}
         />
