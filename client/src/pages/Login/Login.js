@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import AppBar from '@material-ui/core/AppBar'
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Tab from '@material-ui/core/Tab'
 import User from '../../utils/UserAPI'
@@ -74,7 +75,7 @@ const Login = props => {
           }
         })
           .then(() => {
-            console.log('user registered')
+            console.log('user registered') 
           })
       })
 }

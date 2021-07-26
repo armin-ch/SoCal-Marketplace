@@ -124,7 +124,7 @@ const History = () => {
         <Container maxWidth='xl'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <Typography variant='h4'>
-              {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have no Recorded Purchases, Please Contact the the Seller if a pruchased item is not showing here'}
+              {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have No Recorded Purchases, Please Contact The Seller If A Purchased Item Is Not Showing Here'}
             </Typography>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
