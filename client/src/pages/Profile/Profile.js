@@ -13,6 +13,7 @@ import axios from 'axios'
 
 const drawerWidth = 240;
 
+
 const useStyles = makeStyles((theme) => ({
   root1: {
     display: 'flex',
@@ -90,14 +91,7 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-  root: {
-    width: '100%'
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
-  }
-}))
+}));
 
 const Profile = () => {
   const classes = useStyles();
@@ -157,7 +151,7 @@ const Profile = () => {
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               listingState.listings.map(listing => (
-                <Grid item xs={12} sm={12} md={4}>
+                <Grid item xs={12} sm={12} md={6}>
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}

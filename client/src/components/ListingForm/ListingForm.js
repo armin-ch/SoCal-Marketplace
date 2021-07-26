@@ -1,5 +1,4 @@
 import LinearProgress from '@material-ui/core/LinearProgress'
-import MyLocationIcon from '@material-ui/icons/MyLocation'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import FormControl from '@material-ui/core/FormControl'
 import MenuItem from '@material-ui/core/MenuItem'

@@ -91,13 +91,6 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 240,
-  },
-  root: {
-    width: '100%'
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
   }
 }))
 
@@ -133,7 +126,7 @@ const History = () => {
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               historyState.history.map(listing => (
-                <Grid item xs={12} sm={12} md={4}>
+                <Grid item xs={12} sm={12} md={6}>
                   <ListingCard
                     title={listing.title}
                     imageURL={listing.imageURL}

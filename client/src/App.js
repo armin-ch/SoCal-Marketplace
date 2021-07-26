@@ -1,23 +1,22 @@
+import UserProfile from './pages/UserProfile'
 import { useState, useEffect } from 'react'
+import Category from './pages/Category'
+import SellItem from './pages/SellItem'
+import History from './pages/History'
+import Listing from './pages/Listing'
+import Profile from './pages/Profile'
+import Home from './pages/Home'
+import User from './utils/UserAPI'
+import Login from './pages/Login'
 import io from 'socket.io-client'
+import Chat from './pages/Chat'
+import './App.css'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from 'react-router-dom'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import User from './utils/UserAPI'
-import SellItem from './pages/SellItem'
-import Profile from './pages/Profile'
-import Chat from './pages/Chat'
-import UserProfile from './pages/UserProfile'
-import Listing from './pages/Listing'
-import History from './pages/History'
-import './App.css'
-import Category from './pages/Category'
-import Pets from './pages/Pets'
 
 
 
