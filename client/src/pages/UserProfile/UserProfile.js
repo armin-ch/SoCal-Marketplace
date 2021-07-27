@@ -108,9 +108,9 @@ const UserProfile = props => {
   async function showUser() {
     let { data } = await User.profile(username)
     console.log(data.listings)
-    setListingState(data.listings)
-    setEmailState(data.email)
     setRatingState(data.rating)
+    setEmailState(data.email)
+    setListingState(data.listings)
     console.log(data.rating)
   }
 
@@ -122,19 +122,19 @@ const UserProfile = props => {
     user: {}
   })
 
-  useEffect(() => {
-    User.profile()
-      .then(res => {
-        const user = res.data
-        console.log(user)
-        setUserState({ ...userState, user })
-        axios.get(`/api/user/${username}`)
-          .then(({ data: listings }) => {
-            console.log(listings)
-            setListingState({ ...listingState, listings })
-          })
-      })
-  }, [])
+  // useEffect(() => {
+  //   User.profile()
+  //     .then(res => {
+  //       const user = res.data
+  //       console.log(user)
+  //       setUserState({ ...userState, user })
+  //       axios.get(`/api/user/${username}`)
+  //         .then(({ data: listings }) => {
+  //           console.log(listings)
+  //           setListingState({ ...listingState, listings })
+  //         })
+  //     })
+  // }, [])
 
   console.log("listingState", listingState)
   return (
