@@ -1,23 +1,28 @@
-import { makeStyles } from '@material-ui/core/styles'
-import FormControl from '@material-ui/core/FormControl'
+import AddLocationIcon from '@material-ui/icons/AddLocation'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
+import FormControl from '@material-ui/core/FormControl'
+import MenuItem from '@material-ui/core/MenuItem'
+import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
-import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
-import { useEffect, useState } from 'react'
-import Listing from '../../utils/ListingAPI'
+import Tooltip from '@material-ui/core/Tooltip'
+import Button from '@material-ui/core/Button'
 import { storage } from '../../firebase/firebase'
-import React from 'react';
+import Select from '@material-ui/core/Select'
+import Listing from '../../utils/ListingAPI'
+import Alert from '@material-ui/lab/Alert'
+import Fab from '@material-ui/core/Fab'
+import "@reach/combobox/styles.css"
+import { useState } from 'react'
+import React from 'react'
 import {
-  GoogleMap,
-  useLoadScript,
-} from "@react-google-maps/api";
-import "@reach/combobox/styles.css";
-import MyLocationIcon from '@material-ui/icons/MyLocation';
-
+GoogleMap,
+useLoadScript,
+} from "@react-google-maps/api"
 
 let lat = 0, lng = 0
-
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -32,6 +37,17 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       display: 'flex'
     }
+  },
+  fab: {
+    margin: theme.spacing(2),
+  },
+  absolute: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(3),
+  },
+  bar: {
+    width: '100%',
   }
 }))
 
@@ -42,8 +58,21 @@ const ListingForm = props => {
     libraries,
   });
 
+  // category
+  const [category, setCategory] = useState('')
+  const [open, setOpen] = React.useState(false);
 
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   // firebase stuff
   const allInputs = { imgUrl: '' }
@@ -58,7 +87,9 @@ const ListingForm = props => {
 
   const handleCreatePost = event => {
     event.preventDefault()
-    // more firebase stuff
+    if (props.title.length > 4 && props.price.length > 0 && category && props.body.length>2)
+   { 
+     // more firebase stuff
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
     uploadTask.on('state_changed',
       (snapShot) => {
@@ -75,7 +106,7 @@ const ListingForm = props => {
             setImageAsUrl(prevObject => ({ ...prevObject, imgUrl: fireBaseUrl }))
 
             console.log(fireBaseUrl)
-            const date = new Date().setDate(new Date().getDate() - 10)
+            const date = new Date().setDate(new Date().getDate())
             Listing.create({
               title: props.title,
               rent: rentState,
@@ -85,15 +116,22 @@ const ListingForm = props => {
               lat: lat,
               lng: lng,
               datePosted: date,
-              imageURL: fireBaseUrl
+              imageURL: fireBaseUrl,
+              category: category
             })
               .then(({ data: listing }) => {
                 console.log('done')
                 console.log(listing)
-                window.location=`/listing/${listing.id}`
+                window.location=`/listing/${listing._id}`
               })
           })
+          .catch(err=>console.error(err))
       })
+    }
+    else
+    {
+      alert('All input fields are required. Please check your input and try again.')
+    }
   }
 
   const [ coordsState, setCoordsState ] = useState('')
@@ -103,13 +141,29 @@ const ListingForm = props => {
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
+    mapRef.current = map
+    if (mapRef.current.zoom < 14) {
+        setProgress(0)
+    }
   }, []);
+
+  const [progress, setProgress] = React.useState()
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(14)
+    console.log(mapRef.current)
+    if (mapRef.current.zoom === 14 ) {
+      
+      const timer = setInterval(() => {
+        setProgress(100)
+      }, 500)
+      return () => {
+        clearInterval(timer);
+      };
+    }
   }, []);
+
 
 
   const [rentState, setRentState] = useState(false)
@@ -123,8 +177,48 @@ const ListingForm = props => {
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
+
+  function Locate({ panTo }) {
+    return (
+      <div
+        id='Compass'
+        className="locate"
+        onClick={() => { 
+          const timer = setInterval(() => {
+            setProgress((oldProgress) => {
+              const diff = Math.random() * 15;
+              return Math.min(oldProgress + diff, 100);
+            });
+          }, 700)
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              panTo({
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              });
+              lat = position.coords.latitude
+              lng = position.coords.longitude
+              console.log(position.coords.latitude)
+              console.log(position.coords.longitude)
+            },
+            () => null
+          );
+
+        }
+      }
+      >
+        <Tooltip title="Add Location" aria-label="add">
+          <Fab color="primary" className={classes.fab}>
+            <AddLocationIcon/>
+          </Fab>
+        </Tooltip>
+        <p>Add Location  </p>
+      </div>
+    );
+  }
+
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <form className={classes.root}  autoComplete='off'>
 
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>
@@ -133,7 +227,31 @@ const ListingForm = props => {
           labelWidth={50}
           name='title'
           onChange={props.handleInputChange}
+          required='true'
         />
+      </FormControl>
+      {/* category */}
+      <FormControl className={classes.formControl}>
+        <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
+        <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
+          open={open}
+          onClose={handleClose}
+          onOpen={handleOpen}
+          value={category}
+          onChange={handleChange}
+        >
+          <MenuItem value={null}>
+            <em>Select a Category</em>
+          </MenuItem>
+          <MenuItem value={process.env.REACT_APP_PET_ID}>Pets</MenuItem>
+          <MenuItem value={process.env.REACT_APP_EL_ID}>Electronics</MenuItem>
+          <MenuItem value={process.env.REACT_APP_HG_ID}>Home Goods</MenuItem>
+          <MenuItem value={process.env.REACT_APP_VEHICLES_ID}>Vehicles</MenuItem>
+          <MenuItem value={process.env.REACT_APP_CLOTHES_ID}>Clothes</MenuItem>
+
+        </Select>
       </FormControl>
 
       <br />
@@ -179,15 +297,18 @@ const ListingForm = props => {
           name='price'
           value={props.price}
           onChange={props.handleInputChange}
+          required='true'
         />
       </FormControl>
       <br />
         <FormControl>
 
         <Locate 
-          panTo={panTo} 
+          panTo={panTo}
           />
-
+        <div className={classes.root}>
+          <LinearProgress variant="determinate" value={progress}/>
+        </div>
           <GoogleMap
             id="map"
             mapContainerStyle={mapContainerStyle}
@@ -200,7 +321,11 @@ const ListingForm = props => {
         
         </FormControl>
       <FormControl>
+        <AddAPhotoIcon
+        color='primary'
+        />
         <OutlinedInput
+          required='true'
           type="file"
           onChange={handleImageAsFile}
         />
@@ -214,32 +339,5 @@ const ListingForm = props => {
   )
 }
 
-function Locate({ panTo }) {
-  return (
-    <div
-      id='Compass'
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-            lat = position.coords.latitude
-            lng = position.coords.longitude
-            console.log(position.coords.latitude)
-            console.log(position.coords.longitude)
-          },
-          () => null
-        );
-        
-      }}
-       >
-      <p>Enter your Location  </p>
-      <MyLocationIcon style={{ fontSize: 40 }} />
-    </div>
-  );
-}
 
 export default ListingForm

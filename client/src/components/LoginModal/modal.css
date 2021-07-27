@@ -16,9 +16,10 @@ body, html {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  height:53vh;
+  height: 70vh;
   width: 50%;
   overflow: hidden;
+  z-index: 2000;
 }
 
 .custom_overlay {
@@ -28,6 +29,7 @@ body, html {
   bottom: 0;
   position: fixed;
   background-color: rgba(88, 88, 88, 0.78);
+  z-index: 2000;
 }
 
 .close {
@@ -38,8 +40,8 @@ body, html {
 button#close {
   background-color: rgb(187, 96, 96);
   height: 30px;
-  width: 90px;
-  margin-left: 46%;
+  width: 40px;
+  margin-left: 80%;
+  margin-bottom: 0;
   overflow: hidden;
-
 }

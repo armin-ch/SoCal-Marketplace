@@ -1,22 +1,24 @@
+import SearchResults from './pages/SearchResults'
+import UserProfile from './pages/UserProfile'
 import { useState, useEffect } from 'react'
+import Category from './pages/Category'
+import SellItem from './pages/SellItem'
+import History from './pages/History'
+import Listing from './pages/Listing'
+import Profile from './pages/Profile'
+import Home from './pages/Home'
+import User from './utils/UserAPI'
+import Login from './pages/Login'
 import io from 'socket.io-client'
+import Chat from './pages/Chat'
+import Chat2 from './pages/chat2'
+import './App.css'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import User from './utils/UserAPI'
-import Market from './pages/market'
-import SellItem from './pages/SellItem'
-import Profile from './pages/Profile'
-import Chat from './pages/Chat'
-import UserProfile from './pages/UserProfile'
-import Listing from './pages/Listing'
-import './App.css'
 
 
 
@@ -86,11 +88,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        <Navbar 
-          me={meState.me}
-          isLoggedIn={meState.isLoggedIn}
-          handleLogOut={handleLogOut}
-        />
         <Switch>
           <Route exact path='/'>
             <Home />
@@ -101,9 +98,6 @@ const App = () => {
           <Route exact path='/login'>
             <Login updateMe={updateMe} />
           </Route>
-          <Route exact path='/market'>
-            <Market />
-          </Route>
           <Route exact path='/sellItem'>
             <SellItem />
           </Route>
@@ -111,14 +105,24 @@ const App = () => {
             <Profile />
           </Route>
           <Route exact path='/chat'>
-            <Chat />
+            <Chat2 />
           </Route>
           <Route exact path='/listing/:id'>
             <Listing />
           </Route>
-          <Route exact path='/listing/:id'>
-            <Listing />
+          <Route exact path='/History'>
+            <History />
           </Route>
+          <Route exact path='/category/:category'>
+            <Category />
+          </Route>
+          <Route exact path='/category/pets'>
+            <Category />
+          </Route>
+          <Route exact path='/search/:search'>
+            <SearchResults />
+          </Route>
+
         </Switch>
       </div>
     </Router>
