@@ -63,7 +63,6 @@ const Login = props => {
     event.preventDefault()
     User.register(registerState)
       .then(() => {
-        alert('User registered!')
         handleChangeIndex({}, 0)
         axios.post('https://api.chatengine.io/users/', {
           username: registerState.username,
@@ -74,8 +73,10 @@ const Login = props => {
             'PRIVATE-KEY': '7d89f76d-2d18-487c-b98c-301eb61c29db'
           }
         })
-          .then(() => {
-            console.log('user registered') 
+          .then(({ data: token }) => {
+            localStorage.setItem('token', token)
+            localStorage.setItem('username', registerState.username)
+            window.location = '/'
           })
       })
 }

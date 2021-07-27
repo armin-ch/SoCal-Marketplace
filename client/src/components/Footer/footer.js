@@ -6,18 +6,18 @@ import './styles.css'
 const Footer= props => {
   return (
     <Container id='footer1'>
-      <Typography variant="body2" color="white" align="center" style={{ textDecoration: 'none', color:'white' }}>
-        {'Copyright © '} Created By: 
-        <Link href="https://github.com/armin-ch">
+      <Typography variant="body2" color="light" align="center" style={{ textDecoration: 'none' }}>
+        {'Copyright © '} Created By:
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/armin-ch">
           Armin,
         </Link>{' '}
-        <Link href="https://github.com/norrii1">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/norrii1">
           Alex,
         </Link>{' '}
-        <Link href="https://github.com/kyle004">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/kyle004">
           Kyle,
         </Link>{' '}
-        <Link href="https://github.com/wellswu4621">
+        <Link style={{ textDecoration: 'none', color: 'white' }} href="https://github.com/wellswu4621">
           Wells,
         </Link>{' '}
         {new Date().getFullYear()}
