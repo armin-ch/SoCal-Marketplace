@@ -76,7 +76,7 @@ const Login = props => {
           .then(({ data: token }) => {
             localStorage.setItem('token', token)
             localStorage.setItem('username', registerState.username)
-            window.location = '/'
+            window.location = '/login'
           })
       })
 }

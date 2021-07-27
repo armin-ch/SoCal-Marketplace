@@ -108,9 +108,9 @@ const UserProfile = props => {
   async function showUser() {
     let { data } = await User.profile(username)
     console.log(data.listings)
-    setListingState(data.listings)
-    setEmailState(data.email)
     setRatingState(data.rating)
+    setEmailState(data.email)
+    setListingState(data.listings)
     console.log(data.rating)
   }
 
