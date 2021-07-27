@@ -114,7 +114,8 @@ const Category = props => {
         <Dashboard />
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth='xl' className='grid-bg ba-grid anim'>
+          <Container maxWidth='xl' style={{ padding: '0px' }}>
+            <Container maxWidth='xl' className='grid-bg ba-grid anim'>
             <h1> {
               category == 'home_goods' ? "HOME GOODS" : category.toUpperCase()
             }</h1>
@@ -139,7 +140,8 @@ const Category = props => {
                   }
                   )) : null}
               </Grid>
-          <Footer />
+          <Footer id='categories1'/>
+          </Container>
           </Container>
         </main >
       </div >

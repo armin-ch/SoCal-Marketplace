@@ -177,9 +177,9 @@ const Home = props => {
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '70vh', padding: '20px', marginTop: '5vh' }}>
           <Chat />
           </Paper>
-        </Container>
-        </Container>
         <Footer />
+        </Container>
+        </Container>
       </main>
     </div>
   );
