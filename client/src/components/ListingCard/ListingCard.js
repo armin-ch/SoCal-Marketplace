@@ -79,8 +79,8 @@ export default function MediaCard(props) {
       }
     })
       .then(() => {
-        console.log('listing removed')
         alert('Listing removed')
+        window.location.reload()
       })
   }
 
