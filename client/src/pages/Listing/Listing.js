@@ -157,7 +157,8 @@ const Listing = props => {
    <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
+        <Container maxWidth='xl' style={{ padding: '0px' }}>
+          <Container maxWidth='xl' className='grid-bg ba-grid anim'>
  <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
         {/* <h1>listing page</h1> */}
         {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
@@ -220,6 +221,7 @@ const Listing = props => {
         <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
         </div>
       </Paper>
+        </Container>
         </Container>
       </main>
     </div>
