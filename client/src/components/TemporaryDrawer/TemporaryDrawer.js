@@ -44,7 +44,7 @@ export default function TemporaryDrawer() {
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, true)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, true)}
     >
       <FormControl className={classes.root} noValidate autoComplete="off">
         <Grid direction='row'>
@@ -63,6 +63,7 @@ export default function TemporaryDrawer() {
         </Grid>
       </FormControl>
       <List>
+        <SearchInput/>
         <ListItems />
       </List>
     </div>

@@ -125,6 +125,7 @@ const Profile = () => {
         <Container maxWidth='xl' style={{ padding: '0px' }}>
           <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <h1>Your Profile</h1>
+            <Paper style={{ backgroundColor: '#cfe8fc', minHeight: '89vh', padding: '20px', marginTop: '5vh' }}>
             {userState.user ? (
               <>
                 <Typography variant='h4'>
@@ -173,6 +174,7 @@ const Profile = () => {
               ))
             }
             </Grid>
+            </Paper>
         <Footer />
         </Container>
         </Container>

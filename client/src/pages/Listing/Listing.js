@@ -162,7 +162,7 @@ const Listing = props => {
  <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
         {/* <h1>listing page</h1> */}
         {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
-        <h1>{listingState.title} </h1>
+        <h1 style={{color:'black'}}>{listingState.title} </h1>
         <hr />
         <h2>Price: $ {listingState.price}</h2>
         <hr />
@@ -177,7 +177,7 @@ const Listing = props => {
         {listingState.rent ? <CheckIcon /> : <ClearIcon />}
             </h4>
             <hr />
-            <h1>Listing Images</h1>
+              <h1 style={{ color: 'black' }}>Listing Images</h1>
             <div style={{
               display: "flex",
               justifyContent: "center",
