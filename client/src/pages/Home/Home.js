@@ -185,7 +185,7 @@ const Home = props => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl' style={{ padding: '0px' }}>
         <Container maxWidth='xl' className='grid-bg ba-grid anim'>
-          <h1>Listings Posted Recently</h1>
+          <h1 style={{color:'white'}}>Listings Posted Recently</h1>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
 
               {
