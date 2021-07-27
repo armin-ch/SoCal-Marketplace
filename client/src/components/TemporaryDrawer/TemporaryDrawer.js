@@ -63,7 +63,7 @@ export default function TemporaryDrawer() {
         </Grid>
       </FormControl>
       <List>
-        <SearchInput/>
+
         <ListItems />
       </List>
     </div>
