@@ -326,6 +326,7 @@ button#myBtn {
 .jss20 {
   width: 100% !important;
 }
+
 .makeStyles-drawerPaper-24 {
   background-image: radial-gradient(ellipse at bottom left, rgba(104, 128, 138, 0.4) 10%, rgba(138, 114, 76, 0) 60%), linear-gradient(to bottom, rgba(1, 104, 144, 0.116), rgba(42, 60, 87, 0.4)), linear-gradient(135deg, #670d10c0, #092756);
 }
@@ -346,4 +347,30 @@ div#panel1a-header {
 
 li.MuiListItem-root.MuiListItem-gutters {
   background: transparent !important;
+}
+
+#drawer11 {
+  right: 4% !important;
+}
+
+/* 
+button#myBtn.drawer11 {
+  margin-bottom: 30%;
+  top: 20px;
+  bottom: 30px;
+  left: 20%;
+} */
+
+button#myBtn {
+  height: 55px;
+  right: 4% !important;
+  margin-top: 1px;
+  background: transparent;
+}
+
+button#myBtn2 {
+  height: 55px;
+  right: 4% !important;
+  margin-top: 1px;
+  background: transparent;
 }
