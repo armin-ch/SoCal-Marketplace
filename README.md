@@ -20,16 +20,13 @@
 |3. | npm start|
 |4. | link: https://arcane-woodland-37998.herokuapp.com/ |
 
-## Usage
-💻 
-## License
-![badge](https://img.shields.io/badge/license--brightgreen)
 <br />
-This application is covered by  license. 
-## Contributing
+## Contributors
 👪 
-> Wells Wu, wells.wu4621@gmail.com
-> Alexander Noriega, alexnoriega47@gmail.com 
+- Wells Wu, wells.wu4621@gmail.com
+- Alexander Noriega, alexnoriega47@gmail.com 
+- Kyle Berman, codingky@gmail.com
+- Armin Chaychian, armin_chaychian@yahoo.com
 ## Tests
 ✏️ 
 ## Questions

@@ -25,10 +25,9 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    height: "150%"
   },
   toolbar: {
-    paddingRight: 30, // keep right padding when drawer closed
+    paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: 'flex',
@@ -97,9 +96,9 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
-  // fixedHeight: {
-  //   height: '100vh',
-  // },
+  fixedHeight: {
+    height: 240,
+  },
 }));
 
 
