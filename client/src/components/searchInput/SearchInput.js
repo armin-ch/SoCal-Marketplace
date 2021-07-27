@@ -2,6 +2,8 @@ import { Button, TextField, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 import Input from '@material-ui/core/Input'
 import React from 'react'
+import SearchIcon from '@material-ui/icons/Search'
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +26,7 @@ export default function ColorTextFields() {
 
   return (
     <FormControl className={classes.root} noValidate autoComplete="off">
+      <Grid direction='row'>
       <TextField
         id="outlined-secondary"
         label="Search"
@@ -31,10 +34,12 @@ export default function ColorTextFields() {
         color="secondary"
         onChange={event => {setsearchState(event.target.value)}}
         // onKeyPress={event => {handleSearch(event)}}
-      />
-      <Button onClick={event => window.location.href = `/search/${searchState}`} size="small" color="secondary">
-        Search
+        />
+      <Button id="myBtn" onClick={event => window.location.href = `/search/${searchState}`} size="small">
+      <SearchIcon
+      color="primary"/>
       </Button>
+      </Grid>
     </FormControl>
   );
 }

@@ -132,9 +132,8 @@ const SearchResults = props => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
-            <SearchInput />
-            <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
+        <Container  maxWidth='xl' className='grid-bg ba-grid anim'>
+          <Grid style={{ marginTop: '20px' }} container xs={12} sm={12} md={12} lg={12} spacing={2}>
               {
                 listingState.listings.filter((val) => {
                   if (val.title.toLowerCase().includes(search.toLowerCase())) {

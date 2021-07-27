@@ -317,3 +317,12 @@ html, body {
 .MuiContainer-root.grid-bg.ba-grid.anim.MuiContainer-maxWidthXl {
   z-index: 0;
 }
+
+button#myBtn {
+  right: 4% !important;
+  margin-top: 11px;
+}
+
+.jss20 {
+  width: 100%;
+}
