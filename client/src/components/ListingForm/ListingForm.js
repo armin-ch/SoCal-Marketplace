@@ -224,7 +224,7 @@ const ListingForm = props => {
         <InputLabel htmlFor='title'>Title</InputLabel>
         <OutlinedInput
           value={props.title}
-          labelWidth={50}
+          labelWidth={35}
           name='title'
           onChange={props.handleInputChange}
           required='true'
@@ -281,7 +281,7 @@ const ListingForm = props => {
         <InputLabel htmlFor='body'>Description</InputLabel>
         <OutlinedInput
           id='body'
-          labelWidth={50}
+          labelWidth={80}
           multiline
           rows={4}
           name='body'
@@ -293,7 +293,7 @@ const ListingForm = props => {
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='price'>Price</InputLabel>
         <OutlinedInput
-          labelWidth={10}
+          labelWidth={35}
           name='price'
           value={props.price}
           onChange={props.handleInputChange}
