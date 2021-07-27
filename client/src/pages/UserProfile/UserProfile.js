@@ -145,7 +145,7 @@ const UserProfile = props => {
         <Container maxWidth='xl' style={{ padding: '0px' }}>
           <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '89vh', padding: '20px', marginTop: '5vh' }}>
-            <h1>{username}</h1>
+              <h1 style={{ color: 'black' }}>{username}</h1>
             <Typography component="legend">Seller Rating</Typography>
             <Rating
               name="seller-rating"

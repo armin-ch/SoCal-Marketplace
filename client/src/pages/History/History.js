@@ -125,9 +125,9 @@ const History = () => {
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <h1>Purchase History</h1>
-            <Typography variant='h4'>
-              {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have No Recorded Purchases, Please Contact The Seller If A Purchased Item Is Not Showing Here'}
-            </Typography>
+            <h1>
+              {(historyState.history.length > 0) ? 'Your Purchase History: ' : 'You Have No Recorded Purchases, Please Contact The Seller If A Purchased Item Is Not Showing Here.'}
+            </h1>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
             {
               historyState.history.map(listing => (
