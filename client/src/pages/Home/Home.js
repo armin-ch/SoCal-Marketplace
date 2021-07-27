@@ -10,19 +10,31 @@ import { useEffect, useState } from 'react'
 import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
 import React from 'react'
+import Footer from '../../components/Footer'
 
 
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Created by Armin, Alex, Kyle, & Wells
+    <Container>
+    <Typography variant="body2" color="textSecondary" align="center" style={{ opacity: '100%'}}>
+      {'Copyright © '} Created By: 
+      <Link color="black" href="https://github.com/armin-ch">
+        Armin, 
+      </Link>{' '}
+      <Link color="black" href="https://github.com/norrii1">
+       Alex,
+      </Link>{' '}
+      <Link color="black" href="https://github.com/kyle004">
+        Kyle,
+      </Link>{' '}
+      <Link color="black" href="https://github.com/wellswu4621">
+        Wells,
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
+    </Container>
   );
 }
 
@@ -171,9 +183,9 @@ const Home = props => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl'>
+        <Container maxWidth='xl' style={{ padding: '0px' }}>
+        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
           <h1>Listings Posted Recently</h1>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh' }}>
             <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
 
               {
@@ -202,9 +214,9 @@ const Home = props => {
                 })
               }
             </Grid>
-          </Paper>
+        <Footer />
+  </Container>
         </Container>
-        <Copyright />
       </main>
     </div>
   );

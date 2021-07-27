@@ -1,13 +1,13 @@
+import AddLocationIcon from '@material-ui/icons/AddLocation'
 import LinearProgress from '@material-ui/core/LinearProgress'
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import FormControl from '@material-ui/core/FormControl'
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import MenuItem from '@material-ui/core/MenuItem'
 import { makeStyles } from '@material-ui/core/styles'
 import InputLabel from '@material-ui/core/InputLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Tooltip from '@material-ui/core/Tooltip'
-import AddLocationIcon from '@material-ui/icons/AddLocation'
 import Button from '@material-ui/core/Button'
 import { storage } from '../../firebase/firebase'
 import Select from '@material-ui/core/Select'
@@ -87,7 +87,7 @@ const ListingForm = props => {
 
   const handleCreatePost = event => {
     event.preventDefault()
-    if(props.title.length>1 && props.price.length>0 && category && props.body.length>2)
+    if (event.target.title.length > 4 && event.target.price.length > 0 && category && event.target.body.length>2)
    { 
      // more firebase stuff
     const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
@@ -217,9 +217,8 @@ const ListingForm = props => {
     );
   }
 
-
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
+    <form className={classes.root}  autoComplete='off'>
 
       <FormControl fullWidth variant='outlined'>
         <InputLabel htmlFor='title'>Title</InputLabel>

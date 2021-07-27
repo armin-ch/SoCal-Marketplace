@@ -159,11 +159,8 @@ export const ListItems = props => {
       </Link>
 
       <IconButton
-        style={{ padding: '20px', marginTop: '48vh'}}
+        style={{ padding: '20px', marginTop: '38vh'}}
         color="inherit">
-        <Badge badgeContent={4} color="secondary">
-          <NotificationsIcon />
-        </Badge>
         <ModalComponent
           me={meState.me}
           isLoggedIn={meState.isLoggedIn}

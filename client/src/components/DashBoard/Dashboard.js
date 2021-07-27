@@ -9,6 +9,7 @@ import Divider from '@material-ui/core/Divider'
 import Hidden from '@material-ui/core/Hidden'
 import Link from '@material-ui/core/Link'
 import { useState, useEffect } from 'react'
+import LoginModal from '../LoginModal'
 import List from '@material-ui/core/List'
 import SearchInput from '../searchInput'
 import User from '../../utils/UserAPI'
@@ -16,6 +17,7 @@ import ListItems from '../ListItems'
 import React from 'react'
 import clsx from 'clsx'
 import './styles.css'
+
 
 
 
@@ -204,6 +206,7 @@ const Dashboard = props => {
         <List></List>
       </Drawer>
       </Hidden>
+
     </div>
   );
 }

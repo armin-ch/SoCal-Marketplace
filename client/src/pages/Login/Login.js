@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import AppBar from '@material-ui/core/AppBar'
 import Paper from '@material-ui/core/Paper'
 import Tabs from '@material-ui/core/Tabs'
+import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Tab from '@material-ui/core/Tab'
 import User from '../../utils/UserAPI'
@@ -62,7 +63,6 @@ const Login = props => {
     event.preventDefault()
     User.register(registerState)
       .then(() => {
-        alert('User registered!')
         handleChangeIndex({}, 0)
         axios.post('https://api.chatengine.io/users/', {
           username: registerState.username,
@@ -73,8 +73,10 @@ const Login = props => {
             'PRIVATE-KEY': '7d89f76d-2d18-487c-b98c-301eb61c29db'
           }
         })
-          .then(() => {
-            console.log('user registered')
+          .then(({ data: token }) => {
+            localStorage.setItem('token', token)
+            localStorage.setItem('username', registerState.username)
+            window.location = '/'
           })
       })
 }

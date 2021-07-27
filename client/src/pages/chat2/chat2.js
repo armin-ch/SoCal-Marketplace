@@ -1,23 +1,36 @@
 import Typography from '@material-ui/core/Typography'
 import ListingCard from '../../components/ListingCard'
 import { makeStyles } from '@material-ui/core/styles'
-import Dashboard from '../../components/DashBoard'
 import Container from '@material-ui/core/Container'
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import Rating from '@material-ui/lab/Rating'
+import Dashboard from '../../components/DashBoard'
 import Paper from '@material-ui/core/Paper'
+import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
+import { useEffect, useState } from 'react'
+import Listing from '../../utils/ListingAPI'
 import User from '../../utils/UserAPI'
-import axios from 'axios'
+import React from 'react'
+import Chat from '../Chat'
 import Footer from '../../components/Footer'
+
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Created by Armin, Alex, Kyle, & Wells
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
-
 const useStyles = makeStyles((theme) => ({
-  root1: {
+  root: {
     display: 'flex',
   },
   toolbar: {
@@ -93,100 +106,82 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-}))
+}));
 
-const UserProfile = props => {
-  const classes = useStyles()
-  let { username } = useParams()
-
-  const [emailState, setEmailState] = useState('')
-  const [ratingState, setRatingState] = useState('')
-  const [listingState, setListingState] = useState({
-    listings: []
+const Home = props => {
+  const [meState, setMeState] = useState({
+    me: {},
+    isLoggedIn: true
   })
 
-  async function showUser() {
-    let { data } = await User.profile(username)
-    console.log(data.listings)
-    setListingState(data.listings)
-    setEmailState(data.email)
-    setRatingState(data.rating)
-    console.log(data.rating)
+  const getMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        if (me) {
+          setMeState({ me, isLoggedIn: true })
+        } else {
+          getMe()
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setMeState({ me: {}, isLoggedIn: false })
+    window.location = '/login'
   }
 
   useEffect(() => {
-    showUser()
+    getMe()
   }, [])
 
-  const [userState, setUserState] = useState({
-    user: {}
+  const updateMe = () => {
+    User.me()
+      .then(({ data: me }) => {
+        console.log(me)
+        setMeState({ me, isLoggedIn: true })
+      })
+      .catch(err => {
+        console.error(err)
+        setMeState({ ...meState, isLoggedIn: false })
+      })
+  }
+  const classes = useStyles();
+  const [listingState, setListingState] = useState({
+    title: '',
+    body: '',
+    price: '',
+    rent: false,
+    sell: false,
+    listings: []
   })
-
   useEffect(() => {
-    User.profile()
-      .then(res => {
-        const user = res.data
-        console.log(user)
-        setUserState({ ...userState, user })
-        axios.get(`/api/user/${username}`)
-          .then(({ data: listings }) => {
-            console.log(listings)
-            setListingState({ ...listingState, listings })
-          })
+    Listing.getAll()
+      .then(({ data: listings }) => {
+        console.log(listings)
+        setListingState({ ...listingState, listings })
       })
   }, [])
 
-  console.log("listingState", listingState)
   return (
-    <div className={classes.root1} >
+    <div className={classes.root}>
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth='xl' style={{ padding: '0px' }}>
           <Container maxWidth='xl' className='grid-bg ba-grid anim'>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '89vh', padding: '20px', marginTop: '5vh' }}>
-            <h1>{username}</h1>
-            <Typography component="legend">Seller Rating</Typography>
-            <Rating
-              name="seller-rating"
-              value={parseInt(ratingState)}
-              precision={0.5}
-              readOnly
-            />
-            <h2>Contact Information: {emailState}</h2>
-            <Grid container xs={12} sm={12} md={12} lg={12} spacing={2}>
-            {listingState.length ? (
-              listingState.map((listing, index) => {
-                if (!listing.isSold) {
-                return (
-                  <Grid item xs={12} sm={12} md={4}>
-                <ListingCard
-                  title={listing.title}
-                  imageURL={listing.imageURL}
-                  body={listing.body}
-                  seller={username}
-                  date={listing.datePosted}
-                  id={listing._id}
-                  />
-                  </Grid>
-                )
-                }
-              })
-            
-
-            ) : (
-              <h3>No listing's found for the {username}!!</h3>
-            )}
-            </Grid>
+          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '70vh', padding: '20px', marginTop: '5vh' }}>
+          <Chat />
           </Paper>
+        </Container>
+        </Container>
         <Footer />
-        </Container>
-        </Container>
       </main>
-      </div>
-
-
-  )
+    </div>
+  );
 }
-
-export default UserProfile
+export default Home

@@ -7,7 +7,6 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import './modal.css'
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -82,7 +81,6 @@ const ModalComponent = props => {
             onRequestClose={openModal}
             contentLabel="Tiny nomadic modal popover"
             isOpen={isOpen}>
-<button id='close' onClick={openModal}>X</button>
               <Login />
           </Modal>
         </div>
