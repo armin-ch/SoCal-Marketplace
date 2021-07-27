@@ -1,11 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles'
 import MenuIcon from '@material-ui/icons/Menu'
 import Drawer from '@material-ui/core/Drawer'
-import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List'
 import ListItems from '../ListItems'
 import React from 'react'
 import clsx from 'clsx'
+import SearchIcon from '@material-ui/icons/Search'
+import Grid from '@material-ui/core/Grid';
+import { Button, TextField, FormControl } from '@material-ui/core';
 
 const useStyles = makeStyles({
   list: {
@@ -16,6 +18,7 @@ const useStyles = makeStyles({
   },
 })
 
+
 export default function TemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -24,9 +27,10 @@ export default function TemporaryDrawer() {
     bottom: false,
     right: false,
   });
-
+  const[searchState, setsearchState] = React.useState('');
+  
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (event.type === 'keydown') {
       return;
     }
 
@@ -42,14 +46,31 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, true)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <FormControl className={classes.root} noValidate autoComplete="off">
+        <Grid direction='row'>
+          <TextField
+            id="outlined-secondary"
+            label="Search"
+            variant="outlined"
+            color="secondary"
+            onChange={event => { setsearchState(event.target.value) }}
+          // onKeyPress={event => {handleSearch(event)}}
+          />
+          <Button id="myBtn2" class='drawer11' onClick={event => window.location.href = `/search/${searchState}`} size="small">
+            <SearchIcon
+              color="primary" />
+          </Button>
+        </Grid>
+      </FormControl>
       <List>
         <ListItems />
       </List>
     </div>
   );
 
-  return (
+  return ( 
     <div>
+
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}><MenuIcon /></Button>

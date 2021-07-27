@@ -35,7 +35,7 @@ export default function ColorTextFields() {
         onChange={event => {setsearchState(event.target.value)}}
         // onKeyPress={event => {handleSearch(event)}}
         />
-      <Button id="myBtn" onClick={event => window.location.href = `/search/${searchState}`} size="small">
+      <Button id="myBtn" class='drawer11' onClick={event => window.location.href = `/search/${searchState}`} size="small">
       <SearchIcon
       color="primary"/>
       </Button>
