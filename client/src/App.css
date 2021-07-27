@@ -324,5 +324,5 @@ button#myBtn {
 }
 
 .jss20 {
-  width: 100%;
+  width: 100% !important;
 }
