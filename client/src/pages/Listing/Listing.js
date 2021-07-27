@@ -158,19 +158,20 @@ const Listing = props => {
       <Dashboard />
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth='xl' className='grid-bg ba-grid anim'>
-          <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh'}}>
-            {/* <h1>listing page</h1> */}
-            {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
-            <h1>{listingState.title} </h1>
-            <hr />
-            <h2>Price: $ {listingState.price}</h2>
-            <hr />
-            <h2>Listing Description:</h2>
-            <h3>{listingState.body}</h3>
-            <h5><span>Posted on {date.slice(0, 10)}</span></h5>
-            <hr />
-            <h4>For Sale:
+        <Container maxWidth='xl' style={{ padding: '0px' }}>
+          <Container maxWidth='xl' className='grid-bg ba-grid anim'>
+ <Paper component='div' style={{ backgroundColor: '#cfe8fc', minHeight: '80vh', padding: '20px', marginTop: '5vh', marginLeft: '6vh', marginRight: '6vh' }}>
+        {/* <h1>listing page</h1> */}
+        {listingState.isSold ? <h2>This item is marked as sold by the seller</h2> : null}
+        <h1>{listingState.title} </h1>
+        <hr />
+        <h2>Price: $ {listingState.price}</h2>
+        <hr />
+        <h2>Listing Description:</h2>
+        <h3>{listingState.body}</h3>
+        <h5><span>Posted on {date.slice(0,10)}</span></h5>
+        <hr />
+        <h4>For Sale:
         {listingState.sell ? <CheckIcon /> : <ClearIcon />}
             </h4>
             <h4>For rent:
@@ -221,6 +222,7 @@ const Listing = props => {
               <Button variant="contained" color="primary" onClick={CreateDMChat}>message seller</Button>
             </div>
           </Paper>
+        </Container>
         </Container>
       </main>
     </div>
