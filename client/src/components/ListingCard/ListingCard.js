@@ -97,7 +97,7 @@ export default function MediaCard(props) {
           {props.title}
         </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          {props.body}
+          {props.body.slice(0,60) + '...'}
         </Typography>
         <Typography gutterBottom variant="body3" component="body3">
           Created by <Link to={`/profile/${props.seller}`}> {props.seller}</Link> on {datePosted}
