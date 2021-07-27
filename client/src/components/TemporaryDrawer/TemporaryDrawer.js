@@ -6,6 +6,7 @@ import List from '@material-ui/core/List'
 import ListItems from '../ListItems'
 import React from 'react'
 import clsx from 'clsx'
+import SearchInput from '../searchInput'
 
 const useStyles = makeStyles({
   list: {
@@ -40,9 +41,10 @@ export default function TemporaryDrawer() {
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, true)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, true)}
     >
       <List>
+        <SearchInput/>
         <ListItems />
       </List>
     </div>
