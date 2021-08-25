@@ -8,7 +8,7 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Contributing](#contributing)
-- [Tests](#tests)
+- [Demo](#Demo)
   - - -
 ## Installation
 💾 
@@ -34,7 +34,7 @@
 
   - - -
 
-  ## Tests
+  ## Demo
 
 >
  ![demo](asset/demo.gif)
