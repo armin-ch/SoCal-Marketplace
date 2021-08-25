@@ -30,7 +30,7 @@
 |Wells Wu     |   wells.wu4621@gmail.com  |
 |Alexander Noriega   | alexnoriega47@gmail.com       |
 |Kyle Berman |  codingky@gmail.com|
-|Armin Chaychian |  armin_chaychian@yahoo.com|
+|Armin Chaychian |  arminch1997@gmail.com|
 
   - - -
 
