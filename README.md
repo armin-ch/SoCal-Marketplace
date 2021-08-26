@@ -9,6 +9,7 @@
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [Demo](#Demo)
+- [Technoloies](#Technoloies)
   - - -
 ## Installation
 💾 
@@ -39,7 +40,7 @@
 >
  ![demo](asset/demo.gif)
  
- ## Technologies Used 
+ ## Technologies 
  
     React, Express, MongoDB, Heroku, Github
     The following npm packages were used in this app:
