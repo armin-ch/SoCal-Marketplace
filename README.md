@@ -9,7 +9,7 @@
 - [Installation](#installation)
 - [Contributing](#contributing)
 - [Demo](#Demo)
-- [Technoloies](#Technoloies)
+- [Technologies](#Technologies)
   - - -
 ## Installation
 💾 
