@@ -38,3 +38,20 @@
 
 >
  ![demo](asset/demo.gif)
+ 
+ ## Technologies Used 
+ 
+    React, Express, MongoDB, Heroku, Github
+    The following npm packages were used in this app:
+    "concurrently": "^6.2.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.1.0",
+    "react-chat-engine": "^1.10.13",
+    "socket.io": "^4.1.3"
