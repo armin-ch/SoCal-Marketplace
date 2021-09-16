@@ -10,6 +10,7 @@
 - [Contributing](#contributing)
 - [Demo](#Demo)
 - [Technologies](#Technologies)
+- [Deployment](#Deployment)
   - - -
 ## Installation
 💾 
@@ -57,6 +58,6 @@
     "react-chat-engine": "^1.10.13",
     "socket.io": "^4.1.3"
     
-    ## Deployment 
 
+## Deployment
 This application is deployed to Heroku. Click [here](https://arcane-woodland-37998.herokuapp.com/) to be redirected to the deployed site.
