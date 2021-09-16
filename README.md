@@ -56,3 +56,7 @@
     "passport-local-mongoose": "^6.1.0",
     "react-chat-engine": "^1.10.13",
     "socket.io": "^4.1.3"
+    
+    ## Deployment 
+
+This application is deployed to Heroku. Click [here](https://arcane-woodland-37998.herokuapp.com/) to be redirected to the deployed site.
